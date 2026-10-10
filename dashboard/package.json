@@ -1,0 +1,18 @@
+{
+  "name": "simply-dwell-dashboard",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Private read-only Simply Dwell lead dashboard.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js",
+    "sync:data": "node scripts/sync-data.js"
+  },
+  "dependencies": {
+    "csv-parse": "^7.0.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

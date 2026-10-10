@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: simply-dwell-dashboards
+    runtime: node
+    plan: starter
+    buildCommand: cd dashboard && npm ci
+    startCommand: cd dashboard && npm start
+    autoDeploy: false
+    envVars:
+      - key: DASHBOARD_USERNAME
+        value: simplydwell
+      - key: DASHBOARD_PASSWORD
+        sync: false

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simply Dwell Lead Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar" aria-label="Dashboard header">
+        <div>
+          <p class="eyebrow">Simply Dwell</p>
+          <h1>Lead Sales Dashboard</h1>
+        </div>
+        <div class="actions">
+          <span id="updatedAt">Loading</span>
+          <button id="refresh" type="button">Refresh</button>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Dashboard views">
+        <button class="tab active" type="button" data-view="overview">Overview</button>
+        <button class="tab" type="button" data-view="tables">Tables</button>
+        <button class="tab" type="button" data-view="exceptions">Exceptions</button>
+      </nav>
+
+      <section class="metrics" aria-label="Lead metrics">
+        <article>
+          <span>Agents</span>
+          <strong id="agentCount">-</strong>
+          <small id="agentDetail">Master agent rows</small>
+        </article>
+        <article>
+          <span>Properties</span>
+          <strong id="propertyCount">-</strong>
+          <small>Tracked staging opportunities</small>
+        </article>
+        <article>
+          <span>Email Reviews</span>
+          <strong id="interactionCount">-</strong>
+          <small id="reviewDetail">Internal activity log</small>
+        </article>
+        <article class="attention">
+          <span>Exceptions</span>
+          <strong id="exceptionCount">-</strong>
+          <small id="exceptionDetail">Missing or blocked records</small>
+        </article>
+        <article>
+          <span>Run States</span>
+          <strong id="runStateCount">-</strong>
+          <small id="runStateDetail">Nightly lead health</small>
+        </article>
+      </section>
+
+      <section class="view active" data-view="overview">
+        <section class="panel status-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Data Status</h2>
+              <span id="sourceStatus">Checking source snapshots</span>
+            </div>
+          </div>
+          <div id="validationRows" class="status-grid"></div>
+        </section>
+
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Pipeline State</h2>
+              <span>Read-only CSV snapshot</span>
+            </div>
+            <div id="pipelineBars" class="bars"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Photo Status</h2>
+              <span>Properties</span>
+            </div>
+            <div id="photoBars" class="bars"></div>
+          </article>
+        </section>
+
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Run-State Health</h2>
+              <span>Latest markers</span>
+            </div>
+            <div id="runStateBars" class="bars"></div>
+            <div class="table-wrap compact-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Run</th>
+                    <th>Status</th>
+                    <th>File</th>
+                  </tr>
+                </thead>
+                <tbody id="runStateRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Exception Queue</h2>
+              <span>Read-only triage</span>
+            </div>
+            <div id="exceptionBars" class="bars"></div>
+          </article>
+        </section>
+
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Recent Properties</h2>
+              <span>Newest rows first</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Address</th>
+                    <th>Agent</th>
+                    <th>Photo</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="propertyRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Recent Email Reviews</h2>
+              <span>Zac/internal only</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Agent</th>
+                    <th>Property</th>
+                    <th>Status</th>
+                    <th>Next</th>
+                  </tr>
+                </thead>
+                <tbody id="interactionRows"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </section>
+
+      <section class="view" data-view="tables">
+        <section class="panel">
+          <div class="panel-head repository-head">
+            <div>
+              <h2>Data Repository</h2>
+              <span id="datasetStatus">Agents, properties, and interaction records</span>
+            </div>
+            <a class="button" href="/api/downloads/simply-dwell-data.xls">Download Excel</a>
+          </div>
+          <div id="downloadCards" class="download-grid"></div>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Repository Preview</h2>
+            <label class="select-label">
+              <span>Dataset</span>
+              <select id="datasetSelect">
+                <option value="properties">Properties</option>
+                <option value="agents">Agents</option>
+                <option value="interactions">Interactions</option>
+              </select>
+            </label>
+          </div>
+          <div class="table-wrap">
+            <table id="repositoryTable"></table>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" data-view="exceptions">
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Exception Filters</h2>
+              <span id="exceptionStatus">Records needing review</span>
+            </div>
+            <label class="select-label">
+              <span>Filter</span>
+              <select id="exceptionSelect"></select>
+            </label>
+          </div>
+          <div class="table-wrap">
+            <table id="exceptionTable"></table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
