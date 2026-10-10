@@ -128,6 +128,7 @@ function readDataset(key) {
   const records = parse(raw, {
     bom: true,
     columns: true,
+    relax_quotes: true,
     relax_column_count: true,
     skip_empty_lines: true,
   });
