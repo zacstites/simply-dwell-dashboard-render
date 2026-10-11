@@ -1,9 +1,7 @@
 const state = {
   overview: null,
-  repository: null,
   agentDrilldown: null,
   view: "overview",
-  dataset: "properties",
   exceptionKey: "",
   selectedAgentId: "",
   selectedAgentSection: "properties",
@@ -221,18 +219,6 @@ function renderDownloadCards() {
   );
 }
 
-function renderRepositoryTable() {
-  if (!state.repository) return;
-  const table = $("repositoryTable");
-  const dataset = state.repository[state.dataset];
-  const visibleHeaders = dataset.headers.slice(0, 10);
-  $("datasetStatus").textContent =
-    `${dataset.label}: ${numberFormat.format(dataset.rows)} rows, ${numberFormat.format(dataset.columns)} columns, ` +
-    `${dataset.validation.ok ? "headers ok" : `missing ${dataset.validation.missingHeaders.join(", ")}`}`;
-
-  renderGenericTable(table, visibleHeaders, dataset.records.slice(0, 120));
-}
-
 function selectAgent(agentId, section = state.selectedAgentSection) {
   state.selectedAgentId = agentId;
   state.selectedAgentSection = section;
@@ -428,18 +414,15 @@ function setView(view) {
 async function load() {
   $("refresh").disabled = true;
   try {
-    const [overviewResponse, repositoryResponse, agentDrilldownResponse] = await Promise.all([
+    const [overviewResponse, agentDrilldownResponse] = await Promise.all([
       fetch("/api/overview"),
-      fetch("/api/repository"),
       fetch("/api/agent-drilldown"),
     ]);
     state.overview = await overviewResponse.json();
-    state.repository = await repositoryResponse.json();
     state.agentDrilldown = await agentDrilldownResponse.json();
     renderOverview();
     renderDownloadCards();
     renderAgentDrilldown();
-    renderRepositoryTable();
     renderExceptionControls();
   } finally {
     $("refresh").disabled = false;
@@ -448,11 +431,6 @@ async function load() {
 
 document.querySelectorAll(".tab").forEach((tab) => {
   tab.addEventListener("click", () => setView(tab.dataset.view));
-});
-
-$("datasetSelect").addEventListener("change", (event) => {
-  state.dataset = event.target.value;
-  renderRepositoryTable();
 });
 
 $("exceptionSelect").addEventListener("change", (event) => {
