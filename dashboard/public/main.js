@@ -144,16 +144,10 @@ function renderOverview() {
   setMetric("propertyCount", metrics.propertyCount);
   setMetric("interactionCount", metrics.interactionCount);
   setMetric("backlogCount", metrics.backlogCount);
-  setMetric("exceptionCount", metrics.exceptionCount);
-  setMetric("runStateCount", metrics.runStateCount);
   $("agentDetail").textContent = `${numberFormat.format(metrics.needsReviewAgents)} need review`;
   $("reviewDetail").textContent = `${numberFormat.format(metrics.internalReviewCount)} sent/internal review records`;
   $("backlogDetail").textContent =
     `${numberFormat.format(metrics.backlogNotStartedCount)} not started, ${numberFormat.format(metrics.backlogReadyCount)} ready`;
-  $("exceptionDetail").textContent =
-    `${numberFormat.format(metrics.missingAgentCount)} missing agents, ${numberFormat.format(metrics.missingContactCount)} missing contacts`;
-  $("runStateDetail").textContent =
-    `${numberFormat.format(metrics.blockedRunStateCount)} blocked, ${numberFormat.format(metrics.currentRunStateCount)} current`;
   $("updatedAt").textContent = `Updated ${formatDate(overview.generatedAt)}`;
 
   renderBars("pipelineBars", overview.distributions.propertyOutreach);
