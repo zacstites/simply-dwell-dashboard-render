@@ -333,13 +333,15 @@ td {
 
 .download-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .download-card {
   display: grid;
-  gap: 10px;
-  min-height: 132px;
-  padding: 14px;
+  gap: 8px;
+  min-width: 0;
+  min-height: 118px;
+  padding: 13px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--soft);
@@ -466,9 +468,14 @@ select {
 @media (max-width: 920px) {
   .metrics,
   .grid,
-  .download-grid,
   .status-grid,
   .agent-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .download-grid {
     grid-template-columns: 1fr;
   }
 }
