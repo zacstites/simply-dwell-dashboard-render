@@ -25,6 +25,13 @@ function text(value) {
   return String(value || "").trim() || "-";
 }
 
+function labelForHeader(header) {
+  const labels = {
+    email_sent_to_zac: "Sent to Dwell",
+  };
+  return labels[header] || header.replaceAll("_", " ");
+}
+
 function formatDate(value) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "-" : dateFormat.format(date);
@@ -342,7 +349,7 @@ function renderGenericTable(table, headers, records) {
   headerRow.replaceChildren(
     ...headers.map((header) => {
       const th = document.createElement("th");
-      th.textContent = header.replaceAll("_", " ");
+      th.textContent = labelForHeader(header);
       return th;
     }),
   );
