@@ -150,38 +150,13 @@ function renderOverview() {
     `${numberFormat.format(metrics.backlogNotStartedCount)} not started, ${numberFormat.format(metrics.backlogReadyCount)} ready`;
   $("updatedAt").textContent = `Updated ${formatDate(overview.generatedAt)}`;
 
-  renderBars("pipelineBars", overview.distributions.propertyOutreach);
-  renderBars("photoBars", overview.distributions.propertyPhotoStatus);
+  renderPie("overviewBatchPie", overview.distributions.backlogCustomerBatchStatus);
+  renderBars("marketCoverageBars", overview.distributions.backlogCityCoverage);
+  renderBars("listingAgeBars", overview.distributions.backlogAgeBuckets);
+  renderBars("emailActivityBars", overview.distributions.emailReviewActivity);
   renderBars("backlogProcessingBars", overview.distributions.backlogProcessingStatus);
   renderPie("backlogBatchBars", overview.distributions.backlogCustomerBatchStatus);
-  renderBars("runStateBars", overview.distributions.runStateStatus);
-  renderBars(
-    "exceptionBars",
-    overview.exceptions.map((category) => ({ name: category.label, count: category.count })),
-  );
   renderValidationStatus();
-
-  renderTableRows("propertyRows", overview.recent.properties, [
-    (row) => row.property_address,
-    (row) => row.listing_agent,
-    (row) => row.photo_status,
-    (row) => row.email_sent_to_zac,
-    (row) => row.outreach_status,
-  ]);
-
-  renderTableRows("interactionRows", overview.recent.interactions, [
-    (row) => row.date,
-    (row) => row.agent_name,
-    (row) => row.property_address,
-    (row) => row.message_status,
-    (row) => row.next_action,
-  ]);
-
-  renderTableRows("runStateRows", overview.recent.runStates, [
-    (row) => row.runType,
-    (row) => row.status,
-    (row) => row.file,
-  ]);
 
   $("backlogStatus").textContent =
     `${numberFormat.format(metrics.backlogProcessedCount)} processed or seen, ` +

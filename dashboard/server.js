@@ -223,6 +223,31 @@ function backlogBatchPie(records) {
   return Object.entries(counts).map(([name, count]) => ({ name, count }));
 }
 
+function backlogAgeBuckets(records) {
+  const buckets = [
+    { name: "0-30 days", count: 0, min: 0, max: 30 },
+    { name: "31-60 days", count: 0, min: 31, max: 60 },
+    { name: "61-90 days", count: 0, min: 61, max: 90 },
+    { name: "91-180 days", count: 0, min: 91, max: 180 },
+    { name: "181+ days", count: 0, min: 181, max: Infinity },
+  ];
+
+  for (const record of records) {
+    const days = Number(record.days_on_market || 0);
+    const bucket = buckets.find((row) => days >= row.min && days <= row.max);
+    if (bucket) bucket.count += 1;
+  }
+
+  return buckets.map(({ name, count }) => ({ name, count }));
+}
+
+function dateCounts(records, field, limit = 10) {
+  return countBy(records, field)
+    .filter((row) => row.name !== "Unknown")
+    .sort((a, b) => a.name.localeCompare(b.name))
+    .slice(-limit);
+}
+
 function includesText(record, patterns) {
   const haystack = Object.values(record).join(" ").toLowerCase();
   return patterns.some((pattern) => haystack.includes(pattern));
@@ -429,6 +454,9 @@ function buildOverview() {
       interactionNextAction: countBy(interactions.records, "next_action").slice(0, 8),
       backlogProcessingStatus: countBy(mlsBacklog.records, "processing_status").slice(0, 8),
       backlogCustomerBatchStatus: backlogBatchPie(mlsBacklog.records),
+      backlogCityCoverage: countBy(mlsBacklog.records, "city").slice(0, 8),
+      backlogAgeBuckets: backlogAgeBuckets(mlsBacklog.records),
+      emailReviewActivity: dateCounts(interactions.records, "date", 10),
       runStateStatus: runState.byStatus,
     },
     recent: {
