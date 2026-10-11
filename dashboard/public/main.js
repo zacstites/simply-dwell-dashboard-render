@@ -30,15 +30,21 @@ function labelForHeader(header) {
     email_sent_to_zac: "Sent to Dwell",
     mls_id: "MLS",
     next_action: "Next Action",
+    photo_status: "AI Pictures Sent",
     property_address: "Property Address",
   };
   return labels[header] || header.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 }
 
-function displayValue(header, value) {
+function displayValue(header, value, record = {}, headers = []) {
   const raw = String(value || "").trim();
   if (!raw) return "-";
+  if (header === "property_address" && headers.includes("city")) return raw.split(",")[0].trim() || raw;
   if (header === "email_sent_to_zac") return raw.toLowerCase() === "yes" ? "Yes" : "No";
+  if (header === "photo_status") {
+    const normalized = raw.toLowerCase();
+    return normalized.includes("panel") || normalized.includes("before/after") || normalized.includes("ai") ? "Yes" : "No";
+  }
   if (["draft_type", "message_status", "next_action", "photo_status"].includes(header)) {
     return raw.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
   }
@@ -374,7 +380,7 @@ function renderGenericTable(table, headers, records) {
       tr.replaceChildren(
         ...headers.map((header) => {
           const td = document.createElement("td");
-          td.textContent = displayValue(header, record[header]);
+          td.textContent = displayValue(header, record[header], record, headers);
           return td;
         }),
       );
