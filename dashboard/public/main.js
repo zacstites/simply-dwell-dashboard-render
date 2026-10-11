@@ -238,7 +238,7 @@ function renderAgentDrilldown() {
   const rows = state.selectedAgentSection === "emails" ? selected.emails : selected.properties;
   const headers =
     state.selectedAgentSection === "emails"
-      ? ["date", "property_address", "draft_type", "message_status", "next_action", "notes"]
+      ? ["date", "property_address", "draft_type", "message_status", "next_action"]
       : ["property_address", "city", "mls_id", "photo_status", "email_sent_to_zac", "dashboard_status", "customer_batch_status"];
 
   const listTable = document.createElement("table");
