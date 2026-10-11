@@ -10,7 +10,8 @@
     "sync:data": "node scripts/sync-data.js"
   },
   "dependencies": {
-    "csv-parse": "^7.0.3"
+    "csv-parse": "^7.0.3",
+    "csv-stringify": "^6.9.0"
   },
   "engines": {
     "node": ">=18"

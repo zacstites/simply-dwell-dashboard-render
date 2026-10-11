@@ -18,6 +18,7 @@ const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD || "";
 const DATASETS = {
   agents: {
     label: "Agents",
+    slug: "agents",
     file: "agents.csv",
     idField: "agent_id",
     requiredHeaders: [
@@ -35,6 +36,7 @@ const DATASETS = {
   },
   properties: {
     label: "Properties",
+    slug: "properties",
     file: "properties.csv",
     idField: "property_id",
     requiredHeaders: [
@@ -52,6 +54,7 @@ const DATASETS = {
   },
   interactions: {
     label: "Email Reviews",
+    slug: "interactions",
     file: "interactions.csv",
     idField: "interaction_id",
     requiredHeaders: [
@@ -63,6 +66,30 @@ const DATASETS = {
       "draft_type",
       "message_status",
       "next_action",
+    ],
+    sensitiveFields: [],
+  },
+  mlsBacklog: {
+    label: "MLS Backlog",
+    slug: "mls-backlog",
+    file: "mls-backlog.csv",
+    idField: "mls_number",
+    requiredHeaders: [
+      "backlog_row",
+      "mls_number",
+      "address",
+      "city",
+      "state",
+      "postal_code",
+      "list_price",
+      "days_on_market",
+      "listing_agent",
+      "agency_name",
+      "photo_url",
+      "processing_status",
+      "customer_batch_status",
+      "status_note",
+      "source_file",
     ],
     sensitiveFields: [],
   },
@@ -228,7 +255,7 @@ function compactRecord(record, fields) {
 }
 
 function buildExceptions(loaded = loadAllData()) {
-  const { agents, properties } = loaded;
+  const { agents, properties, mlsBacklog } = loaded;
   const runState = readRunStateHealth();
   const categories = [
     {
@@ -266,6 +293,15 @@ function buildExceptions(loaded = loadAllData()) {
       label: "Blocked run-state files",
       records: runState.records.filter((record) => record.status === "blocked"),
     },
+    {
+      key: "backlog_do_not_outreach",
+      label: "Backlog do-not-outreach holds",
+      records: mlsBacklog.records
+        .filter((record) => record.customer_batch_status === "do_not_outreach")
+        .map((record) =>
+          compactRecord(record, ["mls_number", "address", "listing_agent", "processing_status", "status_note"]),
+        ),
+    },
   ];
 
   return {
@@ -281,15 +317,12 @@ function buildExceptions(loaded = loadAllData()) {
 }
 
 function loadAllData() {
-  const agents = readDataset("agents");
-  const properties = readDataset("properties");
-  const interactions = readDataset("interactions");
-  return { agents, properties, interactions };
+  return Object.fromEntries(Object.keys(DATASETS).map((key) => [key, readDataset(key)]));
 }
 
 function buildOverview() {
   const loaded = loadAllData();
-  const { agents, properties, interactions } = loaded;
+  const { agents, properties, interactions, mlsBacklog } = loaded;
   const runState = readRunStateHealth();
   const exceptions = buildExceptions(loaded);
 
@@ -302,18 +335,30 @@ function buildOverview() {
     String(record.message_status || record.draft_type || "").toLowerCase().includes("sent"),
   ).length;
   const needsReviewAgents = agents.records.filter((record) => record.review_status === "needs_review").length;
+  const backlogReadyCount = mlsBacklog.records.filter(
+    (record) => record.customer_batch_status === "customer_ready_candidate",
+  ).length;
+  const backlogNotStartedCount = mlsBacklog.records.filter((record) => record.processing_status === "not_started").length;
+  const backlogProcessedCount = mlsBacklog.records.filter((record) =>
+    String(record.processing_status || "").startsWith("processed"),
+  ).length;
+  const backlogHoldCount = mlsBacklog.records.filter(
+    (record) => record.customer_batch_status && record.customer_batch_status !== "customer_ready_candidate",
+  ).length;
   const downloadSets = Object.entries(DATASETS).map(([key, dataset]) => {
-    const loaded = key === "agents" ? agents : key === "properties" ? properties : interactions;
+    const loadedDataset = loaded[key];
     return {
       key,
+      slug: dataset.slug,
       label: dataset.label,
-      rows: loaded.records.length,
-      columns: loaded.headers.length,
-      updatedAt: loaded.updatedAt,
-      bytes: loaded.bytes,
-      validation: loaded.validation,
+      rows: loadedDataset.records.length,
+      columns: loadedDataset.headers.length,
+      updatedAt: loadedDataset.updatedAt,
+      bytes: loadedDataset.bytes,
+      validation: loadedDataset.validation,
     };
   });
+  const loadedDatasets = Object.values(loaded);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -322,9 +367,9 @@ function buildOverview() {
       runStateDir: RUN_STATE_DIR,
     },
     validation: {
-      ok: [agents, properties, interactions].every((dataset) => dataset.validation.ok),
+      ok: loadedDatasets.every((dataset) => dataset.validation.ok),
       datasets: Object.fromEntries(
-        [agents, properties, interactions].map((dataset) => [
+        loadedDatasets.map((dataset) => [
           dataset.key,
           {
             rows: dataset.records.length,
@@ -343,6 +388,11 @@ function buildOverview() {
       agentCount: agents.records.length,
       propertyCount: properties.records.length,
       interactionCount: interactions.records.length,
+      backlogCount: mlsBacklog.records.length,
+      backlogReadyCount,
+      backlogNotStartedCount,
+      backlogProcessedCount,
+      backlogHoldCount,
       runStateCount: runState.total,
       blockedRunStateCount: (runState.byStatus.find((row) => row.name === "blocked") || { count: 0 }).count,
       currentRunStateCount: (runState.byStatus.find((row) => row.name === "current") || { count: 0 }).count,
@@ -358,11 +408,17 @@ function buildOverview() {
       propertyPhotoStatus: countBy(properties.records, "photo_status").slice(0, 8),
       agentReviewStatus: countBy(agents.records, "review_status").slice(0, 8),
       interactionNextAction: countBy(interactions.records, "next_action").slice(0, 8),
+      backlogProcessingStatus: countBy(mlsBacklog.records, "processing_status").slice(0, 8),
+      backlogCustomerBatchStatus: countBy(mlsBacklog.records, "customer_batch_status").slice(0, 8),
       runStateStatus: runState.byStatus,
     },
     recent: {
       properties: properties.records.slice(-12).reverse(),
       interactions: interactions.records.slice(-12).reverse(),
+      mlsBacklog: mlsBacklog.records
+        .filter((record) => record.processing_status !== "not_started")
+        .slice(-12)
+        .reverse(),
       runStates: runState.recent.slice(0, 8),
     },
     exceptions: exceptions.categories,
@@ -442,7 +498,8 @@ function route(req, res) {
   if (!requireAuth(req, res)) return;
 
   const url = new URL(req.url, "http://localhost");
-  const csvMatch = url.pathname.match(/^\/api\/downloads\/(agents|properties|interactions)\.csv$/);
+  const csvMatch = url.pathname.match(/^\/api\/downloads\/([a-z-]+)\.csv$/);
+  const datasetBySlug = Object.fromEntries(Object.entries(DATASETS).map(([key, dataset]) => [dataset.slug, key]));
 
   try {
     if (url.pathname === "/api/overview" || url.pathname === "/api/summary") {
@@ -466,6 +523,8 @@ function route(req, res) {
       sendJson(res, 200, publicDataset("agents"));
     } else if (url.pathname === "/api/interactions") {
       sendJson(res, 200, publicDataset("interactions"));
+    } else if (url.pathname === "/api/mls-backlog") {
+      sendJson(res, 200, publicDataset("mlsBacklog"));
     } else if (url.pathname === "/api/run-state") {
       sendJson(res, 200, readRunStateHealth());
     } else if (url.pathname === "/api/exceptions") {
@@ -490,11 +549,11 @@ function route(req, res) {
         }),
       );
       sendJson(res, 200, payload);
-    } else if (csvMatch) {
-      const loaded = readDataset(csvMatch[1]);
+    } else if (csvMatch && datasetBySlug[csvMatch[1]]) {
+      const loaded = readDataset(datasetBySlug[csvMatch[1]]);
       sendText(res, 200, loaded.raw, {
         "content-type": "text/csv; charset=utf-8",
-        "content-disposition": `attachment; filename="simply-dwell-${csvMatch[1]}.csv"`,
+        "content-disposition": `attachment; filename="simply-dwell-${DATASETS[loaded.key].slug}.csv"`,
       });
     } else if (url.pathname === "/api/downloads/simply-dwell-data.xls") {
       sendText(res, 200, workbookXml(), {

@@ -102,10 +102,13 @@ function renderOverview() {
   setMetric("agentCount", metrics.agentCount);
   setMetric("propertyCount", metrics.propertyCount);
   setMetric("interactionCount", metrics.interactionCount);
+  setMetric("backlogCount", metrics.backlogCount);
   setMetric("exceptionCount", metrics.exceptionCount);
   setMetric("runStateCount", metrics.runStateCount);
   $("agentDetail").textContent = `${numberFormat.format(metrics.needsReviewAgents)} need review`;
   $("reviewDetail").textContent = `${numberFormat.format(metrics.internalReviewCount)} sent/internal review records`;
+  $("backlogDetail").textContent =
+    `${numberFormat.format(metrics.backlogNotStartedCount)} not started, ${numberFormat.format(metrics.backlogReadyCount)} ready`;
   $("exceptionDetail").textContent =
     `${numberFormat.format(metrics.missingAgentCount)} missing agents, ${numberFormat.format(metrics.missingContactCount)} missing contacts`;
   $("runStateDetail").textContent =
@@ -114,6 +117,8 @@ function renderOverview() {
 
   renderBars("pipelineBars", overview.distributions.propertyOutreach);
   renderBars("photoBars", overview.distributions.propertyPhotoStatus);
+  renderBars("backlogProcessingBars", overview.distributions.backlogProcessingStatus);
+  renderBars("backlogBatchBars", overview.distributions.backlogCustomerBatchStatus);
   renderBars("runStateBars", overview.distributions.runStateStatus);
   renderBars(
     "exceptionBars",
@@ -142,6 +147,18 @@ function renderOverview() {
     (row) => row.status,
     (row) => row.file,
   ]);
+
+  $("backlogStatus").textContent =
+    `${numberFormat.format(metrics.backlogProcessedCount)} processed or seen, ` +
+    `${numberFormat.format(metrics.backlogHoldCount)} holds, ${numberFormat.format(metrics.backlogNotStartedCount)} not started`;
+  renderTableRows("backlogRows", overview.recent.mlsBacklog, [
+    (row) => row.mls_number,
+    (row) => row.address,
+    (row) => row.listing_agent,
+    (row) => row.processing_status,
+    (row) => row.customer_batch_status,
+    (row) => row.status_note,
+  ]);
 }
 
 function renderDownloadCards() {
@@ -157,7 +174,7 @@ function renderDownloadCards() {
           <p class="muted">Updated ${formatDate(dataset.updatedAt)}</p>
         </div>
         <div class="download-actions">
-          <a class="button" href="/api/downloads/${dataset.key}.csv">CSV</a>
+          <a class="button" href="/api/downloads/${dataset.slug}.csv">CSV</a>
         </div>
       `;
       return card;

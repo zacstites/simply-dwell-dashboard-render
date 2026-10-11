@@ -18,6 +18,7 @@ The app is read-only. By default it reads from the local snapshot directory:
 - `dashboard/private-data/agents.csv`
 - `dashboard/private-data/properties.csv`
 - `dashboard/private-data/interactions.csv`
+- `dashboard/private-data/mls-backlog.csv`
 - `dashboard/private-data/run-state/*.json`
 
 Refresh that snapshot from the Simply Dwell lead-generation source files with:
@@ -26,16 +27,21 @@ Refresh that snapshot from the Simply Dwell lead-generation source files with:
 npm run sync:data
 ```
 
-The sync copies from:
+The sync builds a clean go-live snapshot from:
 
 - `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database/agents.csv`
 - `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database/properties.csv`
 - `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database/interactions.csv`
+- `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database/archive/go-live-2026-10-11-full/*.csv`
 - `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/nightly-leads/.run-state/`
+- `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation-backlog/state/backlog-example-state.json`
+- `/Users/zac/.openclaw/workspace-simply-dwell-lead-generation-backlog/state/realMLS-active-vacant-residential-backlog-2026-10-06.csv`
+
+The live dashboard snapshot intentionally keeps only the audited Oct. 10-11 customer-ready batch in the agent/property/interaction tables. Older derived dashboard rows are excluded from the live snapshot without deleting raw source files, MLS exports, archive evidence, or quarantine files.
 
 Do not mutate these shared files without explicit approval and a parse-check before/after.
 
-Set `DATA_DIR` to point at another directory with `agents.csv`, `properties.csv`, and `interactions.csv`.
+Set `DATA_DIR` to point at another directory with `agents.csv`, `properties.csv`, `interactions.csv`, and `mls-backlog.csv`.
 Set `RUN_STATE_DIR` to point at another nightly run-state directory.
 
 ## Local Development
@@ -67,6 +73,7 @@ API endpoints:
 - `/api/properties`
 - `/api/agents`
 - `/api/interactions`
+- `/api/mls-backlog`
 - `/api/run-state`
 - `/api/exceptions`
 - `/api/repository`
@@ -98,4 +105,5 @@ Download endpoints:
 - `/api/downloads/agents.csv`
 - `/api/downloads/properties.csv`
 - `/api/downloads/interactions.csv`
+- `/api/downloads/mls-backlog.csv`
 - `/api/downloads/simply-dwell-data.xls`

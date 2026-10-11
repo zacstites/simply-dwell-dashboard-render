@@ -21,6 +21,7 @@
 
       <nav class="tabs" aria-label="Dashboard views">
         <button class="tab active" type="button" data-view="overview">Overview</button>
+        <button class="tab" type="button" data-view="backlog">MLS Backlog</button>
         <button class="tab" type="button" data-view="tables">Tables</button>
         <button class="tab" type="button" data-view="exceptions">Exceptions</button>
       </nav>
@@ -40,6 +41,11 @@
           <span>Email Reviews</span>
           <strong id="interactionCount">-</strong>
           <small id="reviewDetail">Internal activity log</small>
+        </article>
+        <article>
+          <span>MLS Backlog</span>
+          <strong id="backlogCount">-</strong>
+          <small id="backlogDetail">Vacant listing queue</small>
         </article>
         <article class="attention">
           <span>Exceptions</span>
@@ -157,6 +163,53 @@
         </section>
       </section>
 
+      <section class="view" data-view="backlog">
+        <section class="grid">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Backlog Processing</h2>
+                <span>Per-listing status from the MLS backlog snapshot</span>
+              </div>
+              <a class="button" href="/api/downloads/mls-backlog.csv">Download CSV</a>
+            </div>
+            <div id="backlogProcessingBars" class="bars"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <h2>Batch Status</h2>
+              <span>Go-live inclusion and holds</span>
+            </div>
+            <div id="backlogBatchBars" class="bars"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <div>
+              <h2>Backlog Status Rows</h2>
+              <span id="backlogStatus">Filtered MLS backlog records</span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>MLS</th>
+                  <th>Address</th>
+                  <th>Agent</th>
+                  <th>Processing</th>
+                  <th>Batch</th>
+                  <th>Note</th>
+                </tr>
+              </thead>
+              <tbody id="backlogRows"></tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+
       <section class="view" data-view="tables">
         <section class="panel">
           <div class="panel-head repository-head">
@@ -178,6 +231,7 @@
                 <option value="properties">Properties</option>
                 <option value="agents">Agents</option>
                 <option value="interactions">Interactions</option>
+                <option value="mlsBacklog">MLS Backlog</option>
               </select>
             </label>
           </div>
