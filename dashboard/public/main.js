@@ -28,8 +28,21 @@ function text(value) {
 function labelForHeader(header) {
   const labels = {
     email_sent_to_zac: "Sent to Dwell",
+    mls_id: "MLS",
+    next_action: "Next Action",
+    property_address: "Property Address",
   };
-  return labels[header] || header.replaceAll("_", " ");
+  return labels[header] || header.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+}
+
+function displayValue(header, value) {
+  const raw = String(value || "").trim();
+  if (!raw) return "-";
+  if (header === "email_sent_to_zac") return raw.toLowerCase() === "yes" ? "Yes" : "No";
+  if (["draft_type", "message_status", "next_action", "photo_status"].includes(header)) {
+    return raw.replaceAll("_", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+  }
+  return raw;
 }
 
 function formatDate(value) {
@@ -239,7 +252,7 @@ function renderAgentDrilldown() {
   const headers =
     state.selectedAgentSection === "emails"
       ? ["date", "property_address", "draft_type", "message_status", "next_action"]
-      : ["property_address", "city", "mls_id", "photo_status", "email_sent_to_zac", "dashboard_status", "customer_batch_status"];
+      : ["property_address", "city", "mls_id", "photo_status", "email_sent_to_zac"];
 
   const listTable = document.createElement("table");
   listTable.className = "agent-list-table";
@@ -361,7 +374,7 @@ function renderGenericTable(table, headers, records) {
       tr.replaceChildren(
         ...headers.map((header) => {
           const td = document.createElement("td");
-          td.textContent = text(record[header]);
+          td.textContent = displayValue(header, record[header]);
           return td;
         }),
       );
