@@ -23,7 +23,6 @@
         <button class="tab active" type="button" data-view="overview">Overview</button>
         <button class="tab" type="button" data-view="backlog">MLS Backlog</button>
         <button class="tab" type="button" data-view="tables">Data</button>
-        <button class="tab" type="button" data-view="exceptions">Exceptions</button>
       </nav>
 
       <section class="metrics" aria-label="Lead metrics">
@@ -167,23 +166,6 @@
         </section>
       </section>
 
-      <section class="view" data-view="exceptions">
-        <section class="panel">
-          <div class="panel-head">
-            <div>
-              <h2>Exception Filters</h2>
-              <span id="exceptionStatus">Records needing review</span>
-            </div>
-            <label class="select-label">
-              <span>Filter</span>
-              <select id="exceptionSelect"></select>
-            </label>
-          </div>
-          <div class="table-wrap">
-            <table id="exceptionTable"></table>
-          </div>
-        </section>
-      </section>
     </main>
 
     <script src="/main.js"></script>

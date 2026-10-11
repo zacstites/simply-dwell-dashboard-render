@@ -2,7 +2,6 @@ const state = {
   overview: null,
   agentDrilldown: null,
   view: "overview",
-  exceptionKey: "",
   selectedAgentId: "",
   selectedAgentSection: "properties",
 };
@@ -382,34 +381,6 @@ function renderGenericTable(table, headers, records) {
   table.replaceChildren(head, body);
 }
 
-function renderExceptionControls() {
-  const select = $("exceptionSelect");
-  const categories = state.overview.exceptions;
-  if (!state.exceptionKey && categories.length) {
-    state.exceptionKey = categories[0].key;
-  }
-
-  select.replaceChildren(
-    ...categories.map((category) => {
-      const option = document.createElement("option");
-      option.value = category.key;
-      option.textContent = `${category.label} (${numberFormat.format(category.count)})`;
-      return option;
-    }),
-  );
-  select.value = state.exceptionKey;
-  renderExceptionTable();
-}
-
-function renderExceptionTable() {
-  const category = state.overview.exceptions.find((item) => item.key === state.exceptionKey);
-  if (!category) return;
-  $("exceptionStatus").textContent =
-    `${category.label}: ${numberFormat.format(category.count)} total, showing up to ${numberFormat.format(category.records.length)}`;
-  const headers = Object.keys(category.records[0] || { status: "", note: "" });
-  renderGenericTable($("exceptionTable"), headers, category.records);
-}
-
 function setView(view) {
   state.view = view;
   document.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === view));
@@ -428,7 +399,6 @@ async function load() {
     renderOverview();
     renderDownloadCards();
     renderAgentDrilldown();
-    renderExceptionControls();
   } finally {
     $("refresh").disabled = false;
   }
@@ -436,11 +406,6 @@ async function load() {
 
 document.querySelectorAll(".tab").forEach((tab) => {
   tab.addEventListener("click", () => setView(tab.dataset.view));
-});
-
-$("exceptionSelect").addEventListener("change", (event) => {
-  state.exceptionKey = event.target.value;
-  renderExceptionTable();
 });
 
 $("refresh").addEventListener("click", load);
