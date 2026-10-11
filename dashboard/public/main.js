@@ -141,7 +141,12 @@ function renderTableRows(id, rows, cells) {
 
 function renderValidationStatus() {
   const validation = state.overview.validation;
-  const rows = Object.entries(validation.datasets).map(([key, dataset]) => ({ key, ...dataset }));
+  const datasetLabels = Object.fromEntries(state.overview.repository.map((dataset) => [dataset.key, dataset.label]));
+  const rows = Object.entries(validation.datasets).map(([key, dataset]) => ({
+    key,
+    label: datasetLabels[key] || key,
+    ...dataset,
+  }));
   $("sourceStatus").textContent = validation.ok
     ? `Snapshots loaded from ${state.overview.source.dataDir}`
     : "One or more source snapshots are missing required headers";
@@ -151,7 +156,7 @@ function renderValidationStatus() {
       const item = document.createElement("article");
       item.className = row.validation.ok ? "status-card" : "status-card warning";
       const title = document.createElement("strong");
-      title.textContent = row.key;
+      title.textContent = row.label;
       const count = document.createElement("span");
       count.textContent = `${numberFormat.format(row.rows)} rows, ${numberFormat.format(row.columns)} columns`;
       const detail = document.createElement("small");
