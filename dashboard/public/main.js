@@ -1,9 +1,12 @@
 const state = {
   overview: null,
   repository: null,
+  agentDrilldown: null,
   view: "overview",
   dataset: "properties",
   exceptionKey: "",
+  selectedAgentId: "",
+  selectedAgentSection: "properties",
 };
 
 const numberFormat = new Intl.NumberFormat();
@@ -204,6 +207,133 @@ function renderRepositoryTable() {
   renderGenericTable(table, visibleHeaders, dataset.records.slice(0, 120));
 }
 
+function selectAgent(agentId, section = state.selectedAgentSection) {
+  state.selectedAgentId = agentId;
+  state.selectedAgentSection = section;
+  renderAgentDrilldown();
+}
+
+function renderAgentDrilldown() {
+  const container = $("agentDrilldown");
+  if (!state.agentDrilldown) return;
+
+  const agents = state.agentDrilldown.agents || [];
+  if (!agents.length) {
+    container.textContent = "No agent rows loaded.";
+    return;
+  }
+
+  if (!state.selectedAgentId || !agents.some((agent) => agent.agent_id === state.selectedAgentId)) {
+    state.selectedAgentId = agents[0].agent_id;
+  }
+
+  const selected = agents.find((agent) => agent.agent_id === state.selectedAgentId) || agents[0];
+  const rows = state.selectedAgentSection === "emails" ? selected.emails : selected.properties;
+  const headers =
+    state.selectedAgentSection === "emails"
+      ? ["date", "property_address", "draft_type", "message_status", "next_action", "notes"]
+      : ["property_address", "city", "mls_id", "photo_status", "email_sent_to_zac", "dashboard_status", "customer_batch_status"];
+
+  const listTable = document.createElement("table");
+  listTable.className = "agent-list-table";
+  const listHead = document.createElement("thead");
+  listHead.innerHTML = "<tr><th>Agent</th><th>Market</th><th>Properties</th><th>Emails</th></tr>";
+  const listBody = document.createElement("tbody");
+  listBody.replaceChildren(
+    ...agents.map((agent) => {
+      const tr = document.createElement("tr");
+      tr.className = agent.agent_id === selected.agent_id ? "active-row" : "";
+
+      const agentCell = document.createElement("td");
+      const agentButton = document.createElement("button");
+      agentButton.type = "button";
+      agentButton.className = "link-button agent-name-button";
+      agentButton.textContent = text(agent.agent_name);
+      agentButton.addEventListener("click", () => selectAgent(agent.agent_id, "properties"));
+      const brokerage = document.createElement("small");
+      brokerage.textContent = text(agent.brokerage);
+      agentCell.replaceChildren(agentButton, brokerage);
+
+      const marketCell = document.createElement("td");
+      marketCell.textContent = text(agent.market_city);
+
+      const propertiesCell = document.createElement("td");
+      const propertyButton = document.createElement("button");
+      propertyButton.type = "button";
+      propertyButton.className = "link-button count-button";
+      propertyButton.textContent = numberFormat.format(agent.propertyCount);
+      propertyButton.addEventListener("click", () => selectAgent(agent.agent_id, "properties"));
+      propertiesCell.append(propertyButton);
+
+      const emailsCell = document.createElement("td");
+      const emailButton = document.createElement("button");
+      emailButton.type = "button";
+      emailButton.className = "link-button count-button";
+      emailButton.textContent = numberFormat.format(agent.emailCount);
+      emailButton.addEventListener("click", () => selectAgent(agent.agent_id, "emails"));
+      emailsCell.append(emailButton);
+
+      tr.replaceChildren(agentCell, marketCell, propertiesCell, emailsCell);
+      return tr;
+    }),
+  );
+  listTable.replaceChildren(listHead, listBody);
+
+  const detail = document.createElement("div");
+  detail.className = "agent-detail";
+  const detailHead = document.createElement("div");
+  detailHead.className = "agent-detail-head";
+  const titleWrap = document.createElement("div");
+  const title = document.createElement("h3");
+  title.textContent = text(selected.agent_name);
+  const meta = document.createElement("p");
+  meta.className = "muted";
+  meta.textContent = `${text(selected.brokerage)} | ${text(selected.market_city)} | ${text(selected.contactCoverage)}`;
+  titleWrap.replaceChildren(title, meta);
+
+  const switcher = document.createElement("div");
+  switcher.className = "section-switch";
+  [
+    ["properties", `Properties (${numberFormat.format(selected.propertyCount)})`],
+    ["emails", `Emails (${numberFormat.format(selected.emailCount)})`],
+  ].forEach(([section, label]) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = state.selectedAgentSection === section ? "section-button active" : "section-button";
+    button.textContent = label;
+    button.addEventListener("click", () => selectAgent(selected.agent_id, section));
+    switcher.append(button);
+  });
+  detailHead.replaceChildren(titleWrap, switcher);
+
+  const detailTable = document.createElement("table");
+  renderGenericTable(detailTable, headers, rows);
+  if (!rows.length) {
+    const emptyBody = document.createElement("tbody");
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = headers.length;
+    td.textContent = "No matching records for this agent.";
+    tr.append(td);
+    emptyBody.append(tr);
+    detailTable.append(emptyBody);
+  }
+
+  const detailTableWrap = document.createElement("div");
+  detailTableWrap.className = "table-wrap";
+  detailTableWrap.append(detailTable);
+  detail.replaceChildren(detailHead, detailTableWrap);
+
+  const listWrap = document.createElement("div");
+  listWrap.className = "agent-list-wrap table-wrap";
+  listWrap.append(listTable);
+
+  const layout = document.createElement("div");
+  layout.className = "agent-layout";
+  layout.replaceChildren(listWrap, detail);
+  container.replaceChildren(layout);
+}
+
 function renderGenericTable(table, headers, records) {
   const head = document.createElement("thead");
   const body = document.createElement("tbody");
@@ -272,14 +402,17 @@ function setView(view) {
 async function load() {
   $("refresh").disabled = true;
   try {
-    const [overviewResponse, repositoryResponse] = await Promise.all([
+    const [overviewResponse, repositoryResponse, agentDrilldownResponse] = await Promise.all([
       fetch("/api/overview"),
       fetch("/api/repository"),
+      fetch("/api/agent-drilldown"),
     ]);
     state.overview = await overviewResponse.json();
     state.repository = await repositoryResponse.json();
+    state.agentDrilldown = await agentDrilldownResponse.json();
     renderOverview();
     renderDownloadCards();
+    renderAgentDrilldown();
     renderRepositoryTable();
     renderExceptionControls();
   } finally {

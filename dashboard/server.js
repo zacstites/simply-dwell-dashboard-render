@@ -253,6 +253,36 @@ function includesText(record, patterns) {
   return patterns.some((pattern) => haystack.includes(pattern));
 }
 
+function normalizeText(value) {
+  return String(value || "").trim().toLowerCase().replace(/\s+/g, " ");
+}
+
+function normalizePhone(value) {
+  return String(value || "").replace(/\D/g, "");
+}
+
+function sentEmailRecord(record) {
+  return String(record.message_status || record.draft_type || "").toLowerCase().includes("sent");
+}
+
+function propertyMatchesAgent(property, agent) {
+  const propertyEmail = normalizeText(property.agent_email);
+  const agentEmail = normalizeText(agent.email);
+  if (propertyEmail && agentEmail && propertyEmail === agentEmail) return true;
+
+  const propertyPhone = normalizePhone(property.agent_phone);
+  const agentPhone = normalizePhone(agent.phone);
+  if (propertyPhone && agentPhone && propertyPhone === agentPhone) return true;
+
+  const listingAgent = normalizeText(property.listing_agent);
+  const agentName = normalizeText(agent.agent_name);
+  if (!listingAgent || !agentName || listingAgent !== agentName) return false;
+
+  const propertyBrokerage = normalizeText(property.brokerage);
+  const agentBrokerage = normalizeText(agent.brokerage);
+  return !propertyBrokerage || !agentBrokerage || propertyBrokerage === agentBrokerage;
+}
+
 function readRunStateHealth() {
   if (!fs.existsSync(RUN_STATE_DIR)) {
     return {
@@ -362,6 +392,78 @@ function buildExceptions(loaded = loadAllData()) {
 
 function loadAllData() {
   return Object.fromEntries(Object.keys(DATASETS).map((key) => [key, readDataset(key)]));
+}
+
+function buildAgentDrilldown(
+  loaded = {
+    agents: readDataset("agents"),
+    properties: readDataset("properties"),
+    interactions: readDataset("interactions"),
+  },
+) {
+  const { agents, properties, interactions } = loaded;
+
+  const rows = agents.records.map((agent) => {
+    const agentId = String(agent.agent_id || "");
+    const agentName = normalizeText(agent.agent_name);
+    const matchedProperties = properties.records
+      .filter((property) => propertyMatchesAgent(property, agent))
+      .map((property) =>
+        compactRecord(property, [
+          "property_id",
+          "property_address",
+          "city",
+          "state",
+          "mls_id",
+          "listing_agent",
+          "brokerage",
+          "photo_status",
+          "email_sent_to_zac",
+          "dashboard_status",
+          "customer_batch_status",
+          "approval_status",
+        ]),
+      );
+    const matchedInteractions = interactions.records
+      .filter((interaction) => {
+        if (agentId && interaction.agent_id === agentId) return true;
+        return agentName && normalizeText(interaction.agent_name) === agentName;
+      })
+      .map((interaction) =>
+        compactRecord(interaction, [
+          "interaction_id",
+          "date",
+          "property_address",
+          "draft_type",
+          "message_status",
+          "next_action",
+          "next_action_date",
+          "notes",
+        ]),
+      );
+
+    return {
+      agent_id: agent.agent_id,
+      agent_name: agent.agent_name,
+      brokerage: agent.brokerage,
+      market_city: agent.market_city,
+      contactCoverage: agent.email && agent.phone ? "Email + phone" : agent.email ? "Email" : agent.phone ? "Phone" : "Missing",
+      propertyCount: matchedProperties.length,
+      emailCount: matchedInteractions.filter(sentEmailRecord).length,
+      properties: matchedProperties,
+      emails: matchedInteractions,
+    };
+  });
+
+  return {
+    generatedAt: new Date().toISOString(),
+    agents: rows.sort(
+      (a, b) =>
+        b.propertyCount - a.propertyCount ||
+        b.emailCount - a.emailCount ||
+        String(a.agent_name || "").localeCompare(String(b.agent_name || "")),
+    ),
+  };
 }
 
 function buildOverview() {
@@ -576,6 +678,8 @@ function route(req, res) {
       sendJson(res, 200, readRunStateHealth());
     } else if (url.pathname === "/api/exceptions") {
       sendJson(res, 200, buildExceptions());
+    } else if (url.pathname === "/api/agent-drilldown") {
+      sendJson(res, 200, buildAgentDrilldown());
     } else if (url.pathname === "/api/repository") {
       const payload = Object.fromEntries(
         Object.keys(DATASETS).map((key) => {
