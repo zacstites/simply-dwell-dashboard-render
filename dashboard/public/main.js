@@ -54,6 +54,47 @@ function renderBars(id, rows) {
   );
 }
 
+function renderPie(id, rows) {
+  const container = $(id);
+  const total = rows.reduce((sum, row) => sum + Number(row.count || 0), 0);
+  const palette = ["#7291c4", "#37465f"];
+  let cursor = 0;
+  const stops = rows.map((row, index) => {
+    const value = total ? (Number(row.count || 0) / total) * 100 : 0;
+    const start = cursor;
+    cursor += value;
+    return `${palette[index % palette.length]} ${start}% ${cursor}%`;
+  });
+  const chart = document.createElement("div");
+  chart.className = "pie-chart";
+  chart.style.background = total
+    ? `conic-gradient(${stops.join(", ")})`
+    : "var(--brand-3)";
+
+  const legend = document.createElement("div");
+  legend.className = "pie-legend";
+  legend.replaceChildren(
+    ...rows.map((row, index) => {
+      const item = document.createElement("div");
+      item.className = "pie-legend-row";
+      const swatch = document.createElement("span");
+      swatch.className = "pie-swatch";
+      swatch.style.background = palette[index % palette.length];
+      const label = document.createElement("span");
+      label.textContent = row.name;
+      const count = document.createElement("strong");
+      count.textContent = numberFormat.format(row.count);
+      item.replaceChildren(swatch, label, count);
+      return item;
+    }),
+  );
+
+  const wrap = document.createElement("div");
+  wrap.className = "pie-wrap";
+  wrap.replaceChildren(chart, legend);
+  container.replaceChildren(wrap);
+}
+
 function renderTableRows(id, rows, cells) {
   const body = $(id);
   body.replaceChildren(
@@ -118,7 +159,7 @@ function renderOverview() {
   renderBars("pipelineBars", overview.distributions.propertyOutreach);
   renderBars("photoBars", overview.distributions.propertyPhotoStatus);
   renderBars("backlogProcessingBars", overview.distributions.backlogProcessingStatus);
-  renderBars("backlogBatchBars", overview.distributions.backlogCustomerBatchStatus);
+  renderPie("backlogBatchBars", overview.distributions.backlogCustomerBatchStatus);
   renderBars("runStateBars", overview.distributions.runStateStatus);
   renderBars(
     "exceptionBars",

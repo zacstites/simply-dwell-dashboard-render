@@ -204,6 +204,25 @@ function countBy(records, field) {
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
 }
 
+function backlogBatchPie(records) {
+  const counts = {
+    Pending: 0,
+    "Email Sent": 0,
+  };
+
+  for (const record of records) {
+    const status = String(record.customer_batch_status || "").trim();
+    if (status === "do_not_outreach") continue;
+    if (status === "customer_ready_candidate") {
+      counts["Email Sent"] += 1;
+    } else {
+      counts.Pending += 1;
+    }
+  }
+
+  return Object.entries(counts).map(([name, count]) => ({ name, count }));
+}
+
 function includesText(record, patterns) {
   const haystack = Object.values(record).join(" ").toLowerCase();
   return patterns.some((pattern) => haystack.includes(pattern));
@@ -409,7 +428,7 @@ function buildOverview() {
       agentReviewStatus: countBy(agents.records, "review_status").slice(0, 8),
       interactionNextAction: countBy(interactions.records, "next_action").slice(0, 8),
       backlogProcessingStatus: countBy(mlsBacklog.records, "processing_status").slice(0, 8),
-      backlogCustomerBatchStatus: countBy(mlsBacklog.records, "customer_batch_status").slice(0, 8),
+      backlogCustomerBatchStatus: backlogBatchPie(mlsBacklog.records),
       runStateStatus: runState.byStatus,
     },
     recent: {

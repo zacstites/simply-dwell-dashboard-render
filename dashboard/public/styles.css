@@ -256,6 +256,48 @@ button,
   background: var(--brand-2);
 }
 
+.pie-panel {
+  padding: 18px;
+}
+
+.pie-wrap {
+  display: grid;
+  grid-template-columns: minmax(150px, 190px) minmax(180px, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.pie-chart {
+  width: min(190px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(55, 70, 95, 0.12);
+}
+
+.pie-legend {
+  display: grid;
+  gap: 12px;
+}
+
+.pie-legend-row {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.pie-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+.pie-legend-row strong {
+  color: var(--brand);
+  font-size: 1.05rem;
+}
+
 .table-wrap {
   width: 100%;
   overflow: auto;
@@ -375,5 +417,13 @@ select {
   .bar-track {
     grid-column: 1 / -1;
     grid-row: 2;
+  }
+
+  .pie-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .pie-chart {
+    width: 170px;
   }
 }
