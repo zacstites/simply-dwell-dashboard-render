@@ -1,18 +1,13 @@
 {
   "kind": "mailbox",
-  "runId": "mailbox-20261012T010029401Z-44882",
-  "status": "completed",
-  "startedAt": "2026-10-12T01:00:29.401Z",
-  "updatedAt": "2026-10-12T01:00:45.360Z",
-  "note": "mailbox watcher 2026-10-12T01:00:29Z",
+  "runId": "mailbox-20261012T011532269Z-53940",
+  "status": "started",
+  "startedAt": "2026-10-12T01:15:32.269Z",
+  "updatedAt": "2026-10-12T01:15:32.269Z",
+  "note": "mailbox watcher 2026-10-12T01:15:32Z",
   "stages": {
     "started": {
-      "at": "2026-10-12T01:00:29.401Z"
-    },
-    "completed": {
-      "at": "2026-10-12T01:00:45.360Z",
-      "outcome": "no_new_messages"
+      "at": "2026-10-12T01:15:32.269Z"
     }
-  },
-  "completedAt": "2026-10-12T01:00:45.360Z"
+  }
 }
