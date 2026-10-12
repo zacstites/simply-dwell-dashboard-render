@@ -1,13 +1,31 @@
 {
   "kind": "mailbox",
   "runId": "mailbox-20261012T011532269Z-53940",
-  "status": "started",
+  "status": "in_progress",
   "startedAt": "2026-10-12T01:15:32.269Z",
-  "updatedAt": "2026-10-12T01:15:32.269Z",
+  "updatedAt": "2026-10-12T01:23:03.245Z",
   "note": "mailbox watcher 2026-10-12T01:15:32Z",
   "stages": {
     "started": {
       "at": "2026-10-12T01:15:32.269Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-12T01:22:41.341Z",
+      "messageId": "AAMkADYwODVmMzY3LTMxZjMtNDg5YS04MGJmLWU5NWZiMmJmOTU1NQBGAAAAAABWqbI7_CusT7LZv1dJLuNVBwBlOpllqygER40DAUe_iT8SAAAAAAEMAABlOpllqygER40DAUe_iT8SAAAJ6r4hAAA=",
+      "receivedDateTime": "2026-10-12T01:11:35Z",
+      "address": "323 ELM CREEK Drive, St. Augustine, FL 32092",
+      "mls": "2163789",
+      "primaryUrl": "https://www.zillow.com/homedetails/323-Elm-Creek-Dr-Saint-Augustine-FL-32092/439300462_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Listings for Agent"
+    },
+    "gmail_sent": {
+      "at": "2026-10-12T01:23:03.245Z",
+      "messageId": "AAMkADYwODVmMzY3LTMxZjMtNDg5YS04MGJmLWU5NWZiMmJmOTU1NQBGAAAAAABWqbI7_CusT7LZv1dJLuNVBwBlOpllqygER40DAUe_iT8SAAAAAAEMAABlOpllqygER40DAUe_iT8SAAAJ6r4hAAA=",
+      "receivedDateTime": "2026-10-12T01:11:35Z",
+      "address": "323 ELM CREEK Drive, St. Augustine, FL 32092",
+      "messageProvider": "gmail",
+      "sentEvidence": "accepted"
     }
   }
 }
