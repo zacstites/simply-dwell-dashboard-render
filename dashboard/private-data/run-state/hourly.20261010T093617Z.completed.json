@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T093617699Z-81282",
+  "status": "completed",
+  "startedAt": "2026-10-10T09:36:17.699Z",
+  "updatedAt": "2026-10-10T09:40:41.217Z",
+  "note": "30-minute single-lead run 2026-10-10T09:36:17Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T09:36:17.699Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T09:39:48.253Z",
+      "address": "59 Cane Garden Way, St Augustine, FL 32092",
+      "mls": "2151732",
+      "primaryUrl": "https://www.zillow.com/homedetails/59-Cane-Garden-Way-Saint-Augustine-FL-32092/126042445_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 59 Cane Garden Way, St Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0536_59-cane"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T09:40:16.149Z",
+      "address": "59 Cane Garden Way, St Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T09:40:33.313Z",
+      "address": "59 Cane Garden Way, St Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T09:40:41.156Z",
+      "address": "59 Cane Garden Way, St Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T09:40:41.217Z",
+      "address": "59 Cane Garden Way, St Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T09:40:41.217Z"
+}

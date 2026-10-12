@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T153610293Z-10961",
+  "status": "completed",
+  "startedAt": "2026-10-11T15:36:10.293Z",
+  "updatedAt": "2026-10-11T15:39:54.820Z",
+  "note": "30-minute single-lead run 2026-10-11T15:36:10Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T15:36:10.293Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T15:37:47.622Z",
+      "address": "7577 W John F Kennedy Dr W, Jacksonville, FL 32219",
+      "mls": "2167740",
+      "primaryUrl": "https://www.redfin.com/FL/Jacksonville/7577-John-F-Kennedy-Dr-W-32219/home/108888384",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 7577 W John F Kennedy Dr W, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1136_7577-jfk"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T15:38:48.193Z",
+      "address": "7577 W John F Kennedy Dr W, Jacksonville, FL 32219",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T15:39:48.415Z",
+      "address": "7577 W John F Kennedy Dr W, Jacksonville, FL 32219",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T15:39:54.749Z",
+      "address": "7577 W John F Kennedy Dr W, Jacksonville, FL 32219",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T15:39:54.820Z",
+      "address": "7577 W John F Kennedy Dr W, Jacksonville, FL 32219",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T15:39:54.820Z"
+}

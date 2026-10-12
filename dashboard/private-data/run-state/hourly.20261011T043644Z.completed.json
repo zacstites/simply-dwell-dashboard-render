@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T043644936Z-281",
+  "status": "completed",
+  "startedAt": "2026-10-11T04:36:44.936Z",
+  "updatedAt": "2026-10-11T04:41:54.736Z",
+  "note": "30-minute single-lead run 2026-10-11T04:36:44Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T04:36:44.936Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T04:40:43.611Z",
+      "address": "1071 Edgewood Ave S #409, Jacksonville, FL 32205",
+      "mls": "2107933",
+      "primaryUrl": "https://www.zillow.com/homedetails/1071-S-Edgewood-Ave-409-Jacksonville-FL-32205/44480320_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1071 Edgewood Ave S #409, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0036_1071-edgewood"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T04:41:15.139Z",
+      "address": "1071 Edgewood Ave S #409, Jacksonville, FL 32205",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T04:41:47.073Z",
+      "address": "1071 Edgewood Ave S #409, Jacksonville, FL 32205",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T04:41:54.661Z",
+      "address": "1071 Edgewood Ave S #409, Jacksonville, FL 32205",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T04:41:54.736Z",
+      "address": "1071 Edgewood Ave S #409, Jacksonville, FL 32205",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T04:41:54.736Z"
+}

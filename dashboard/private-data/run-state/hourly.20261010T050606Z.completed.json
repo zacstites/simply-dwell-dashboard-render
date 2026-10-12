@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T050606027Z-49709",
+  "status": "completed",
+  "startedAt": "2026-10-10T05:06:06.027Z",
+  "updatedAt": "2026-10-10T05:11:12.771Z",
+  "note": "30-minute single-lead run 2026-10-10T05:06:05Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T05:06:06.027Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T05:10:12.312Z",
+      "address": "15 San Nueve Cir, Saint Augustine, FL 32095",
+      "mls": "2162422",
+      "primaryUrl": "https://www.zillow.com/homedetails/15-San-Nueve-Cir-Saint-Augustine-FL-32095/103508281_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 15 San Nueve Cir, Saint Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0105_15-san-nueve"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T05:10:44.729Z",
+      "address": "15 San Nueve Cir, Saint Augustine, FL 32095",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T05:11:05.642Z",
+      "address": "15 San Nueve Cir, Saint Augustine, FL 32095",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T05:11:12.711Z",
+      "address": "15 San Nueve Cir, Saint Augustine, FL 32095",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T05:11:12.771Z",
+      "address": "15 San Nueve Cir, Saint Augustine, FL 32095",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T05:11:12.771Z"
+}

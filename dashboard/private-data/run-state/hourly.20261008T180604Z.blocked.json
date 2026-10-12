@@ -1,0 +1,18 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261008T180604750Z-40834",
+  "status": "blocked",
+  "startedAt": "2026-10-08T18:06:04.750Z",
+  "updatedAt": "2026-10-08T18:13:24.945Z",
+  "note": "30-minute single-lead run 2026-10-08T18:06:04Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T18:06:04.750Z"
+    },
+    "blocked": {
+      "at": "2026-10-08T18:13:24.945Z",
+      "reason": "abandoned_after_gateway_restart",
+      "note": "Started after recovery verification but no worker process/selected lead/gmail send was present; lock moved aside after local process check."
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T060612759Z-54951",
+  "status": "completed",
+  "startedAt": "2026-10-10T06:06:12.759Z",
+  "updatedAt": "2026-10-10T06:13:14.802Z",
+  "note": "30-minute single-lead run 2026-10-10T06:06:12Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T06:06:12.759Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T06:11:21.888Z",
+      "address": "3020 Mac Rd, Saint Augustine, FL 32086",
+      "mls": "2149423",
+      "primaryUrl": "https://www.zillow.com/homedetails/3020-Mac-Rd-Saint-Augustine-FL-32086/47760999_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3020 Mac Rd, Saint Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0205_3020-mac"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T06:12:21.279Z",
+      "address": "3020 Mac Rd, Saint Augustine, FL 32086",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T06:12:59.117Z",
+      "address": "3020 Mac Rd, Saint Augustine, FL 32086",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T06:13:14.741Z",
+      "address": "3020 Mac Rd, Saint Augustine, FL 32086",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T06:13:14.802Z",
+      "address": "3020 Mac Rd, Saint Augustine, FL 32086",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T06:13:14.802Z"
+}

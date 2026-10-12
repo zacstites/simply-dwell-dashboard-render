@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T113603366Z-54526",
+  "status": "completed",
+  "startedAt": "2026-10-11T11:36:03.366Z",
+  "updatedAt": "2026-10-11T11:41:47.945Z",
+  "note": "30-minute single-lead run 2026-10-11T11:36:03Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T11:36:03.366Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T11:40:39.507Z",
+      "address": "507 Worcester Court, Jacksonville, FL 32218",
+      "mls": "2167479",
+      "primaryUrl": "https://www.zillow.com/homedetails/507-Worcester-Ct-Jacksonville-FL-32218/122976110_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 507 Worcester Court, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0736_507-worcester"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T11:41:12.999Z",
+      "address": "507 Worcester Court, Jacksonville, FL 32218",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T11:41:38.343Z",
+      "address": "507 Worcester Court, Jacksonville, FL 32218",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T11:41:47.827Z",
+      "address": "507 Worcester Court, Jacksonville, FL 32218",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T11:41:47.945Z",
+      "address": "507 Worcester Court, Jacksonville, FL 32218",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T11:41:47.945Z"
+}

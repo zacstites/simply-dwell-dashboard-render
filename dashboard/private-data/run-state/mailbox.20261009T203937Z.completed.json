@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T203937710Z-41304",
+  "status": "completed",
+  "startedAt": "2026-10-09T20:39:37.710Z",
+  "updatedAt": "2026-10-09T20:40:40.413Z",
+  "note": "mailbox watcher 2026-10-09T20:39:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T20:39:37.710Z"
+    },
+    "completed": {
+      "at": "2026-10-09T20:40:40.413Z",
+      "outcome": "no_new_messages",
+      "processedUid": 4572,
+      "skipped": "Withdrawn update for 1773 MARSHSIDE Drive"
+    }
+  },
+  "completedAt": "2026-10-09T20:40:40.413Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T033604418Z-34484",
+  "status": "completed",
+  "startedAt": "2026-10-10T03:36:04.418Z",
+  "updatedAt": "2026-10-10T03:40:24.287Z",
+  "note": "30-minute single-lead run 2026-10-10T03:36:04Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T03:36:04.418Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T03:39:34.626Z",
+      "address": "816 W 9th St, St. Augustine, FL 32084",
+      "mls": "SA264401",
+      "primaryUrl": "https://www.zillow.com/homedetails/816-W-9th-St-Saint-Augustine-FL-32084/350970493_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 816 W 9th St, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2335_816-w-9th"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T03:39:56.009Z",
+      "address": "816 W 9th St, St. Augustine, FL 32084",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T03:40:18.120Z",
+      "address": "816 W 9th St, St. Augustine, FL 32084",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T03:40:24.223Z",
+      "address": "816 W 9th St, St. Augustine, FL 32084",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T03:40:24.287Z",
+      "address": "816 W 9th St, St. Augustine, FL 32084",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T03:40:24.287Z"
+}

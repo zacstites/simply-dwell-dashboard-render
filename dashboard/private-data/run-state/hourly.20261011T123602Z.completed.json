@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T123602248Z-77596",
+  "status": "completed",
+  "startedAt": "2026-10-11T12:36:02.248Z",
+  "updatedAt": "2026-10-11T12:42:07.158Z",
+  "note": "30-minute single-lead run 2026-10-11T12:36:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T12:36:02.248Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T12:41:03.154Z",
+      "address": "145 Deer Haven Drive, Ponte Vedra Beach, FL 32082",
+      "mls": "2167622",
+      "primaryUrl": "https://www.zillow.com/homedetails/145-Deer-Haven-Dr-Ponte-Vedra-Beach-FL-32082/47745394_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 145 Deer Haven Drive, Ponte Vedra Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0836_145-deer-haven"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T12:41:35.880Z",
+      "address": "145 Deer Haven Drive, Ponte Vedra Beach, FL 32082",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T12:41:58.759Z",
+      "address": "145 Deer Haven Drive, Ponte Vedra Beach, FL 32082",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T12:42:07.083Z",
+      "address": "145 Deer Haven Drive, Ponte Vedra Beach, FL 32082",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T12:42:07.158Z",
+      "address": "145 Deer Haven Drive, Ponte Vedra Beach, FL 32082",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T12:42:07.158Z"
+}

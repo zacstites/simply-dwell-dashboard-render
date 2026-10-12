@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T090602685Z-37058",
+  "status": "completed",
+  "startedAt": "2026-10-11T09:06:02.685Z",
+  "updatedAt": "2026-10-11T09:11:17.379Z",
+  "note": "30-minute single-lead run 2026-10-11T09:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T09:06:02.685Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T09:10:10.411Z",
+      "address": "617 Birchbark Trl, Saint Augustine, FL 32092",
+      "mls": "2149501",
+      "primaryUrl": "https://www.zillow.com/homedetails/617-Birchbark-Trl-Saint-Augustine-FL-32092/103514781_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 617 Birchbark Trl, Saint Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0505_617-birchbark"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T09:10:40.919Z",
+      "address": "617 Birchbark Trl, Saint Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T09:11:06.260Z",
+      "address": "617 Birchbark Trl, Saint Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T09:11:17.308Z",
+      "address": "617 Birchbark Trl, Saint Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T09:11:17.379Z",
+      "address": "617 Birchbark Trl, Saint Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T09:11:17.379Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T163602753Z-31141",
+  "status": "completed",
+  "startedAt": "2026-10-11T16:36:02.753Z",
+  "updatedAt": "2026-10-11T16:42:18.189Z",
+  "note": "30-minute single-lead run 2026-10-11T16:36:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T16:36:02.753Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T16:41:12.843Z",
+      "address": "825 Lord Nelson Blvd, Jacksonville, FL 32218",
+      "mls": "2167437",
+      "primaryUrl": "https://www.zillow.com/homedetails/825-Lord-Nelson-Blvd-Jacksonville-FL-32218/71039197_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 825 Lord Nelson Blvd, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1235_825-lord-nelson"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T16:41:47.632Z",
+      "address": "825 Lord Nelson Blvd, Jacksonville, FL 32218",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T16:42:10.876Z",
+      "address": "825 Lord Nelson Blvd, Jacksonville, FL 32218",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T16:42:18.120Z",
+      "address": "825 Lord Nelson Blvd, Jacksonville, FL 32218",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T16:42:18.189Z",
+      "address": "825 Lord Nelson Blvd, Jacksonville, FL 32218",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T16:42:18.189Z"
+}

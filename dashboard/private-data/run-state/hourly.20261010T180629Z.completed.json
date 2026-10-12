@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T180629171Z-60959",
+  "status": "completed",
+  "startedAt": "2026-10-10T18:06:29.171Z",
+  "updatedAt": "2026-10-10T18:10:36.127Z",
+  "note": "30-minute single-lead run 2026-10-10T18:06:29Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T18:06:29.171Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T18:09:32.960Z",
+      "address": "2527 Sandlewood Circle, Orange Park, FL 32065",
+      "mls": "2166463",
+      "primaryUrl": "https://www.movoto.com/orange-park-fl/2527-sandlewood-cir-orange-park-fl-32065-433_739297/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 2527 Sandlewood Circle, Orange Park",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1406_2527-sandlewood"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T18:09:59.892Z",
+      "address": "2527 Sandlewood Circle, Orange Park, FL 32065",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T18:10:29.952Z",
+      "address": "2527 Sandlewood Circle, Orange Park, FL 32065",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T18:10:36.066Z",
+      "address": "2527 Sandlewood Circle, Orange Park, FL 32065",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T18:10:36.127Z",
+      "address": "2527 Sandlewood Circle, Orange Park, FL 32065",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T18:10:36.127Z"
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T171916633Z-66902",
+  "status": "completed",
+  "startedAt": "2026-10-09T17:19:16.633Z",
+  "updatedAt": "2026-10-09T17:21:17.400Z",
+  "note": "mailbox watcher 2026-10-09T17:19:16Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T17:19:16.633Z"
+    },
+    "completed": {
+      "at": "2026-10-09T17:21:17.400Z",
+      "outcome": "no_qualifying_messages",
+      "processedUid": 4563,
+      "skipped": "820 3RD Avenue S furnished/staged-looking public photos"
+    }
+  },
+  "completedAt": "2026-10-09T17:21:17.400Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T080616331Z-72998",
+  "status": "completed",
+  "startedAt": "2026-10-10T08:06:16.331Z",
+  "updatedAt": "2026-10-10T08:11:32.454Z",
+  "note": "30-minute single-lead run 2026-10-10T08:06:16Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T08:06:16.331Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T08:10:18.618Z",
+      "address": "761 Nocatee Village Dr, Ponte Vedra, FL 32081",
+      "mls": "2149655",
+      "primaryUrl": "https://www.zillow.com/homedetails/761-Nocatee-Village-Dr-Ponte-Vedra-FL-32081/337209133_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 761 Nocatee Village Dr, Ponte Vedra",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0406_761-nocatee-village"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T08:11:00.587Z",
+      "address": "761 Nocatee Village Dr, Ponte Vedra, FL 32081",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T08:11:24.053Z",
+      "address": "761 Nocatee Village Dr, Ponte Vedra, FL 32081",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T08:11:32.393Z",
+      "address": "761 Nocatee Village Dr, Ponte Vedra, FL 32081",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T08:11:32.454Z",
+      "address": "761 Nocatee Village Dr, Ponte Vedra, FL 32081",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T08:11:32.454Z"
+}

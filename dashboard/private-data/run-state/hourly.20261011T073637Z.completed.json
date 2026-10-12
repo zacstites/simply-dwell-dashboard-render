@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T073637508Z-23115",
+  "status": "completed",
+  "startedAt": "2026-10-11T07:36:37.508Z",
+  "updatedAt": "2026-10-11T08:15:26.187Z",
+  "note": "30-minute single-lead run 2026-10-11T07:36:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T07:36:37.508Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T08:12:55.627Z",
+      "address": "791 Assisi Lane Unit 1501, Jacksonville, FL 32233",
+      "mls": "2167455",
+      "primaryUrl": "https://movewithmomentum.com/listings/idx/791-assisi-lane-1501-jacksonville",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 791 Assisi Lane #1501, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0406_791-assisi"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T08:14:37.385Z",
+      "address": "791 Assisi Lane Unit 1501, Jacksonville, FL 32233",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T08:15:01.173Z",
+      "address": "791 Assisi Lane Unit 1501, Jacksonville, FL 32233",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T08:15:26.103Z",
+      "address": "791 Assisi Lane Unit 1501, Jacksonville, FL 32233",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T08:15:26.187Z",
+      "address": "791 Assisi Lane Unit 1501, Jacksonville, FL 32233",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T08:15:26.187Z"
+}

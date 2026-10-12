@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T040610556Z-43024",
+  "status": "completed",
+  "startedAt": "2026-10-10T04:06:10.556Z",
+  "updatedAt": "2026-10-10T04:11:25.721Z",
+  "note": "30-minute single-lead run 2026-10-10T04:06:10Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T04:06:10.556Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T04:09:31.021Z",
+      "address": "3316 CEDAR GLEN Way, St. Augustine, FL 32086",
+      "mls": "2163650",
+      "primaryUrl": "https://www.zillow.com/homedetails/3316-Cedar-Glen-Way-Saint-Augustine-FL-32086/47761638_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 3316 Cedar Glen Way, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0005_3316-cedar-glen"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T04:10:30.716Z",
+      "address": "3316 CEDAR GLEN Way, St. Augustine, FL 32086",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T04:11:13.189Z",
+      "address": "3316 CEDAR GLEN Way, St. Augustine, FL 32086",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T04:11:25.660Z",
+      "address": "3316 CEDAR GLEN Way, St. Augustine, FL 32086",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T04:11:25.721Z",
+      "address": "3316 CEDAR GLEN Way, St. Augustine, FL 32086",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T04:11:25.721Z"
+}

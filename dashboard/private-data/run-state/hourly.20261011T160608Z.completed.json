@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T160608112Z-14647",
+  "status": "completed",
+  "startedAt": "2026-10-11T16:06:08.112Z",
+  "updatedAt": "2026-10-11T16:11:45.604Z",
+  "note": "30-minute single-lead run 2026-10-11T16:06:08Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T16:06:08.112Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T16:09:35.084Z",
+      "address": "913 Carrollton Road, Jacksonville, FL 32208",
+      "mls": "2167514",
+      "primaryUrl": "https://www.raveis.com/prop/2167514/913-carrollton-road-jacksonville-fl-32208",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 913 Carrollton Road, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1206_913-carrollton"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T16:10:40.856Z",
+      "address": "913 Carrollton Road, Jacksonville, FL 32208",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T16:11:33.357Z",
+      "address": "913 Carrollton Road, Jacksonville, FL 32208",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T16:11:45.544Z",
+      "address": "913 Carrollton Road, Jacksonville, FL 32208",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T16:11:45.604Z",
+      "address": "913 Carrollton Road, Jacksonville, FL 32208",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T16:11:45.604Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T183608049Z-99502",
+  "status": "completed",
+  "startedAt": "2026-10-09T18:36:08.049Z",
+  "updatedAt": "2026-10-09T18:47:36.346Z",
+  "note": "30-minute single-lead run 2026-10-09T18:36:07Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T18:36:08.049Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T18:46:26.475Z",
+      "address": "3803 Soutel Drive, Jacksonville, FL 32208",
+      "mls": "2167529",
+      "primaryUrl": "https://www.zillow.com/homedetails/3803-Soutel-Dr-Jacksonville-FL-32208/44441704_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3803 Soutel Drive, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1435_3803-soutel-drive"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T18:46:45.803Z",
+      "address": "3803 Soutel Drive, Jacksonville, FL 32208",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T18:47:24.047Z",
+      "address": "3803 Soutel Drive, Jacksonville, FL 32208",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T18:47:36.252Z",
+      "address": "3803 Soutel Drive, Jacksonville, FL 32208",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T18:47:36.346Z",
+      "address": "3803 Soutel Drive, Jacksonville, FL 32208",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T18:47:36.346Z"
+}

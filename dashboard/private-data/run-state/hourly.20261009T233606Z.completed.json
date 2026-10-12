@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T233606741Z-86894",
+  "status": "completed",
+  "startedAt": "2026-10-09T23:36:06.741Z",
+  "updatedAt": "2026-10-09T23:45:15.385Z",
+  "note": "30-minute single-lead run 2026-10-09T23:36:06Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T23:36:06.741Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T23:43:59.667Z",
+      "address": "1627-1629 Laura Street, Jacksonville, FL 32206",
+      "mls": "2163143",
+      "primaryUrl": "https://movewithmomentum.com/listings/idx/1627-1629-laura-street-jacksonville",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1627-1629 Laura Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1935_1627-laura"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T23:44:32.224Z",
+      "address": "1627-1629 Laura Street, Jacksonville, FL 32206",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T23:45:04.748Z",
+      "address": "1627-1629 Laura Street, Jacksonville, FL 32206",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T23:45:15.326Z",
+      "address": "1627-1629 Laura Street, Jacksonville, FL 32206",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T23:45:15.385Z",
+      "address": "1627-1629 Laura Street, Jacksonville, FL 32206",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T23:45:15.385Z"
+}

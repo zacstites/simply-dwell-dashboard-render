@@ -1,0 +1,17 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261008T143605665Z-66254",
+  "status": "blocked",
+  "startedAt": "2026-10-08T14:36:05.665Z",
+  "updatedAt": "2026-10-08T15:41:49.562Z",
+  "note": "30-minute single-lead run 2026-10-08T14:36:05Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T14:36:05.665Z"
+    },
+    "blocked": {
+      "at": "2026-10-08T15:41:49.562Z",
+      "reason": "Gateway restart interrupted recovery run before lead selection; automations paused; no email sent from this run."
+    }
+  }
+}

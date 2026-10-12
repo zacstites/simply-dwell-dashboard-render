@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T053636266Z-8415",
+  "status": "completed",
+  "startedAt": "2026-10-11T05:36:36.266Z",
+  "updatedAt": "2026-10-11T05:45:56.152Z",
+  "note": "30-minute single-lead run 2026-10-11T05:36:36Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T05:36:36.266Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T05:44:52.507Z",
+      "address": "12145 Versailles Street, Jacksonville, FL 32224",
+      "mls": "2167187",
+      "primaryUrl": "https://www.zillow.com/homedetails/12145-Versailles-St-Jacksonville-FL-32224/109771527_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 12145 Versailles Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0136_12145-versailles"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T05:45:25.280Z",
+      "address": "12145 Versailles Street, Jacksonville, FL 32224",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T05:45:44.730Z",
+      "address": "12145 Versailles Street, Jacksonville, FL 32224",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T05:45:56.084Z",
+      "address": "12145 Versailles Street, Jacksonville, FL 32224",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T05:45:56.152Z",
+      "address": "12145 Versailles Street, Jacksonville, FL 32224",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T05:45:56.152Z"
+}

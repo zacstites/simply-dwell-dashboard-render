@@ -1,0 +1,28 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T175416486Z-85095",
+  "status": "completed",
+  "startedAt": "2026-10-09T17:54:16.486Z",
+  "updatedAt": "2026-10-09T17:54:53.750Z",
+  "note": "mailbox watcher 2026-10-09T17:54:16Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T17:54:16.486Z"
+    },
+    "completed": {
+      "at": "2026-10-09T17:54:53.750Z",
+      "outcome": "no_new_messages",
+      "processedUids": [
+        4565
+      ],
+      "skipped": [
+        {
+          "uid": 4565,
+          "address": "1230 12TH Street N, Jacksonville Beach, FL 32250",
+          "reason": "Sold/Closed listing; not an active staging opportunity"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-09T17:54:53.750Z"
+}

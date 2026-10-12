@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T133602860Z-40381",
+  "status": "completed",
+  "startedAt": "2026-10-11T13:36:02.860Z",
+  "updatedAt": "2026-10-11T13:43:33.384Z",
+  "note": "30-minute single-lead run 2026-10-11T13:36:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T13:36:02.860Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T13:42:18.069Z",
+      "address": "8411 Three Creeks Boulevard, Jacksonville, FL 32220",
+      "mls": "2167142",
+      "primaryUrl": "https://www.zillow.com/homedetails/8411-Three-Creeks-Blvd-Jacksonville-FL-32220/44408136_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 8411 Three Creeks Boulevard, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0935_8411-three-creeks"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T13:42:57.870Z",
+      "address": "8411 Three Creeks Boulevard, Jacksonville, FL 32220",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T13:43:24.049Z",
+      "address": "8411 Three Creeks Boulevard, Jacksonville, FL 32220",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T13:43:33.313Z",
+      "address": "8411 Three Creeks Boulevard, Jacksonville, FL 32220",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T13:43:33.384Z",
+      "address": "8411 Three Creeks Boulevard, Jacksonville, FL 32220",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T13:43:33.384Z"
+}

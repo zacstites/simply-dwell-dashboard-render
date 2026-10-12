@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T040635687Z-96448",
+  "status": "completed",
+  "startedAt": "2026-10-11T04:06:35.687Z",
+  "updatedAt": "2026-10-11T04:13:31.443Z",
+  "note": "30-minute single-lead run 2026-10-11T04:06:35Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T04:06:35.687Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T04:12:32.617Z",
+      "address": "3591 Kernan Boulevard S Unit 705, Jacksonville, FL 32224",
+      "mls": "2167763",
+      "primaryUrl": "https://www.zillow.com/homedetails/3591-S-Kernan-Blvd-705-Jacksonville-FL-32224/71045488_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3591 Kernan Blvd S Unit 705, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0006_3591-kernan"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T04:13:01.930Z",
+      "address": "3591 Kernan Boulevard S Unit 705, Jacksonville, FL 32224",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T04:13:25.477Z",
+      "address": "3591 Kernan Boulevard S Unit 705, Jacksonville, FL 32224",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T04:13:31.371Z",
+      "address": "3591 Kernan Boulevard S Unit 705, Jacksonville, FL 32224",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T04:13:31.443Z",
+      "address": "3591 Kernan Boulevard S Unit 705, Jacksonville, FL 32224",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T04:13:31.443Z"
+}

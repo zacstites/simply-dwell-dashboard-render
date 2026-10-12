@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T060639614Z-12103",
+  "status": "completed",
+  "startedAt": "2026-10-11T06:06:39.614Z",
+  "updatedAt": "2026-10-11T06:11:04.444Z",
+  "note": "30-minute single-lead run 2026-10-11T06:06:39Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T06:06:39.614Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T06:10:08.486Z",
+      "address": "12606 Point Park Drive, Jacksonville, FL 32225",
+      "mls": "2167264",
+      "primaryUrl": "https://www.zillow.com/homedetails/12606-Point-Park-Dr-Jacksonville-FL-32225/44589552_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 12606 Point Park Drive, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0206_12606-point-park"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T06:10:37.339Z",
+      "address": "12606 Point Park Drive, Jacksonville, FL 32225",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T06:10:57.899Z",
+      "address": "12606 Point Park Drive, Jacksonville, FL 32225",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T06:11:04.380Z",
+      "address": "12606 Point Park Drive, Jacksonville, FL 32225",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T06:11:04.444Z",
+      "address": "12606 Point Park Drive, Jacksonville, FL 32225",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T06:11:04.444Z"
+}

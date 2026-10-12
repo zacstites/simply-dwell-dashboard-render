@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T083617462Z-75694",
+  "status": "completed",
+  "startedAt": "2026-10-10T08:36:17.462Z",
+  "updatedAt": "2026-10-10T08:40:18.239Z",
+  "note": "30-minute single-lead run 2026-10-10T08:36:17Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T08:36:17.462Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T08:39:20.224Z",
+      "address": "606 Gulfstream Trail S, Orange Park, FL 32073",
+      "mls": "2136817",
+      "primaryUrl": "https://www.zillow.com/homedetails/606-Gulfstream-Trl-S-Orange-Park-FL-32073/43683474_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 606 Gulfstream Trail S, Orange Park",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0436_606-gulfstream"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T08:39:47.701Z",
+      "address": "606 Gulfstream Trail S, Orange Park, FL 32073",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T08:40:10.504Z",
+      "address": "606 Gulfstream Trail S, Orange Park, FL 32073",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T08:40:18.179Z",
+      "address": "606 Gulfstream Trail S, Orange Park, FL 32073",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T08:40:18.239Z",
+      "address": "606 Gulfstream Trail S, Orange Park, FL 32073",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T08:40:18.239Z"
+}

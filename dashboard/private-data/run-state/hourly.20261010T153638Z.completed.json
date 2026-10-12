@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T153638116Z-88422",
+  "status": "completed",
+  "startedAt": "2026-10-10T15:36:38.116Z",
+  "updatedAt": "2026-10-10T15:42:59.832Z",
+  "note": "30-minute single-lead run 2026-10-10T15:36:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T15:36:38.116Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T15:40:49.236Z",
+      "address": "2625 Field Daisy Lane, Green Cove Springs, FL 32043",
+      "mls": "2167584",
+      "primaryUrl": "https://movewithmomentum.com/listings/idx/2625-field-daisy-lane-green-cove-springs",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 2625 Field Daisy Lane, Green Cove Springs",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1136_2625-field-daisy"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T15:41:46.254Z",
+      "address": "2625 Field Daisy Lane, Green Cove Springs, FL 32043",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T15:42:45.792Z",
+      "address": "2625 Field Daisy Lane, Green Cove Springs, FL 32043",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T15:42:59.750Z",
+      "address": "2625 Field Daisy Lane, Green Cove Springs, FL 32043",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T15:42:59.832Z",
+      "address": "2625 Field Daisy Lane, Green Cove Springs, FL 32043",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T15:42:59.832Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T083602406Z-31338",
+  "status": "completed",
+  "startedAt": "2026-10-11T08:36:02.406Z",
+  "updatedAt": "2026-10-11T08:46:35.850Z",
+  "note": "30-minute single-lead run 2026-10-11T08:36:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T08:36:02.406Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T08:42:52.078Z",
+      "address": "709 Lake Sinclair Street, St. Augustine, FL 32084",
+      "mls": "SA263869 / 263869",
+      "primaryUrl": "https://www.zillow.com/homedetails/709-Lake-Sinclair-St-Saint-Augustine-FL-32084/2053185066_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 709 Lake Sinclair Street, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0436_709-lake-sinclair"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T08:46:07.245Z",
+      "address": "709 Lake Sinclair Street, St. Augustine, FL 32084",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T08:46:28.844Z",
+      "address": "709 Lake Sinclair Street, St. Augustine, FL 32084",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T08:46:35.785Z",
+      "address": "709 Lake Sinclair Street, St. Augustine, FL 32084",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T08:46:35.850Z",
+      "address": "709 Lake Sinclair Street, St. Augustine, FL 32084",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T08:46:35.850Z"
+}

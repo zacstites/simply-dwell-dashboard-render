@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T110608770Z-48762",
+  "status": "completed",
+  "startedAt": "2026-10-11T11:06:08.770Z",
+  "updatedAt": "2026-10-11T11:18:27.651Z",
+  "note": "30-minute single-lead run 2026-10-11T11:06:08Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T11:06:08.770Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T11:16:01.680Z",
+      "address": "11356 Canvasback Court, Jacksonville, FL 32225",
+      "mls": "2167521",
+      "primaryUrl": "https://www.zillow.com/homedetails/11356-Canvasback-Ct-Jacksonville-FL-32225/44589021_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 11356 Canvasback Court, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0705_11356-canvasback"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T11:16:58.340Z",
+      "address": "11356 Canvasback Court, Jacksonville, FL 32225",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T11:17:56.392Z",
+      "address": "11356 Canvasback Court, Jacksonville, FL 32225",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T11:18:27.564Z",
+      "address": "11356 Canvasback Court, Jacksonville, FL 32225",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T11:18:27.651Z",
+      "address": "11356 Canvasback Court, Jacksonville, FL 32225",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T11:18:27.651Z"
+}

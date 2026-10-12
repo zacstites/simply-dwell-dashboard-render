@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T183628047Z-63839",
+  "status": "completed",
+  "startedAt": "2026-10-10T18:36:28.047Z",
+  "updatedAt": "2026-10-10T18:42:16.973Z",
+  "note": "30-minute single-lead run 2026-10-10T18:36:27Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T18:36:28.047Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T18:41:06.169Z",
+      "address": "10153 Roman Ln, Jacksonville, FL 32218",
+      "mls": "2167775",
+      "primaryUrl": "https://www.redfin.com/FL/Jacksonville/10153-Roman-Ln-32218/home/169788031",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 10153 Roman Ln, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1436_10153-roman"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T18:41:42.422Z",
+      "address": "10153 Roman Ln, Jacksonville, FL 32218",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T18:42:09.682Z",
+      "address": "10153 Roman Ln, Jacksonville, FL 32218",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T18:42:16.912Z",
+      "address": "10153 Roman Ln, Jacksonville, FL 32218",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T18:42:16.973Z",
+      "address": "10153 Roman Ln, Jacksonville, FL 32218",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T18:42:16.973Z"
+}

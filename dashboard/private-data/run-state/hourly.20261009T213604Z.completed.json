@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T213604299Z-56513",
+  "status": "completed",
+  "startedAt": "2026-10-09T21:36:04.299Z",
+  "updatedAt": "2026-10-09T21:47:11.689Z",
+  "note": "30-minute single-lead run 2026-10-09T21:36:04Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T21:36:04.299Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T21:46:17.424Z",
+      "address": "725 W 16th St, Jacksonville, FL 32206",
+      "mls": "2167706",
+      "primaryUrl": "https://www.redfin.com/FL/Jacksonville/725-W-16th-St-32206/home/105168419",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 725 W 16th St, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1745_725-w-16th"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T21:46:42.045Z",
+      "address": "725 W 16th St, Jacksonville, FL 32206",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T21:47:04.028Z",
+      "address": "725 W 16th St, Jacksonville, FL 32206",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T21:47:11.626Z",
+      "address": "725 W 16th St, Jacksonville, FL 32206",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T21:47:11.689Z",
+      "address": "725 W 16th St, Jacksonville, FL 32206",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T21:47:11.689Z"
+}

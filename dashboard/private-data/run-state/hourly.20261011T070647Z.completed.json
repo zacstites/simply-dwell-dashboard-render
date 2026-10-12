@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T070647016Z-19591",
+  "status": "completed",
+  "startedAt": "2026-10-11T07:06:47.016Z",
+  "updatedAt": "2026-10-11T07:17:54.336Z",
+  "note": "30-minute single-lead run 2026-10-11T07:06:46Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T07:06:47.016Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T07:15:27.471Z",
+      "address": "3270 Ricky Drive Unit 202, Jacksonville, FL 32223",
+      "mls": "2167837",
+      "primaryUrl": "https://www.zillow.com/homedetails/3270-Ricky-Dr-APT-202-Jacksonville-FL-32223/44569569_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3270 Ricky Drive #202, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0306_3270-ricky"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T07:16:46.172Z",
+      "address": "3270 Ricky Drive Unit 202, Jacksonville, FL 32223",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T07:17:43.219Z",
+      "address": "3270 Ricky Drive Unit 202, Jacksonville, FL 32223",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T07:17:54.274Z",
+      "address": "3270 Ricky Drive Unit 202, Jacksonville, FL 32223",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T07:17:54.336Z",
+      "address": "3270 Ricky Drive Unit 202, Jacksonville, FL 32223",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T07:17:54.336Z"
+}

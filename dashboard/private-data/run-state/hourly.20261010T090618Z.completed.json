@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T090618156Z-78183",
+  "status": "completed",
+  "startedAt": "2026-10-10T09:06:18.156Z",
+  "updatedAt": "2026-10-10T09:12:36.902Z",
+  "note": "30-minute single-lead run 2026-10-10T09:06:18Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T09:06:18.156Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T09:11:30.010Z",
+      "address": "4406 Lane Ave S, Jacksonville, FL 32210",
+      "mls": "2167486",
+      "primaryUrl": "https://www.opendoor.com/properties/4406-Lane-Ave-S-Jacksonville-FL-32210/aid_c2ece9c4-a7cc-54d0-a0f1-2a3cc2194ad3",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 4406 Lane Ave S, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0506_4406-lane"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T09:11:59.839Z",
+      "address": "4406 Lane Ave S, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T09:12:28.935Z",
+      "address": "4406 Lane Ave S, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T09:12:36.839Z",
+      "address": "4406 Lane Ave S, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T09:12:36.902Z",
+      "address": "4406 Lane Ave S, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T09:12:36.902Z"
+}

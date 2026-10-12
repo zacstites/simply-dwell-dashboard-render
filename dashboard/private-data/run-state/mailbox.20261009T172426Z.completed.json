@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T172426295Z-67628",
+  "status": "completed",
+  "startedAt": "2026-10-09T17:24:26.295Z",
+  "updatedAt": "2026-10-09T17:25:02.162Z",
+  "note": "mailbox watcher 2026-10-09T17:24:26Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T17:24:26.295Z"
+    },
+    "completed": {
+      "at": "2026-10-09T17:25:02.162Z",
+      "outcome": "duplicate",
+      "processedUid": 4564,
+      "skipped": "820 3RD Avenue S price-change replay; already reviewed/skipped as furnished/staged-looking public photos"
+    }
+  },
+  "completedAt": "2026-10-09T17:25:02.162Z"
+}

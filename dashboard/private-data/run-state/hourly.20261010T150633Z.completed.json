@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T150633803Z-70558",
+  "status": "completed",
+  "startedAt": "2026-10-10T15:06:33.803Z",
+  "updatedAt": "2026-10-10T15:10:44.788Z",
+  "note": "30-minute single-lead run 2026-10-10T15:06:33Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T15:06:33.803Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T15:09:50.176Z",
+      "address": "11325 Soforenko Drive, Jacksonville, FL 32218",
+      "mls": "2130437",
+      "primaryUrl": "https://www.zillow.com/homedetails/11325-Soforenko-Dr-Jacksonville-FL-32218/44512885_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 11325 Soforenko Drive, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1106_11325-soforenko"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T15:10:15.020Z",
+      "address": "11325 Soforenko Drive, Jacksonville, FL 32218",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T15:10:38.596Z",
+      "address": "11325 Soforenko Drive, Jacksonville, FL 32218",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T15:10:44.716Z",
+      "address": "11325 Soforenko Drive, Jacksonville, FL 32218",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T15:10:44.788Z",
+      "address": "11325 Soforenko Drive, Jacksonville, FL 32218",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T15:10:44.788Z"
+}

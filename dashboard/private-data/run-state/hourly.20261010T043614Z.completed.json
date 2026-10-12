@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T043614313Z-45839",
+  "status": "completed",
+  "startedAt": "2026-10-10T04:36:14.313Z",
+  "updatedAt": "2026-10-10T04:43:17.773Z",
+  "note": "30-minute single-lead run 2026-10-10T04:36:14Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T04:36:14.313Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T04:41:22.013Z",
+      "address": "194 SALIDA Way, St. Augustine, FL 32095",
+      "mls": "2167501",
+      "primaryUrl": "https://www.zillow.com/homedetails/194-Salida-Way-Saint-Augustine-FL-32095/103489242_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 194 Salida Way, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0035_194-salida"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T04:42:20.791Z",
+      "address": "194 SALIDA Way, St. Augustine, FL 32095",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T04:43:07.366Z",
+      "address": "194 SALIDA Way, St. Augustine, FL 32095",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T04:43:17.712Z",
+      "address": "194 SALIDA Way, St. Augustine, FL 32095",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T04:43:17.773Z",
+      "address": "194 SALIDA Way, St. Augustine, FL 32095",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T04:43:17.773Z"
+}

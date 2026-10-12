@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T223605200Z-77933",
+  "status": "completed",
+  "startedAt": "2026-10-09T22:36:05.200Z",
+  "updatedAt": "2026-10-09T22:38:24.277Z",
+  "note": "30-minute single-lead run 2026-10-09T22:36:05Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T22:36:05.200Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T22:37:38.833Z",
+      "address": "1140 Acosta, Jacksonville, FL 32204",
+      "mls": "2167940",
+      "primaryUrl": "https://www.zillow.com/homedetails/1140-Acosta-St-Jacksonville-FL-32204/465794235_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 1140 Acosta, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1836_1140-acosta"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T22:38:02.633Z",
+      "address": "1140 Acosta, Jacksonville, FL 32204",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T22:38:18.599Z",
+      "address": "1140 Acosta, Jacksonville, FL 32204",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T22:38:24.206Z",
+      "address": "1140 Acosta, Jacksonville, FL 32204",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T22:38:24.277Z",
+      "address": "1140 Acosta, Jacksonville, FL 32204",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T22:38:24.277Z"
+}

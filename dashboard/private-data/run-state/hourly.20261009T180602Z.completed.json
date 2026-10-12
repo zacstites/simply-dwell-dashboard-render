@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T180602185Z-86122",
+  "status": "completed",
+  "startedAt": "2026-10-09T18:06:02.185Z",
+  "updatedAt": "2026-10-09T18:12:46.270Z",
+  "note": "30-minute single-lead run 2026-10-09T18:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T18:06:02.185Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T18:11:44.760Z",
+      "address": "642 Meteor St, Jacksonville, FL 32205",
+      "mls": "2166802",
+      "primaryUrl": "https://www.zillow.com/homedetails/642-Meteor-St-Jacksonville-FL-32205/44469360_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 642 Meteor St, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1405_642-meteor-st"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T18:12:09.913Z",
+      "address": "642 Meteor St, Jacksonville, FL 32205",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T18:12:37.385Z",
+      "address": "642 Meteor St, Jacksonville, FL 32205",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T18:12:46.188Z",
+      "address": "642 Meteor St, Jacksonville, FL 32205",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T18:12:46.270Z",
+      "address": "642 Meteor St, Jacksonville, FL 32205",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T18:12:46.270Z"
+}

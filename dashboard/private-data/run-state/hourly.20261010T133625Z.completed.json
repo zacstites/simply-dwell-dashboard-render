@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T133625555Z-14967",
+  "status": "completed",
+  "startedAt": "2026-10-10T13:36:25.555Z",
+  "updatedAt": "2026-10-10T13:42:57.023Z",
+  "note": "30-minute single-lead run 2026-10-10T13:36:25Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T13:36:25.555Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T13:41:34.552Z",
+      "address": "5645 Wandering Trail, Jacksonville, FL 32219",
+      "mls": "2167721",
+      "primaryUrl": "https://www.zillow.com/homedetails/5645-Wandering-Trl-Jacksonville-FL-32219/55114354_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5645 Wandering Trail, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0936_5645-wandering"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T13:42:25.548Z",
+      "address": "5645 Wandering Trail, Jacksonville, FL 32219",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T13:42:48.872Z",
+      "address": "5645 Wandering Trail, Jacksonville, FL 32219",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T13:42:56.962Z",
+      "address": "5645 Wandering Trail, Jacksonville, FL 32219",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T13:42:57.023Z",
+      "address": "5645 Wandering Trail, Jacksonville, FL 32219",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T13:42:57.023Z"
+}

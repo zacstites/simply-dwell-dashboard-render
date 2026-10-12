@@ -1,0 +1,19 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T193928800Z-26240",
+  "status": "completed",
+  "startedAt": "2026-10-09T19:39:28.800Z",
+  "updatedAt": "2026-10-09T19:40:04.699Z",
+  "note": "mailbox watcher 2026-10-09T19:39:28Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T19:39:28.800Z"
+    },
+    "completed": {
+      "at": "2026-10-09T19:40:04.699Z",
+      "outcome": "blocked",
+      "reason": "new MLS-Listing UID 4567 skipped because status was Pending"
+    }
+  },
+  "completedAt": "2026-10-09T19:40:04.699Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T140605688Z-61007",
+  "status": "completed",
+  "startedAt": "2026-10-11T14:06:05.688Z",
+  "updatedAt": "2026-10-11T14:10:29.420Z",
+  "note": "30-minute single-lead run 2026-10-11T14:06:05Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T14:06:05.688Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T14:09:30.460Z",
+      "address": "210 W 54th Street, Jacksonville, FL 32208",
+      "mls": "2167517",
+      "primaryUrl": "https://www.coldwellbanker.com/fl/jacksonville/210-w-54th-st/lid-P00800000HIDhdbfJUkDUnmot18Jugb6cEVDNeO3",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 210 W 54th Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1005_210-w-54th"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T14:09:57.307Z",
+      "address": "210 W 54th Street, Jacksonville, FL 32208",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T14:10:22.103Z",
+      "address": "210 W 54th Street, Jacksonville, FL 32208",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T14:10:29.338Z",
+      "address": "210 W 54th Street, Jacksonville, FL 32208",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T14:10:29.420Z",
+      "address": "210 W 54th Street, Jacksonville, FL 32208",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T14:10:29.420Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T233635426Z-59359",
+  "status": "completed",
+  "startedAt": "2026-10-10T23:36:35.426Z",
+  "updatedAt": "2026-10-10T23:45:57.761Z",
+  "note": "30-minute single-lead run 2026-10-10T23:36:35Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T23:36:35.426Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T23:44:23.998Z",
+      "address": "175 Alava Court, St. Augustine, FL 32086",
+      "mls": "2167087 / SA264098",
+      "primaryUrl": "https://www.zillow.com/homedetails/175-Alava-Ct-Saint-Augustine-FL-32086/103498803_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 175 Alava Court, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1936_175-alava"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T23:45:01.126Z",
+      "address": "175 Alava Court, St. Augustine, FL 32086",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T23:45:49.071Z",
+      "address": "175 Alava Court, St. Augustine, FL 32086",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T23:45:57.657Z",
+      "address": "175 Alava Court, St. Augustine, FL 32086",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T23:45:57.761Z",
+      "address": "175 Alava Court, St. Augustine, FL 32086",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T23:45:57.761Z"
+}

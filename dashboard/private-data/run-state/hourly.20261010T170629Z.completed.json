@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T170629557Z-41844",
+  "status": "completed",
+  "startedAt": "2026-10-10T17:06:29.557Z",
+  "updatedAt": "2026-10-10T17:10:29.681Z",
+  "note": "30-minute single-lead run 2026-10-10T17:06:29Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T17:06:29.557Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T17:09:29.440Z",
+      "address": "6515 W La Mirada Drive #2, Jacksonville, FL 32217",
+      "mls": "2158693",
+      "primaryUrl": "https://www.zillow.com/homedetails/6515-W-La-Mirada-Dr-2-Jacksonville-FL-32217/71044208_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 6515 W La Mirada Drive #2, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1306_6515-la-mirada"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T17:09:59.674Z",
+      "address": "6515 W La Mirada Drive #2, Jacksonville, FL 32217",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T17:10:23.563Z",
+      "address": "6515 W La Mirada Drive #2, Jacksonville, FL 32217",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T17:10:29.622Z",
+      "address": "6515 W La Mirada Drive #2, Jacksonville, FL 32217",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T17:10:29.681Z",
+      "address": "6515 W La Mirada Drive #2, Jacksonville, FL 32217",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T17:10:29.681Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T103619204Z-86045",
+  "status": "completed",
+  "startedAt": "2026-10-10T10:36:19.204Z",
+  "updatedAt": "2026-10-10T10:44:46.737Z",
+  "note": "30-minute single-lead run 2026-10-10T10:36:19Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T10:36:19.204Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T10:42:44.757Z",
+      "address": "29 Lone Cypress Way, St. Augustine, FL 32092",
+      "mls": "2151723",
+      "primaryUrl": "https://www.zillow.com/homedetails/29-Lone-Cypress-Way-Saint-Augustine-FL-32092/345058436_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 29 Lone Cypress Way, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0636_29-lone-cypress"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T10:43:45.912Z",
+      "address": "29 Lone Cypress Way, St. Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T10:44:37.127Z",
+      "address": "29 Lone Cypress Way, St. Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T10:44:46.677Z",
+      "address": "29 Lone Cypress Way, St. Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T10:44:46.737Z",
+      "address": "29 Lone Cypress Way, St. Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T10:44:46.737Z"
+}

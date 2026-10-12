@@ -1,0 +1,34 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T195428798Z-32818",
+  "status": "completed",
+  "startedAt": "2026-10-09T19:54:28.798Z",
+  "updatedAt": "2026-10-09T19:55:05.876Z",
+  "note": "mailbox watcher 2026-10-09T19:54:28Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T19:54:28.798Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T19:55:03.020Z",
+      "uid": "4568",
+      "address": "1221 1ST Street S, 2B, Jacksonville Beach, FL 32250",
+      "mls": "2157684",
+      "primaryUrl": "https://www.flexmls.com/notifications.html?notification_id=20261009193531987947000000",
+      "photoStatus": "not_reviewed_pending_status",
+      "subject": "Listings for Bot"
+    },
+    "completed": {
+      "at": "2026-10-09T19:55:05.876Z",
+      "outcome": "duplicate",
+      "skipped": [
+        {
+          "uid": "4568",
+          "address": "1221 1ST Street S, 2B",
+          "reason": "Pending status; not an active staging opportunity"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-09T19:55:05.876Z"
+}

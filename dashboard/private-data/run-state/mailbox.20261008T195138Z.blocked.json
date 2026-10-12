@@ -1,0 +1,17 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T195138035Z-98980",
+  "status": "blocked",
+  "startedAt": "2026-10-08T19:51:38.035Z",
+  "updatedAt": "2026-10-08T19:54:05.889Z",
+  "note": "mailbox watcher 2026-10-08T19:51:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T19:51:38.035Z"
+    },
+    "blocked": {
+      "at": "2026-10-08T19:54:05.889Z",
+      "reason": "Recovered after Gateway restart/interrupted automation before selected_lead; no gmail_sent checkpoint present."
+    }
+  }
+}

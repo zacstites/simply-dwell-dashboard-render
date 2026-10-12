@@ -1,0 +1,18 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261011T092430144Z-38529",
+  "status": "completed",
+  "startedAt": "2026-10-11T09:24:30.144Z",
+  "updatedAt": "2026-10-11T09:24:54.416Z",
+  "note": "mailbox watcher 2026-10-11T09:24:30Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T09:24:30.144Z"
+    },
+    "completed": {
+      "at": "2026-10-11T09:24:54.416Z",
+      "outcome": "no_new_messages"
+    }
+  },
+  "completedAt": "2026-10-11T09:24:54.416Z"
+}

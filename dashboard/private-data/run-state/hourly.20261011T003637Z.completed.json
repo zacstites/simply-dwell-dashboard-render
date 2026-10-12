@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T003637897Z-73329",
+  "status": "completed",
+  "startedAt": "2026-10-11T00:36:37.897Z",
+  "updatedAt": "2026-10-11T00:38:54.308Z",
+  "note": "30-minute single-lead run 2026-10-11T00:36:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T00:36:37.897Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T00:38:07.905Z",
+      "address": "9725 Hazel Lake, Jacksonville, FL 32222",
+      "mls": "2167794",
+      "primaryUrl": "https://www.zillow.com/homedetails/9725-N-Hazel-Lake-Dr-Jacksonville-FL-32222/82985163_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 9725 Hazel Lake, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_2036_9725-hazel"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T00:38:29.963Z",
+      "address": "9725 Hazel Lake, Jacksonville, FL 32222",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T00:38:48.284Z",
+      "address": "9725 Hazel Lake, Jacksonville, FL 32222",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T00:38:54.242Z",
+      "address": "9725 Hazel Lake, Jacksonville, FL 32222",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T00:38:54.308Z",
+      "address": "9725 Hazel Lake, Jacksonville, FL 32222",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T00:38:54.308Z"
+}

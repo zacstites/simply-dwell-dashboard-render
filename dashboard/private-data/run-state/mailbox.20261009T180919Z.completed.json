@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T180919847Z-86951",
+  "status": "completed",
+  "startedAt": "2026-10-09T18:09:19.847Z",
+  "updatedAt": "2026-10-09T18:09:55.939Z",
+  "note": "mailbox watcher 2026-10-09T18:09:19Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T18:09:19.847Z"
+    },
+    "completed": {
+      "at": "2026-10-09T18:09:55.939Z",
+      "outcome": "no_new_messages",
+      "processedUid": 4566,
+      "note": "UID 4566 was Sold/Closed, no qualifying active staging opportunity"
+    }
+  },
+  "completedAt": "2026-10-09T18:09:55.939Z"
+}

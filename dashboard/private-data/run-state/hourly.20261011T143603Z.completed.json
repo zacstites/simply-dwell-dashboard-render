@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T143603507Z-78035",
+  "status": "completed",
+  "startedAt": "2026-10-11T14:36:03.507Z",
+  "updatedAt": "2026-10-11T14:44:12.243Z",
+  "note": "30-minute single-lead run 2026-10-11T14:36:03Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T14:36:03.507Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T14:42:57.835Z",
+      "address": "6712 Harlow Boulevard, Jacksonville, FL 32210",
+      "mls": "2159962",
+      "primaryUrl": "https://www.zillow.com/homedetails/6712-Harlow-Blvd-Jacksonville-FL-32210/44429996_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 6712 Harlow Boulevard, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1035_6712-harlow"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T14:43:34.283Z",
+      "address": "6712 Harlow Boulevard, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T14:44:02.395Z",
+      "address": "6712 Harlow Boulevard, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T14:44:12.159Z",
+      "address": "6712 Harlow Boulevard, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T14:44:12.243Z",
+      "address": "6712 Harlow Boulevard, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T14:44:12.243Z"
+}

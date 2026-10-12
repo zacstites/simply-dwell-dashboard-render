@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T020613374Z-25252",
+  "status": "completed",
+  "startedAt": "2026-10-10T02:06:13.374Z",
+  "updatedAt": "2026-10-10T02:09:23.499Z",
+  "note": "30-minute single-lead run 2026-10-10T02:06:13Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T02:06:13.374Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T02:07:40.856Z",
+      "address": "152 Old Field Lane, St. Augustine, FL 32092",
+      "mls": "2167895",
+      "primaryUrl": "https://www.realtor.com/realestateandhomes-detail/152-Old-Field-Ln_St-Augustine_FL_32092_M65206-03892",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 152 Old Field Lane, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2205_152-old-field"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T02:08:30.358Z",
+      "address": "152 Old Field Lane, St. Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T02:09:09.947Z",
+      "address": "152 Old Field Lane, St. Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T02:09:23.439Z",
+      "address": "152 Old Field Lane, St. Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T02:09:23.499Z",
+      "address": "152 Old Field Lane, St. Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T02:09:23.499Z"
+}

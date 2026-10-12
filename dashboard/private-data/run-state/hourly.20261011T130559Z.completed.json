@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T130559641Z-13640",
+  "status": "completed",
+  "startedAt": "2026-10-11T13:05:59.641Z",
+  "updatedAt": "2026-10-11T13:13:29.272Z",
+  "note": "30-minute single-lead run 2026-10-11T13:05:59Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T13:05:59.641Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T13:12:16.312Z",
+      "address": "5050 Playpen Drive Unit 5, Jacksonville, FL 32210",
+      "mls": "2167099",
+      "primaryUrl": "https://www.zillow.com/homedetails/5050-Playpen-Dr-UNIT-5-Jacksonville-FL-32210/448198091_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5050 Playpen Drive Unit 5, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0905_5050-playpen"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T13:12:56.783Z",
+      "address": "5050 Playpen Drive Unit 5, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T13:13:22.273Z",
+      "address": "5050 Playpen Drive Unit 5, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T13:13:29.205Z",
+      "address": "5050 Playpen Drive Unit 5, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T13:13:29.272Z",
+      "address": "5050 Playpen Drive Unit 5, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T13:13:29.272Z"
+}

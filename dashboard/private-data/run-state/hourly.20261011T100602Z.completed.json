@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T100602225Z-43715",
+  "status": "completed",
+  "startedAt": "2026-10-11T10:06:02.225Z",
+  "updatedAt": "2026-10-11T10:11:04.031Z",
+  "note": "30-minute single-lead run 2026-10-11T10:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T10:06:02.225Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T10:08:19.848Z",
+      "address": "9852 Lemon Balm Way, Jacksonville, FL 32219",
+      "mls": "2113885",
+      "primaryUrl": "https://www.zillow.com/homedetails/9852-Lemon-Balm-Way-Jacksonville-FL-32219/2059139054_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 9852 Lemon Balm Way, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0606_9852-lemon-balm"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T10:10:28.367Z",
+      "address": "9852 Lemon Balm Way, Jacksonville, FL 32219",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T10:10:57.436Z",
+      "address": "9852 Lemon Balm Way, Jacksonville, FL 32219",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T10:11:03.962Z",
+      "address": "9852 Lemon Balm Way, Jacksonville, FL 32219",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T10:11:04.031Z",
+      "address": "9852 Lemon Balm Way, Jacksonville, FL 32219",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T10:11:04.031Z"
+}

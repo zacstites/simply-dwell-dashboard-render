@@ -1,0 +1,17 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T180611488Z-50076",
+  "status": "blocked",
+  "startedAt": "2026-10-11T18:06:11.488Z",
+  "updatedAt": "2026-10-11T18:15:54.193Z",
+  "note": "30-minute single-lead run 2026-10-11T18:06:11Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T18:06:11.488Z"
+    },
+    "blocked": {
+      "at": "2026-10-11T18:15:54.193Z",
+      "reason": "No clean non-duplicate lead passed final gate in this run; 1319 Spearing St was rejected as duplicate/prior quarantine record, 254 Brazil Nut Circle and 86460 Shortline Circle were rejected because public photos were furnished/staged-looking, 4463 River Trail Road had pending-status conflict in public verification."
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T154413145Z-88373",
+  "status": "completed",
+  "startedAt": "2026-10-08T15:44:13.145Z",
+  "updatedAt": "2026-10-08T15:52:18.491Z",
+  "note": "mailbox watcher 2026-10-08T15:44:13Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T15:44:13.145Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-08T15:48:53.524Z",
+      "uid": "4524",
+      "address": "1125 OCEANWOOD Drive N, Neptune Beach, FL 32266",
+      "mls": "2165282",
+      "primaryUrl": "https://www.zillow.com/homedetails/1125-N-Oceanwood-Dr-Neptune-Beach-FL-32266/44626171_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1125 OCEANWOOD Drive N"
+    },
+    "gmail_sent": {
+      "at": "2026-10-08T15:50:15.510Z",
+      "uid": "4524",
+      "address": "1125 OCEANWOOD Drive N, Neptune Beach, FL 32266",
+      "gmailMessageId": "accepted",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-08T15:50:55.041Z",
+      "uid": "4524",
+      "address": "1125 OCEANWOOD Drive N, Neptune Beach, FL 32266"
+    },
+    "summary_posted": {
+      "at": "2026-10-08T15:51:57.596Z",
+      "uid": "4524",
+      "address": "1125 OCEANWOOD Drive N, Neptune Beach, FL 32266"
+    },
+    "completed": {
+      "at": "2026-10-08T15:52:18.491Z",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-08T15:52:18.491Z"
+}

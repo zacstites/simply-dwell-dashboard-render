@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T023612031Z-27582",
+  "status": "completed",
+  "startedAt": "2026-10-10T02:36:12.031Z",
+  "updatedAt": "2026-10-10T02:43:15.986Z",
+  "note": "30-minute single-lead run 2026-10-10T02:36:11Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T02:36:12.031Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T02:41:37.637Z",
+      "address": "1010 4th Street N, Jacksonville Beach, FL 32250",
+      "mls": "2165286",
+      "primaryUrl": "https://www.zillow.com/homedetails/1010-4th-St-N-Jacksonville-Beach-FL-32250/44620665_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1010 4th Street N, Jacksonville Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2235_1010-4th"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T02:42:37.199Z",
+      "address": "1010 4th Street N, Jacksonville Beach, FL 32250",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T02:43:05.609Z",
+      "address": "1010 4th Street N, Jacksonville Beach, FL 32250",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T02:43:15.907Z",
+      "address": "1010 4th Street N, Jacksonville Beach, FL 32250",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T02:43:15.986Z",
+      "address": "1010 4th Street N, Jacksonville Beach, FL 32250",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T02:43:15.986Z"
+}

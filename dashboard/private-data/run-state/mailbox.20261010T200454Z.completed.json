@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T200454909Z-84102",
+  "status": "completed",
+  "startedAt": "2026-10-10T20:04:54.909Z",
+  "updatedAt": "2026-10-10T20:05:32.354Z",
+  "note": "mailbox watcher 2026-10-10T20:04:54Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T20:04:54.909Z"
+    },
+    "completed": {
+      "at": "2026-10-10T20:05:32.354Z",
+      "outcome": "no_new_messages",
+      "processedUid": "4583",
+      "skipped": "1718 S BEACH Parkway cancelled status; no qualifying active listing"
+    }
+  },
+  "completedAt": "2026-10-10T20:05:32.354Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T150602223Z-93724",
+  "status": "completed",
+  "startedAt": "2026-10-11T15:06:02.223Z",
+  "updatedAt": "2026-10-11T15:16:25.499Z",
+  "note": "30-minute single-lead run 2026-10-11T15:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T15:06:02.223Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T15:15:30.958Z",
+      "address": "12658 Josslyn Lane, Jacksonville, FL 32246",
+      "mls": "2165857",
+      "primaryUrl": "https://www.movoto.com/jacksonville-fl/12658-josslyn-ln-jacksonville-fl-32246-433_1173623/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 12658 Josslyn Lane, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1121_12658-josslyn"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T15:15:57.593Z",
+      "address": "12658 Josslyn Lane, Jacksonville, FL 32246",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T15:16:16.804Z",
+      "address": "12658 Josslyn Lane, Jacksonville, FL 32246",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T15:16:25.433Z",
+      "address": "12658 Josslyn Lane, Jacksonville, FL 32246",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T15:16:25.499Z",
+      "address": "12658 Josslyn Lane, Jacksonville, FL 32246",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T15:16:25.499Z"
+}

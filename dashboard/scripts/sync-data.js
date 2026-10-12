@@ -7,8 +7,6 @@ const { stringify } = require("csv-stringify/sync");
 
 const root = path.resolve(__dirname, "..", "..");
 const sourceDir = "/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database";
-const archiveDir =
-  "/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database/archive/go-live-2026-10-11-full";
 const sourceRunStateDir =
   "/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/nightly-leads/.run-state";
 const backlogStateFile =
@@ -19,60 +17,7 @@ const targetDir = path.join(root, "dashboard", "private-data");
 const targetRunStateDir = path.join(targetDir, "run-state");
 const targetBacklogFile = path.join(targetDir, "mls-backlog.csv");
 
-const READY_ADDRESSES = [
-  "194 Salida Way",
-  "15 San Nueve Cir",
-  "148 Pescado Dr",
-  "3020 Mac Rd",
-  "316 Willow Lake Dr",
-  "247 Los Alamos St",
-  "367 Trellis Bay Dr",
-  "761 Nocatee Village Dr",
-  "606 Gulfstream Trail S",
-  "4406 Lane Ave S",
-  "59 Cane Garden Way",
-  "5630 Temple Road",
-  "29 Lone Cypress Way",
-  "126 Phoenetia Drive",
-  "763 Battersea Dr",
-  "421 Permento Ave S",
-  "207 Hinson Ave",
-  "5645 Wandering Trail",
-  "381 Seamark Drive",
-  "3050 Breve Dr",
-  "5133 Palmer Avenue",
-  "6515 W La Mirada Drive #2",
-  "2527 Sandlewood Circle",
-  "10153 Roman Ln",
-  "5327 Saginaw Avenue",
-  "615 Fairway Drive #206",
-  "7023 Shindler Dr",
-  "3554 Brockway Road",
-  "37091 Southern Glen Way",
-  "1111 Inwood Terrace",
-  "175 Alava Court",
-  "8808 Norfolk Boulevard",
-  "208 Cowry Rd",
-  "146 Sunset Circle",
-  "8048 Kilwinning Lane",
-  "3591 Kernan Boulevard S Unit 705",
-  "1071 Edgewood Ave S #409",
-  "1603 W 27th Street",
-  "12145 Versailles Street",
-  "12606 Point Park Drive",
-  "13703 N Richmond Park Drive N Unit 2109",
-  "3270 Ricky Drive Unit 202",
-  "791 Assisi Lane Unit 1501",
-  "709 Lake Sinclair Street",
-  "617 Birchbark Trl",
-  "9852 Lemon Balm Way",
-  "11356 Canvasback Court",
-  "507 Worcester Court",
-  "1454 Cove Landing Drive",
-];
-
 const HOLD_ADDRESSES = new Set([normalizeAddress("5541 Milmar Drive N"), normalizeAddress("1418 W 19TH Street")]);
-const READY_ADDRESS_KEYS = new Set(READY_ADDRESSES.map(normalizeAddress));
 
 fs.mkdirSync(targetDir, { recursive: true });
 
@@ -101,10 +46,6 @@ function addressMatches(recordAddress, allowedKey) {
   return recordKey === allowedKey || recordKey.startsWith(`${allowedKey} `);
 }
 
-function isReadyAddress(recordAddress) {
-  return [...READY_ADDRESS_KEYS].some((allowedKey) => addressMatches(recordAddress, allowedKey));
-}
-
 function isHoldAddress(recordAddress) {
   return [...HOLD_ADDRESSES].some((holdKey) => addressMatches(recordAddress, holdKey));
 }
@@ -123,14 +64,16 @@ function writeCsv(file, rows, columns) {
   fs.writeFileSync(file, stringify(rows, { header: true, columns }), "utf8");
 }
 
+function uniqueColumns(columns) {
+  return [...new Set(columns.filter(Boolean))];
+}
+
 function readCombinedCsv(file, idField) {
   const primaryRows = readCsv(path.join(sourceDir, file));
-  const archiveFile = path.join(archiveDir, file);
-  const archiveRows = fs.existsSync(archiveFile) ? readCsv(archiveFile) : [];
   const seen = new Set();
   const rows = [];
 
-  for (const row of [...primaryRows, ...archiveRows]) {
+  for (const row of primaryRows) {
     const key = row[idField] || JSON.stringify(row);
     if (seen.has(key)) continue;
     seen.add(key);
@@ -159,60 +102,58 @@ function fullAddress(row) {
 }
 
 const properties = readCombinedCsv("properties.csv", "property_id");
-const readyProperties = properties
-  .filter((row) => isReadyAddress(row.property_address))
-  .map((row) => ({
+const dashboardProperties = properties.map((row) => ({
+  ...row,
+  processing_status:
+    row.customer_batch_status === "customer_sent" || row.customer_batch_status === "customer_test_sent"
+      ? "customer_sent"
+      : row.customer_batch_status === "customer_ready_candidate"
+        ? "ready_for_customer_forward"
+        : row.mls_backlog_status || row.outreach_status || "",
+}));
+
+const dashboardPropertyKeys = new Set(dashboardProperties.map((row) => normalizeAddress(row.property_address)));
+const dashboardAgentKeys = new Set(
+  dashboardProperties.map((row) => `${row.listing_agent}|||${row.brokerage}`.toLowerCase()),
+);
+const dashboardAgents = readCombinedCsv("agents.csv", "agent_id").map((row) => {
+  const hasDashboardLead =
+    dashboardAgentKeys.has(`${row.agent_name}|||${row.brokerage}`.toLowerCase()) ||
+    dashboardPropertyKeys.has(normalizeAddress(row.last_property_matched));
+
+  return {
     ...row,
-    customer_batch_status: "customer_ready_candidate",
-    mls_backlog_status: row.mls_id ? "processed_sent_internal_review" : "not_linked",
-    processing_status: "ready_for_customer_forward",
-  }));
+    customer_batch_status: hasDashboardLead ? "customer_sent" : row.customer_batch_status || "",
+    processing_status: hasDashboardLead ? "customer_sent" : row.processing_status || "",
+  };
+});
 
-if (readyProperties.length !== READY_ADDRESSES.length) {
-  throw new Error(`Expected ${READY_ADDRESSES.length} ready property rows, found ${readyProperties.length}.`);
-}
+const dashboardInteractions = readCombinedCsv("interactions.csv", "interaction_id").map((row) => ({
+  ...row,
+  processing_status: String(row.message_status || "").includes("customer_sent")
+    ? "customer_sent"
+    : row.processing_status || "",
+}));
 
-const readyPropertyKeys = new Set(readyProperties.map((row) => normalizeAddress(row.property_address)));
-const readyAgentKeys = new Set(readyProperties.map((row) => `${row.listing_agent}|||${row.brokerage}`.toLowerCase()));
-const readyAgents = readCombinedCsv("agents.csv", "agent_id")
-  .filter(
-    (row) =>
-      readyAgentKeys.has(`${row.agent_name}|||${row.brokerage}`.toLowerCase()) ||
-      readyPropertyKeys.has(normalizeAddress(row.last_property_matched)),
-  )
-  .map((row) => ({
-    ...row,
-    customer_batch_status: "customer_ready_candidate",
-    processing_status: "ready_for_customer_forward",
-  }));
-
-const readyInteractions = readCombinedCsv("interactions.csv", "interaction_id")
-  .filter((row) => isReadyAddress(row.property_address))
-  .map((row) => ({
-    ...row,
-    customer_batch_status: "customer_ready_candidate",
-    processing_status: "ready_for_customer_forward",
-  }));
-
-const propertyColumns = [
+const propertyColumns = uniqueColumns([
   ...Object.keys(properties[0] || {}),
   "customer_batch_status",
   "mls_backlog_status",
   "processing_status",
-];
+]);
 const agentSource = readCombinedCsv("agents.csv", "agent_id");
 const interactionSource = readCombinedCsv("interactions.csv", "interaction_id");
-writeCsv(path.join(targetDir, "properties.csv"), readyProperties, propertyColumns);
-writeCsv(path.join(targetDir, "agents.csv"), readyAgents, [
+writeCsv(path.join(targetDir, "properties.csv"), dashboardProperties, propertyColumns);
+writeCsv(path.join(targetDir, "agents.csv"), dashboardAgents, uniqueColumns([
   ...Object.keys(agentSource[0] || {}),
   "customer_batch_status",
   "processing_status",
-]);
-writeCsv(path.join(targetDir, "interactions.csv"), readyInteractions, [
+]));
+writeCsv(path.join(targetDir, "interactions.csv"), dashboardInteractions, uniqueColumns([
   ...Object.keys(interactionSource[0] || {}),
   "customer_batch_status",
   "processing_status",
-]);
+]));
 
 fs.rmSync(targetRunStateDir, { force: true, recursive: true });
 fs.mkdirSync(targetRunStateDir, { recursive: true });
@@ -232,7 +173,7 @@ console.log(`Synced ${runStateFiles.length} run-state files`);
 const backlogState = JSON.parse(fs.readFileSync(backlogStateFile, "utf8"));
 const processedIds = new Set(backlogState.processed_mls_ids || []);
 const skippedByMls = new Map((backlogState.skipped || []).map((row) => [String(row.mls_id || ""), row]));
-const propertyByMls = new Map(readyProperties.map((row) => [String(row.mls_id || ""), row]));
+const propertyByMls = new Map(dashboardProperties.map((row) => [String(row.mls_id || ""), row]));
 const backlogRows = readCsv(backlogCsvFile).map((row, index) => {
   const sent = propertyByMls.get(String(row.mls_number || ""));
   const skipped = skippedByMls.get(String(row.mls_number || ""));
@@ -242,9 +183,9 @@ const backlogRows = readCsv(backlogCsvFile).map((row, index) => {
   let statusNote = "";
 
   if (sent) {
-    processingStatus = "processed_sent_internal_review";
-    customerBatchStatus = "customer_ready_candidate";
-    statusNote = `In clean go-live batch as ${sent.property_address}`;
+    processingStatus = sent.customer_batch_status === "customer_sent" ? "customer_sent" : "processed_sent_internal_review";
+    customerBatchStatus = sent.customer_batch_status || "customer_ready_candidate";
+    statusNote = `Matched dashboard lead as ${sent.property_address}`;
   } else if (skipped) {
     processingStatus = "reviewed_skipped";
     customerBatchStatus = isHoldAddress(skipped.address) ? "do_not_outreach" : "hold_not_customer_ready";
@@ -295,5 +236,7 @@ writeCsv(targetBacklogFile, backlogRows, [
   "source_file",
 ]);
 
-console.log(`Synced clean dashboard snapshot: ${readyProperties.length} properties, ${readyAgents.length} agents, ${readyInteractions.length} interactions`);
+console.log(
+  `Synced dashboard snapshot: ${dashboardProperties.length} properties, ${dashboardAgents.length} agents, ${dashboardInteractions.length} interactions`,
+);
 console.log(`Synced MLS backlog status rows: ${backlogRows.length}`);

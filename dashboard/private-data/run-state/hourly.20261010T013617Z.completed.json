@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T013617996Z-16404",
+  "status": "completed",
+  "startedAt": "2026-10-10T01:36:17.996Z",
+  "updatedAt": "2026-10-10T01:41:59.926Z",
+  "note": "30-minute single-lead run 2026-10-10T01:36:17Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T01:36:17.996Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T01:40:07.088Z",
+      "address": "451 Skate Road, Atlantic Beach, FL 32233",
+      "mls": "2160703",
+      "primaryUrl": "https://www.zillow.com/homedetails/451-Skate-Rd-Atlantic-Beach-FL-32233/44617327_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 451 Skate Road, Atlantic Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2135_451-skate"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T01:41:01.058Z",
+      "address": "451 Skate Road, Atlantic Beach, FL 32233",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T01:41:49.180Z",
+      "address": "451 Skate Road, Atlantic Beach, FL 32233",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T01:41:59.860Z",
+      "address": "451 Skate Road, Atlantic Beach, FL 32233",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T01:41:59.926Z",
+      "address": "451 Skate Road, Atlantic Beach, FL 32233",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T01:41:59.926Z"
+}

@@ -1,0 +1,19 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T162413973Z-97796",
+  "status": "completed",
+  "startedAt": "2026-10-08T16:24:13.973Z",
+  "updatedAt": "2026-10-08T16:25:37.494Z",
+  "note": "mailbox watcher 2026-10-08T16:24:13Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T16:24:13.973Z"
+    },
+    "completed": {
+      "at": "2026-10-08T16:25:37.494Z",
+      "outcome": "duplicate",
+      "reason": "processed MLS-Listings/processed UID 4532; same 1800 THE GREENS Way #209 listing previously skipped for furnished/turnkey photos; no internal email sent"
+    }
+  },
+  "completedAt": "2026-10-08T16:25:37.494Z"
+}

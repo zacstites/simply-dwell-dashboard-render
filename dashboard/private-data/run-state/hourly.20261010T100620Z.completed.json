@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T100620159Z-83730",
+  "status": "completed",
+  "startedAt": "2026-10-10T10:06:20.159Z",
+  "updatedAt": "2026-10-10T10:11:50.413Z",
+  "note": "30-minute single-lead run 2026-10-10T10:06:20Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T10:06:20.159Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T10:10:47.461Z",
+      "address": "5630 Temple Road, Jacksonville, FL 32207",
+      "mls": "2163772",
+      "primaryUrl": "https://www.zillow.com/homedetails/5630-Temple-Rd-Jacksonville-FL-32207/44547474_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5630 Temple Road, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0606_5630-temple"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T10:11:15.003Z",
+      "address": "5630 Temple Road, Jacksonville, FL 32207",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T10:11:41.622Z",
+      "address": "5630 Temple Road, Jacksonville, FL 32207",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T10:11:50.352Z",
+      "address": "5630 Temple Road, Jacksonville, FL 32207",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T10:11:50.413Z",
+      "address": "5630 Temple Road, Jacksonville, FL 32207",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T10:11:50.413Z"
+}

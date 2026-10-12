@@ -1,0 +1,27 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T141506662Z-41189",
+  "status": "completed",
+  "startedAt": "2026-10-10T14:15:06.662Z",
+  "updatedAt": "2026-10-10T14:17:20.151Z",
+  "note": "mailbox watcher 2026-10-10T14:15:06Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T14:15:06.662Z"
+    },
+    "completed": {
+      "at": "2026-10-10T14:17:20.151Z",
+      "outcome": "no_new_messages",
+      "processed": 1,
+      "qualified": 0,
+      "skipped": [
+        {
+          "uid": "4579",
+          "address": "464 14TH Avenue S, Jacksonville Beach, FL 32250",
+          "reason": "public listing data shows furnished/furnishing-negotiable details rather than a vacant/blank staging opportunity"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-10T14:17:20.151Z"
+}

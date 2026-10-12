@@ -1,0 +1,28 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T023647536Z-85710",
+  "status": "blocked",
+  "startedAt": "2026-10-11T02:36:47.536Z",
+  "updatedAt": "2026-10-11T02:46:31.216Z",
+  "note": "30-minute single-lead run 2026-10-11T02:36:47Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T02:36:47.536Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T02:46:18.341Z",
+      "address": "3519 Westwood St, Jacksonville, FL 32254",
+      "mls": "2167428",
+      "primaryUrl": "https://www.zillow.com/homedetails/3519-Westwood-St-Jacksonville-FL-32254/44460486_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3519 Westwood St, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_2236_3519-westwood"
+    },
+    "blocked": {
+      "at": "2026-10-11T02:46:31.216Z",
+      "outcome": "no_send",
+      "reason": "final duplicate gate blocked selected candidate: 3519 Westwood St already appears in README and properties.csv",
+      "address": "3519 Westwood St, Jacksonville, FL 32254"
+    }
+  }
+}

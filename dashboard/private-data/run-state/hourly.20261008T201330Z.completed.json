@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261008T201330451Z-4992",
+  "status": "completed",
+  "startedAt": "2026-10-08T20:13:30.451Z",
+  "updatedAt": "2026-10-09T17:10:05.891Z",
+  "note": "30-minute single-lead run 2026-10-08T20:13:30Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T20:13:30.451Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T17:09:20.892Z",
+      "address": "283 Coral Way, Jacksonville Beach, FL 32250",
+      "mls": "2167807",
+      "primaryUrl": "https://www.zillow.com/homedetails/283-Coral-Way-Jacksonville-Beach-FL-32250/44625483_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 283 Coral Way, Jacksonville Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1305_283-coral-way"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T17:09:36.792Z",
+      "address": "283 Coral Way, Jacksonville Beach, FL 32250",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T17:09:57.671Z",
+      "address": "283 Coral Way, Jacksonville Beach, FL 32250",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T17:10:05.717Z",
+      "address": "283 Coral Way, Jacksonville Beach, FL 32250",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T17:10:05.891Z",
+      "address": "283 Coral Way, Jacksonville Beach, FL 32250",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T17:10:05.891Z"
+}

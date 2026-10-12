@@ -1,0 +1,28 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T213925747Z-57721",
+  "status": "completed",
+  "startedAt": "2026-10-09T21:39:25.747Z",
+  "updatedAt": "2026-10-09T21:40:20.207Z",
+  "note": "mailbox watcher 2026-10-09T21:39:25Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T21:39:25.747Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T21:40:12.688Z",
+      "uid": "4575",
+      "address": "1773 MARSHSIDE Drive, Jacksonville Beach, FL 32250",
+      "mls": "2168403",
+      "primaryUrl": "https://www.flexmls.com/notifications.html?agent_id=20260129162822099619000000&newsfeed_id=20260508143241103365000000&contact_id=20260212180925715242000000&notification_id=20261009213258415090000000&start_id=20260709192741206643000000&eid=3a5c689e3da664d8cb37fba2",
+      "photoStatus": "not reviewed - withdrawn",
+      "subject": "Listings for Bot"
+    },
+    "completed": {
+      "at": "2026-10-09T21:40:20.207Z",
+      "outcome": "no_new_messages",
+      "note": "UID 4575 was a Withdrawn update for 1773 MARSHSIDE Drive; no qualifying active staging opportunity."
+    }
+  },
+  "completedAt": "2026-10-09T21:40:20.207Z"
+}

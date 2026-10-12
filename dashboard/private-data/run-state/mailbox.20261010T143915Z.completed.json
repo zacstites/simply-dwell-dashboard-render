@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T143915713Z-50014",
+  "status": "completed",
+  "startedAt": "2026-10-10T14:39:15.713Z",
+  "updatedAt": "2026-10-10T14:39:45.508Z",
+  "note": "mailbox watcher 2026-10-10T14:39:15Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T14:39:15.713Z"
+    },
+    "completed": {
+      "at": "2026-10-10T14:39:45.508Z",
+      "outcome": "no_qualifying_messages",
+      "processedUid": 4581,
+      "reason": "UID 4581 repeats 2323 SEMINOLE Road MLS #2164581; already reviewed and rejected after public photo review showed furnished/staged-looking interiors"
+    }
+  },
+  "completedAt": "2026-10-10T14:39:45.508Z"
+}

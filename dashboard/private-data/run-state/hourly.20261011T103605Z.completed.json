@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T103605032Z-45855",
+  "status": "completed",
+  "startedAt": "2026-10-11T10:36:05.032Z",
+  "updatedAt": "2026-10-11T10:39:16.770Z",
+  "note": "30-minute single-lead run 2026-10-11T10:36:04Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T10:36:05.032Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T10:38:22.743Z",
+      "address": "301 6th Street S, Jacksonville Beach, FL 32250",
+      "mls": "2167463",
+      "primaryUrl": "https://www.zillow.com/homedetails/301-6th-St-S-Jacksonville-Beach-FL-32250/44621893_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 301 6th Street S, Jacksonville Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0636_301-6th-st-s"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T10:38:44.729Z",
+      "address": "301 6th Street S, Jacksonville Beach, FL 32250",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T10:39:10.447Z",
+      "address": "301 6th Street S, Jacksonville Beach, FL 32250",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T10:39:16.707Z",
+      "address": "301 6th Street S, Jacksonville Beach, FL 32250",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T10:39:16.770Z",
+      "address": "301 6th Street S, Jacksonville Beach, FL 32250",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T10:39:16.770Z"
+}

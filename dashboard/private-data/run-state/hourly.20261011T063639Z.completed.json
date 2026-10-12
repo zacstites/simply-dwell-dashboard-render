@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T063639083Z-14771",
+  "status": "completed",
+  "startedAt": "2026-10-11T06:36:39.083Z",
+  "updatedAt": "2026-10-11T06:42:28.335Z",
+  "note": "30-minute single-lead run 2026-10-11T06:36:39Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T06:36:39.083Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T06:41:19.356Z",
+      "address": "13703 N Richmond Park Drive N Unit 2109, Jacksonville, FL 32224",
+      "mls": "2166617",
+      "primaryUrl": "https://www.zillow.com/homedetails/13703-Richmond-Park-Dr-N-APT-2109-Jacksonville-FL-32224/81803710_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 13703 N Richmond Park Drive N #2109, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0236_13703-richmond"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T06:41:50.089Z",
+      "address": "13703 N Richmond Park Drive N Unit 2109, Jacksonville, FL 32224",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T06:42:18.116Z",
+      "address": "13703 N Richmond Park Drive N Unit 2109, Jacksonville, FL 32224",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T06:42:28.276Z",
+      "address": "13703 N Richmond Park Drive N Unit 2109, Jacksonville, FL 32224",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T06:42:28.335Z",
+      "address": "13703 N Richmond Park Drive N Unit 2109, Jacksonville, FL 32224",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T06:42:28.335Z"
+}

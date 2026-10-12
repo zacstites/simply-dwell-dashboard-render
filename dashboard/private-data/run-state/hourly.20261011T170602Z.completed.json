@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T170602924Z-33937",
+  "status": "completed",
+  "startedAt": "2026-10-11T17:06:02.924Z",
+  "updatedAt": "2026-10-11T17:21:39.904Z",
+  "note": "30-minute single-lead run 2026-10-11T17:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T17:06:02.924Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T17:18:33.087Z",
+      "address": "7329 Wilder Ave, Jacksonville, FL 32208",
+      "mls": "2153983",
+      "primaryUrl": "https://www.zillow.com/homedetails/7329-Wilder-Ave-Jacksonville-FL-32208/44445460_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 7329 Wilder Ave, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1305_7329-wilder"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T17:20:26.154Z",
+      "address": "7329 Wilder Ave, Jacksonville, FL 32208",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T17:21:29.217Z",
+      "address": "7329 Wilder Ave, Jacksonville, FL 32208",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T17:21:39.844Z",
+      "address": "7329 Wilder Ave, Jacksonville, FL 32208",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T17:21:39.904Z",
+      "address": "7329 Wilder Ave, Jacksonville, FL 32208",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T17:21:39.904Z"
+}

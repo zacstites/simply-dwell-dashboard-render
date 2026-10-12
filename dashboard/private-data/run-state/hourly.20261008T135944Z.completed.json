@@ -1,0 +1,29 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261008T135944707Z-55827",
+  "status": "completed",
+  "startedAt": "2026-10-08T13:59:44.707Z",
+  "updatedAt": "2026-10-08T14:18:40.330Z",
+  "note": "30-minute single-lead run 2026-10-08T13:59:44Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T13:59:44.707Z"
+    },
+    "blocked": {
+      "at": "2026-10-08T14:18:31.150Z",
+      "reason": "No clean new staging lead selected: checked 2545 Myra (occupied/furnished), 87 Haas (already staged/furnished), 3321 Deason (sold Oct 5), 3303 Jones (tenant/old photos), and 201 Dow (furnished/staged photos)."
+    },
+    "summary_posted": {
+      "at": "2026-10-08T14:18:40.270Z",
+      "channel": "#lead-generation",
+      "messageId": "1557759120692482109",
+      "outcome": "blocked_no_send"
+    },
+    "completed": {
+      "at": "2026-10-08T14:18:40.330Z",
+      "outcome": "blocked_no_send",
+      "reason": "No clean new staging lead selected"
+    }
+  },
+  "completedAt": "2026-10-08T14:18:40.330Z"
+}

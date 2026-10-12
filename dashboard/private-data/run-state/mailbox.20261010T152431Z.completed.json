@@ -1,0 +1,19 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T152431381Z-83216",
+  "status": "completed",
+  "startedAt": "2026-10-10T15:24:31.381Z",
+  "updatedAt": "2026-10-10T15:25:32.098Z",
+  "note": "mailbox watcher 2026-10-10T15:24:31Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T15:24:31.381Z"
+    },
+    "completed": {
+      "at": "2026-10-10T15:25:32.098Z",
+      "outcome": "blocked",
+      "reason": "Processed UID 4581 but did not send: MLS #2168740 / 890 BEACH Avenue could not be verified as a qualifying staging opportunity from current public listing/photos/MLS export data."
+    }
+  },
+  "completedAt": "2026-10-10T15:25:32.098Z"
+}

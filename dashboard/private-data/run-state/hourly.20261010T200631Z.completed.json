@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T200631993Z-84343",
+  "status": "completed",
+  "startedAt": "2026-10-10T20:06:31.993Z",
+  "updatedAt": "2026-10-10T20:14:36.809Z",
+  "note": "30-minute single-lead run 2026-10-10T20:06:31Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T20:06:31.993Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T20:13:17.278Z",
+      "address": "615 Fairway Drive 206, St. Augustine, FL 32084",
+      "mls": "2164484 / SA264054",
+      "primaryUrl": "https://www.bradofficer.com/listing/2164484-615-fairway-drive-206-st-augustine-fl-32084/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 615 Fairway Drive #206, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1606_615-fairway"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T20:14:04.009Z",
+      "address": "615 Fairway Drive 206, St. Augustine, FL 32084",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T20:14:29.769Z",
+      "address": "615 Fairway Drive 206, St. Augustine, FL 32084",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T20:14:36.746Z",
+      "address": "615 Fairway Drive 206, St. Augustine, FL 32084",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T20:14:36.809Z",
+      "address": "615 Fairway Drive 206, St. Augustine, FL 32084",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T20:14:36.809Z"
+}

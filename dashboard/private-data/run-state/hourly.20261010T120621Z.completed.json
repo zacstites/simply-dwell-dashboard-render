@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T120621913Z-94545",
+  "status": "completed",
+  "startedAt": "2026-10-10T12:06:21.913Z",
+  "updatedAt": "2026-10-10T12:13:23.871Z",
+  "note": "30-minute single-lead run 2026-10-10T12:06:21Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T12:06:21.913Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T12:12:23.918Z",
+      "address": "763 Battersea Dr, St. Augustine, FL 32095",
+      "mls": "2162434",
+      "primaryUrl": "https://www.zillow.com/homedetails/763-Battersea-Dr-Saint-Augustine-FL-32095/306069778_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 763 Battersea Dr, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0806_763-battersea"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T12:12:49.094Z",
+      "address": "763 Battersea Dr, St. Augustine, FL 32095",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T12:13:15.252Z",
+      "address": "763 Battersea Dr, St. Augustine, FL 32095",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T12:13:23.811Z",
+      "address": "763 Battersea Dr, St. Augustine, FL 32095",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T12:13:23.871Z",
+      "address": "763 Battersea Dr, St. Augustine, FL 32095",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T12:13:23.871Z"
+}

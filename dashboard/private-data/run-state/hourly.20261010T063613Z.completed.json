@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T063613900Z-62189",
+  "status": "completed",
+  "startedAt": "2026-10-10T06:36:13.900Z",
+  "updatedAt": "2026-10-10T06:41:33.020Z",
+  "note": "30-minute single-lead run 2026-10-10T06:36:13Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T06:36:13.900Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T06:39:59.073Z",
+      "address": "316 Willow Lake Dr, St. Augustine, FL 32092",
+      "mls": "2156930",
+      "primaryUrl": "https://www.zillow.com/homedetails/316-Willow-Lake-Dr-Saint-Augustine-FL-32092/306071109_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 316 Willow Lake Dr, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0235_316-willow"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T06:40:53.596Z",
+      "address": "316 Willow Lake Dr, St. Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T06:41:22.647Z",
+      "address": "316 Willow Lake Dr, St. Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T06:41:32.960Z",
+      "address": "316 Willow Lake Dr, St. Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T06:41:33.020Z",
+      "address": "316 Willow Lake Dr, St. Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T06:41:33.020Z"
+}

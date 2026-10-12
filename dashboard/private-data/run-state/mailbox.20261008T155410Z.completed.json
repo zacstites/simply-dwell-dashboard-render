@@ -1,0 +1,44 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T155410686Z-91867",
+  "status": "completed",
+  "startedAt": "2026-10-08T15:54:10.686Z",
+  "updatedAt": "2026-10-08T16:22:54.764Z",
+  "note": "mailbox watcher 2026-10-08T15:54:10Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T15:54:10.686Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-08T16:20:31.970Z",
+      "uid": "MLS-Listings/processed:4531",
+      "address": "121 32ND Avenue S, Jacksonville Beach, FL 32250",
+      "mls": "2134044",
+      "primaryUrl": "https://www.zillow.com/homedetails/121-32nd-Ave-S-Jacksonville-Beach-FL-32250/44630429_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Listings for Bot"
+    },
+    "gmail_sent": {
+      "at": "2026-10-08T16:20:46.379Z",
+      "uid": "MLS-Listings/processed:4531",
+      "address": "121 32ND Avenue S, Jacksonville Beach, FL 32250",
+      "gmailMessageId": "accepted-no-id",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-08T16:22:20.303Z",
+      "uid": "MLS-Listings/processed:4531",
+      "address": "121 32ND Avenue S, Jacksonville Beach, FL 32250"
+    },
+    "summary_posted": {
+      "at": "2026-10-08T16:22:54.704Z",
+      "uid": "MLS-Listings/processed:4531",
+      "address": "121 32ND Avenue S, Jacksonville Beach, FL 32250"
+    },
+    "completed": {
+      "at": "2026-10-08T16:22:54.764Z",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-08T16:22:54.764Z"
+}

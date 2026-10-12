@@ -1,0 +1,20 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T134959979Z-16320",
+  "status": "completed",
+  "startedAt": "2026-10-10T13:49:59.979Z",
+  "updatedAt": "2026-10-10T13:50:58.281Z",
+  "note": "mailbox watcher 2026-10-10T13:49:59Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T13:49:59.979Z"
+    },
+    "completed": {
+      "at": "2026-10-10T13:50:58.281Z",
+      "outcome": "no_qualifying_messages",
+      "processedUid": 4578,
+      "reason": "901 OSCEOLA Avenue rejected: occupied per MLS showing instructions and furnished/lived-in public listing photos"
+    }
+  },
+  "completedAt": "2026-10-10T13:50:58.281Z"
+}

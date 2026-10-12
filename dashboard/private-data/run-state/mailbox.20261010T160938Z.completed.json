@@ -1,0 +1,25 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T160938383Z-5546",
+  "status": "completed",
+  "startedAt": "2026-10-10T16:09:38.383Z",
+  "updatedAt": "2026-10-10T16:10:04.522Z",
+  "note": "mailbox watcher 2026-10-10T16:09:38Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T16:09:38.383Z"
+    },
+    "completed": {
+      "at": "2026-10-10T16:10:04.522Z",
+      "outcome": "no_new_messages",
+      "processed": [
+        {
+          "label": "MLS-Listings/processed",
+          "uid": 4583,
+          "result": "rejected_withdrawn"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-10T16:10:04.522Z"
+}

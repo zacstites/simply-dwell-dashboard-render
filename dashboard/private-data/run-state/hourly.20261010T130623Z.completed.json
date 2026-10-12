@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T130623609Z-11478",
+  "status": "completed",
+  "startedAt": "2026-10-10T13:06:23.609Z",
+  "updatedAt": "2026-10-10T13:13:03.822Z",
+  "note": "30-minute single-lead run 2026-10-10T13:06:23Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T13:06:23.609Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T13:12:14.287Z",
+      "address": "207 Hinson Ave, Jacksonville, FL 32220",
+      "mls": "2166923",
+      "primaryUrl": "https://www.zillow.com/homedetails/207-Hinson-Ave-Jacksonville-FL-32220/81799113_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 207 Hinson Ave, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0906_207-hinson"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T13:12:40.737Z",
+      "address": "207 Hinson Ave, Jacksonville, FL 32220",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T13:12:57.063Z",
+      "address": "207 Hinson Ave, Jacksonville, FL 32220",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T13:13:03.761Z",
+      "address": "207 Hinson Ave, Jacksonville, FL 32220",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T13:13:03.822Z",
+      "address": "207 Hinson Ave, Jacksonville, FL 32220",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T13:13:03.822Z"
+}

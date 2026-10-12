@@ -1,0 +1,28 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261009T174917049Z-84320",
+  "status": "completed",
+  "startedAt": "2026-10-09T17:49:17.049Z",
+  "updatedAt": "2026-10-09T17:50:08.675Z",
+  "note": "mailbox watcher 2026-10-09T17:49:16Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T17:49:17.049Z"
+    },
+    "completed": {
+      "at": "2026-10-09T17:50:08.675Z",
+      "outcome": "no_new_messages",
+      "processedUids": [
+        4564
+      ],
+      "skipped": [
+        {
+          "uid": 4564,
+          "address": "887 16TH Avenue S, Jacksonville Beach, FL 32250",
+          "reason": "Sold/Closed listing; not an active staging opportunity"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-09T17:50:08.675Z"
+}

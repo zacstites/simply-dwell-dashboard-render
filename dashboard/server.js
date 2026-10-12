@@ -213,7 +213,7 @@ function backlogBatchPie(records) {
   for (const record of records) {
     const status = String(record.customer_batch_status || "").trim();
     if (status === "do_not_outreach") continue;
-    if (status === "customer_ready_candidate") {
+    if (status === "customer_ready_candidate" || status === "customer_sent" || status === "customer_test_sent") {
       counts["Email Sent"] += 1;
     } else {
       counts.Pending += 1;
@@ -481,15 +481,17 @@ function buildOverview() {
     String(record.message_status || record.draft_type || "").toLowerCase().includes("sent"),
   ).length;
   const needsReviewAgents = agents.records.filter((record) => record.review_status === "needs_review").length;
-  const backlogReadyCount = mlsBacklog.records.filter(
-    (record) => record.customer_batch_status === "customer_ready_candidate",
+  const backlogReadyCount = mlsBacklog.records.filter((record) =>
+    ["customer_ready_candidate", "customer_sent", "customer_test_sent"].includes(record.customer_batch_status),
   ).length;
   const backlogNotStartedCount = mlsBacklog.records.filter((record) => record.processing_status === "not_started").length;
   const backlogProcessedCount = mlsBacklog.records.filter((record) =>
     String(record.processing_status || "").startsWith("processed"),
   ).length;
   const backlogHoldCount = mlsBacklog.records.filter(
-    (record) => record.customer_batch_status && record.customer_batch_status !== "customer_ready_candidate",
+    (record) =>
+      record.customer_batch_status &&
+      !["customer_ready_candidate", "customer_sent", "customer_test_sent"].includes(record.customer_batch_status),
   ).length;
   const downloadSets = Object.entries(DATASETS).map(([key, dataset]) => {
     const loadedDataset = loaded[key];

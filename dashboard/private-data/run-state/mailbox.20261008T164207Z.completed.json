@@ -1,0 +1,45 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T164207363Z-5777",
+  "status": "completed",
+  "startedAt": "2026-10-08T16:42:07.363Z",
+  "updatedAt": "2026-10-08T16:56:02.421Z",
+  "note": "mailbox watcher 2026-10-08T16:42:07Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T16:42:07.363Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-08T16:51:41.676Z",
+      "uid": "4533",
+      "address": "1508 Jordan Street, Atlantic Beach, FL 32233",
+      "mls": "2144427",
+      "primaryUrl": "https://www.zillow.com/homedetails/1508-Jordan-St-Atlantic-Beach-FL-32233/44618449_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Listings for Bot"
+    },
+    "gmail_sent": {
+      "at": "2026-10-08T16:54:34.902Z",
+      "uid": "4533",
+      "address": "1508 Jordan Street, Atlantic Beach, FL 32233",
+      "gmailMessageId": "accepted",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-08T16:55:25.514Z",
+      "uid": "4533",
+      "address": "1508 Jordan Street, Atlantic Beach, FL 32233"
+    },
+    "summary_posted": {
+      "at": "2026-10-08T16:56:02.362Z",
+      "uid": "4533",
+      "address": "1508 Jordan Street, Atlantic Beach, FL 32233",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-08T16:56:02.421Z",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-08T16:56:02.421Z"
+}

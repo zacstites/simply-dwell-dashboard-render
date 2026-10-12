@@ -1,0 +1,27 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261010T133458139Z-14746",
+  "status": "completed",
+  "startedAt": "2026-10-10T13:34:58.139Z",
+  "updatedAt": "2026-10-10T13:35:51.391Z",
+  "note": "mailbox watcher 2026-10-10T13:34:58Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T13:34:58.139Z"
+    },
+    "completed": {
+      "at": "2026-10-10T13:35:51.391Z",
+      "outcome": "no_new_messages",
+      "processedUid": 4577,
+      "skipped": [
+        {
+          "uid": 4577,
+          "address": "901 OSCEOLA Avenue, Jacksonville Beach, FL 32250",
+          "mls": "2152677",
+          "reason": "occupied/furnished listing; not a vacant staging opportunity"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-10T13:35:51.391Z"
+}

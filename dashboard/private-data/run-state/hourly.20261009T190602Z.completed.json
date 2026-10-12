@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T190602101Z-12929",
+  "status": "completed",
+  "startedAt": "2026-10-09T19:06:02.101Z",
+  "updatedAt": "2026-10-09T19:11:05.483Z",
+  "note": "30-minute single-lead run 2026-10-09T19:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T19:06:02.101Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T19:10:10.825Z",
+      "address": "3509 Stanley Street, Jacksonville, FL 32207",
+      "mls": "2167948",
+      "primaryUrl": "https://www.zillow.com/homedetails/3509-Stanley-St-Jacksonville-FL-32207/44527926_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3509 Stanley Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1505_3509-stanley-street"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T19:10:31.852Z",
+      "address": "3509 Stanley Street, Jacksonville, FL 32207",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T19:10:57.081Z",
+      "address": "3509 Stanley Street, Jacksonville, FL 32207",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T19:11:05.419Z",
+      "address": "3509 Stanley Street, Jacksonville, FL 32207",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T19:11:05.483Z",
+      "address": "3509 Stanley Street, Jacksonville, FL 32207",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T19:11:05.483Z"
+}

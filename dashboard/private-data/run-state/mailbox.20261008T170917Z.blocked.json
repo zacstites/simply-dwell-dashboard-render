@@ -1,0 +1,18 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T170917053Z-9787",
+  "status": "blocked",
+  "startedAt": "2026-10-08T17:09:17.053Z",
+  "updatedAt": "2026-10-08T18:13:25.014Z",
+  "note": "mailbox watcher 2026-10-08T17:09:16Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T17:09:17.053Z"
+    },
+    "blocked": {
+      "at": "2026-10-08T18:13:25.014Z",
+      "reason": "stale_pre_restart_current_state",
+      "note": "Mailbox current state had only started stage from 2026-10-08T17:09:17Z and no owner process; lock moved aside after local process check."
+    }
+  }
+}

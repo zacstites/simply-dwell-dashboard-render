@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T050637628Z-4531",
+  "status": "completed",
+  "startedAt": "2026-10-11T05:06:37.628Z",
+  "updatedAt": "2026-10-11T05:17:07.530Z",
+  "note": "30-minute single-lead run 2026-10-11T05:06:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T05:06:37.628Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T05:16:07.508Z",
+      "address": "1603 W 27th Street, Jacksonville, FL 32209",
+      "mls": "2167112",
+      "primaryUrl": "https://www.zillow.com/homedetails/1603-W-27th-St-Jacksonville-FL-32209/44485105_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1603 W 27th Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_0106_1603-w-27th"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T05:16:40.190Z",
+      "address": "1603 W 27th Street, Jacksonville, FL 32209",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T05:16:59.308Z",
+      "address": "1603 W 27th Street, Jacksonville, FL 32209",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T05:17:07.470Z",
+      "address": "1603 W 27th Street, Jacksonville, FL 32209",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T05:17:07.530Z",
+      "address": "1603 W 27th Street, Jacksonville, FL 32209",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T05:17:07.530Z"
+}

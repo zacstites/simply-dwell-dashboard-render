@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T223637396Z-34369",
+  "status": "completed",
+  "startedAt": "2026-10-10T22:36:37.396Z",
+  "updatedAt": "2026-10-10T22:41:53.229Z",
+  "note": "30-minute single-lead run 2026-10-10T22:36:37Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T22:36:37.396Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T22:41:03.307Z",
+      "address": "16403 Tisons Bluff Road, Jacksonville, FL 32218",
+      "mls": "2166894",
+      "primaryUrl": "https://www.redfin.com/FL/Jacksonville/16403-Tisons-Bluff-Rd-32218/home/108886281",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 16403 Tisons Bluff Road, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1836_16403-tisons"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T22:41:25.163Z",
+      "address": "16403 Tisons Bluff Road, Jacksonville, FL 32218",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T22:41:45.843Z",
+      "address": "16403 Tisons Bluff Road, Jacksonville, FL 32218",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T22:41:53.111Z",
+      "address": "16403 Tisons Bluff Road, Jacksonville, FL 32218",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T22:41:53.229Z",
+      "address": "16403 Tisons Bluff Road, Jacksonville, FL 32218",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T22:41:53.229Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T010642601Z-77250",
+  "status": "completed",
+  "startedAt": "2026-10-11T01:06:42.601Z",
+  "updatedAt": "2026-10-11T01:10:16.187Z",
+  "note": "30-minute single-lead run 2026-10-11T01:06:42Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T01:06:42.601Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T01:09:24.396Z",
+      "address": "2537 Wisdom Court, Jacksonville, FL 32210",
+      "mls": "2165954",
+      "primaryUrl": "https://www.zillow.com/homedetails/2537-Wisdom-Ct-Jacksonville-FL-32210/333077404_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 2537 Wisdom Court, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_2106_2537-wisdom"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T01:09:49.801Z",
+      "address": "2537 Wisdom Court, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T01:10:10.327Z",
+      "address": "2537 Wisdom Court, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T01:10:16.119Z",
+      "address": "2537 Wisdom Court, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T01:10:16.187Z",
+      "address": "2537 Wisdom Court, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T01:10:16.187Z"
+}

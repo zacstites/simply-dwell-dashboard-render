@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T160639982Z-5399",
+  "status": "completed",
+  "startedAt": "2026-10-10T16:06:39.982Z",
+  "updatedAt": "2026-10-10T16:13:04.953Z",
+  "note": "30-minute single-lead run 2026-10-10T16:06:39Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T16:06:39.982Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T16:10:44.221Z",
+      "address": "3050 Breve Dr, Jacksonville, FL 32209",
+      "mls": "264391",
+      "primaryUrl": "https://www.redfin.com/FL/Jacksonville/3050-Breve-Dr-32209/home/58769337",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3050 Breve Dr, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1206_3050-breve"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T16:11:57.607Z",
+      "address": "3050 Breve Dr, Jacksonville, FL 32209",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T16:12:51.933Z",
+      "address": "3050 Breve Dr, Jacksonville, FL 32209",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T16:13:04.887Z",
+      "address": "3050 Breve Dr, Jacksonville, FL 32209",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T16:13:04.953Z",
+      "address": "3050 Breve Dr, Jacksonville, FL 32209",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T16:13:04.953Z"
+}

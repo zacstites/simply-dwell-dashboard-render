@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T020639868Z-83415",
+  "status": "completed",
+  "startedAt": "2026-10-11T02:06:39.868Z",
+  "updatedAt": "2026-10-11T02:10:13.748Z",
+  "note": "30-minute single-lead run 2026-10-11T02:06:39Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T02:06:39.868Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T02:09:11.697Z",
+      "address": "208 Cowry Rd, St Augustine, FL 32086",
+      "mls": "SA264396",
+      "primaryUrl": "https://www.redfin.com/FL/St-Augustine/208-Cowry-Rd-32086/home/139717970",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 208 Cowry Rd, St Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_2206_208-cowry"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T02:09:46.990Z",
+      "address": "208 Cowry Rd, St Augustine, FL 32086",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T02:10:07.136Z",
+      "address": "208 Cowry Rd, St Augustine, FL 32086",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T02:10:13.668Z",
+      "address": "208 Cowry Rd, St Augustine, FL 32086",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T02:10:13.748Z",
+      "address": "208 Cowry Rd, St Augustine, FL 32086",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T02:10:13.748Z"
+}

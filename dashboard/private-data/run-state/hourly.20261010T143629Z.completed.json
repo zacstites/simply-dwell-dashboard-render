@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T143629372Z-49626",
+  "status": "completed",
+  "startedAt": "2026-10-10T14:36:29.372Z",
+  "updatedAt": "2026-10-10T14:39:30.096Z",
+  "note": "30-minute single-lead run 2026-10-10T14:36:29Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T14:36:29.372Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T14:38:34.114Z",
+      "address": "5118 Cypress Links Blvd, Elkton, FL 32033",
+      "mls": "264352 / 2165350",
+      "primaryUrl": "https://www.rdeskwebsite.com/homes-for-sale/5118-Cypress-Links-Blvd-Elkton-FL-32033-440046299",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 5118 Cypress Links Blvd, Elkton",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1036_5118-cypress-links"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T14:38:57.450Z",
+      "address": "5118 Cypress Links Blvd, Elkton, FL 32033",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T14:39:24.081Z",
+      "address": "5118 Cypress Links Blvd, Elkton, FL 32033",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T14:39:30.035Z",
+      "address": "5118 Cypress Links Blvd, Elkton, FL 32033",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T14:39:30.096Z",
+      "address": "5118 Cypress Links Blvd, Elkton, FL 32033",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T14:39:30.096Z"
+}

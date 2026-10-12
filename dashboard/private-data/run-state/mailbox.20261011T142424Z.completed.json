@@ -1,0 +1,28 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261011T142424447Z-75231",
+  "status": "completed",
+  "startedAt": "2026-10-11T14:24:24.447Z",
+  "updatedAt": "2026-10-11T14:25:03.985Z",
+  "note": "mailbox watcher 2026-10-11T14:24:24Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T14:24:24.447Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T14:24:59.388Z",
+      "uid": "4585",
+      "address": "275 NAUTICAL Boulevard S, Atlantic Beach, FL 32233",
+      "mls": "2154847",
+      "primaryUrl": "https://www.zillow.com/homedetails/275-Nautical-Blvd-S-Atlantic-Beach-FL-32233/44616374_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Listings for Bot",
+      "decision": "duplicate_no_send"
+    },
+    "completed": {
+      "at": "2026-10-11T14:25:03.985Z",
+      "outcome": "duplicate"
+    }
+  },
+  "completedAt": "2026-10-11T14:25:03.985Z"
+}

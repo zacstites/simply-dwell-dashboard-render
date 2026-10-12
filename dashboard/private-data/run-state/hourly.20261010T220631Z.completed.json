@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T220631508Z-20398",
+  "status": "completed",
+  "startedAt": "2026-10-10T22:06:31.508Z",
+  "updatedAt": "2026-10-10T22:10:50.897Z",
+  "note": "30-minute single-lead run 2026-10-10T22:06:31Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T22:06:31.508Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T22:08:06.847Z",
+      "address": "1111 Inwood Terrace, Jacksonville, FL 32207",
+      "mls": "2118961",
+      "primaryUrl": "https://www.compass.com/homedetails/1111-Inwood-Ter-Jacksonville-FL-32207/CKZ8K_pid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 1111 Inwood Terrace, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1806_1111-inwood"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T22:10:17.104Z",
+      "address": "1111 Inwood Terrace, Jacksonville, FL 32207",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T22:10:43.896Z",
+      "address": "1111 Inwood Terrace, Jacksonville, FL 32207",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T22:10:50.827Z",
+      "address": "1111 Inwood Terrace, Jacksonville, FL 32207",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T22:10:50.897Z",
+      "address": "1111 Inwood Terrace, Jacksonville, FL 32207",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T22:10:50.897Z"
+}

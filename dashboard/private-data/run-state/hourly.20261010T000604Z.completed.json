@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T000604577Z-97342",
+  "status": "completed",
+  "startedAt": "2026-10-10T00:06:04.577Z",
+  "updatedAt": "2026-10-10T00:08:36.722Z",
+  "note": "30-minute single-lead run 2026-10-10T00:06:04Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T00:06:04.577Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T00:07:37.452Z",
+      "address": "8833 Coventry Court, Jacksonville, FL 32257",
+      "mls": "2167815",
+      "primaryUrl": "https://www.zillow.com/homedetails/8833-Coventry-Ct-Jacksonville-FL-32257/44548761_zpid/",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 8833 Coventry Court, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2005_8833-coventry"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T00:08:06.356Z",
+      "address": "8833 Coventry Court, Jacksonville, FL 32257",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T00:08:29.530Z",
+      "address": "8833 Coventry Court, Jacksonville, FL 32257",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T00:08:36.658Z",
+      "address": "8833 Coventry Court, Jacksonville, FL 32257",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T00:08:36.722Z",
+      "address": "8833 Coventry Court, Jacksonville, FL 32257",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T00:08:36.722Z"
+}

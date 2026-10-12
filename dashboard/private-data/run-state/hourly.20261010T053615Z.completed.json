@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T053615811Z-51911",
+  "status": "completed",
+  "startedAt": "2026-10-10T05:36:15.811Z",
+  "updatedAt": "2026-10-10T05:44:22.195Z",
+  "note": "30-minute single-lead run 2026-10-10T05:36:15Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T05:36:15.811Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T05:42:05.760Z",
+      "address": "148 Pescado Dr, Saint Augustine, FL 32095",
+      "mls": "2163775",
+      "primaryUrl": "https://www.zillow.com/homedetails/148-Pescado-Dr-Saint-Augustine-FL-32095/103511881_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 148 Pescado Dr, Saint Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0135_148-pescado"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T05:43:08.120Z",
+      "address": "148 Pescado Dr, Saint Augustine, FL 32095",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T05:44:11.557Z",
+      "address": "148 Pescado Dr, Saint Augustine, FL 32095",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T05:44:22.134Z",
+      "address": "148 Pescado Dr, Saint Augustine, FL 32095",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T05:44:22.195Z",
+      "address": "148 Pescado Dr, Saint Augustine, FL 32095",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T05:44:22.195Z"
+}

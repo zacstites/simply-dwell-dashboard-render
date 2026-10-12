@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T173633781Z-47579",
+  "status": "completed",
+  "startedAt": "2026-10-10T17:36:33.781Z",
+  "updatedAt": "2026-10-10T17:45:25.479Z",
+  "note": "30-minute single-lead run 2026-10-10T17:36:33Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T17:36:33.781Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T17:44:33.507Z",
+      "address": "3073 Zeyno Drive, Middleburg, FL 32068",
+      "mls": "2158480",
+      "primaryUrl": "https://www.redfin.com/FL/Middleburg/3073-Zeyno-Dr-32068/home/58717098",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 3073 Zeyno Drive, Middleburg",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1336_3073-zeyno"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T17:44:56.051Z",
+      "address": "3073 Zeyno Drive, Middleburg, FL 32068",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T17:45:17.999Z",
+      "address": "3073 Zeyno Drive, Middleburg, FL 32068",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T17:45:25.418Z",
+      "address": "3073 Zeyno Drive, Middleburg, FL 32068",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T17:45:25.479Z",
+      "address": "3073 Zeyno Drive, Middleburg, FL 32068",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T17:45:25.479Z"
+}

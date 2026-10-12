@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T213640545Z-99494",
+  "status": "completed",
+  "startedAt": "2026-10-10T21:36:40.545Z",
+  "updatedAt": "2026-10-10T21:45:34.109Z",
+  "note": "30-minute single-lead run 2026-10-10T21:36:40Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T21:36:40.545Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T21:43:05.489Z",
+      "address": "37091 Southern Glen Way, Hilliard, FL 32046",
+      "mls": "2162139",
+      "primaryUrl": "https://www.zillow.com/homedetails/37091-Southern-Glen-Way-Hilliard-FL-32046/71067385_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 37091 Southern Glen Way, Hilliard",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1736_37091-southern-glen"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T21:44:21.347Z",
+      "address": "37091 Southern Glen Way, Hilliard, FL 32046",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T21:45:22.486Z",
+      "address": "37091 Southern Glen Way, Hilliard, FL 32046",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T21:45:34.050Z",
+      "address": "37091 Southern Glen Way, Hilliard, FL 32046",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T21:45:34.109Z",
+      "address": "37091 Southern Glen Way, Hilliard, FL 32046",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T21:45:34.109Z"
+}

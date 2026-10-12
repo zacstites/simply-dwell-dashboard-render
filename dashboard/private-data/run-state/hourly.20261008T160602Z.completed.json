@@ -1,0 +1,51 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261008T160602083Z-95329",
+  "status": "completed",
+  "startedAt": "2026-10-08T16:06:02.083Z",
+  "updatedAt": "2026-10-08T18:04:04.560Z",
+  "note": "30-minute single-lead run 2026-10-08T16:06:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T16:06:02.083Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-08T17:46:56.118Z",
+      "address": "1319 Spearing St, Jacksonville, FL 32206",
+      "mls": "2167675",
+      "primaryUrl": "https://www.zillow.com/homedetails/1319-Spearing-St-Jacksonville-FL-32206/44518994_zpid/",
+      "photoStatus": "No usable photo access",
+      "subject": "Simply Dwell staging lead: 1319 Spearing St, Jacksonville",
+      "runFolder": "data/nightly-leads/2026-10-08-1336-1319-spearing"
+    },
+    "gmail_sent": {
+      "at": "2026-10-08T18:02:55.576Z",
+      "address": "1319 Spearing St, Jacksonville, FL 32206",
+      "gmailMessageId": "accepted-no-id",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-08T18:03:54.379Z",
+      "address": "1319 Spearing St, Jacksonville, FL 32206",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv"
+      ],
+      "csvParse": "ok"
+    },
+    "summary_posted": {
+      "at": "2026-10-08T18:04:04.501Z",
+      "address": "1319 Spearing St, Jacksonville, FL 32206",
+      "channel": "#general",
+      "messageId": "1557815851623784594",
+      "leadChannelPost": "failed_missing_access"
+    },
+    "completed": {
+      "at": "2026-10-08T18:04:04.560Z",
+      "address": "1319 Spearing St, Jacksonville, FL 32206",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-08T18:04:04.560Z"
+}

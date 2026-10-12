@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T193632447Z-81882",
+  "status": "completed",
+  "startedAt": "2026-10-10T19:36:32.447Z",
+  "updatedAt": "2026-10-10T19:41:31.328Z",
+  "note": "30-minute single-lead run 2026-10-10T19:36:32Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T19:36:32.447Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T19:38:25.378Z",
+      "address": "5327 Saginaw Avenue, Jacksonville, FL 32210",
+      "mls": "2167724",
+      "primaryUrl": "https://www.homefront.com/homes/fl/jacksonville/property/5327-saginaw-avenue-1c37125f-c878-3271-be3e-c5d1dc83ba1d",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5327 Saginaw Avenue, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1536_5327-saginaw"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T19:40:55.875Z",
+      "address": "5327 Saginaw Avenue, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T19:41:22.812Z",
+      "address": "5327 Saginaw Avenue, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T19:41:31.268Z",
+      "address": "5327 Saginaw Avenue, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T19:41:31.328Z",
+      "address": "5327 Saginaw Avenue, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T19:41:31.328Z"
+}

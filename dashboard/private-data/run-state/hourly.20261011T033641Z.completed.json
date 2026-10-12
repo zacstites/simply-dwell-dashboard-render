@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T033641651Z-93056",
+  "status": "completed",
+  "startedAt": "2026-10-11T03:36:41.651Z",
+  "updatedAt": "2026-10-11T03:42:19.090Z",
+  "note": "30-minute single-lead run 2026-10-11T03:36:41Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T03:36:41.651Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T03:41:15.346Z",
+      "address": "8048 Kilwinning Lane, Jacksonville, FL 32244",
+      "mls": "2161784",
+      "primaryUrl": "https://www.zillow.com/homedetails/8048-Kilwinning-Ln-Jacksonville-FL-32244/44427712_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 8048 Kilwinning Lane, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_2336_8048-kilwinning"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T03:41:45.273Z",
+      "address": "8048 Kilwinning Lane, Jacksonville, FL 32244",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T03:42:11.844Z",
+      "address": "8048 Kilwinning Lane, Jacksonville, FL 32244",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T03:42:19.031Z",
+      "address": "8048 Kilwinning Lane, Jacksonville, FL 32244",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T03:42:19.090Z",
+      "address": "8048 Kilwinning Lane, Jacksonville, FL 32244",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T03:42:19.090Z"
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T030607825Z-31640",
+  "status": "completed",
+  "startedAt": "2026-10-10T03:06:07.825Z",
+  "updatedAt": "2026-10-10T03:12:54.377Z",
+  "note": "30-minute single-lead run 2026-10-10T03:06:07Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T03:06:07.825Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T03:11:41.645Z",
+      "address": "6535 Lou Drive N, Jacksonville, FL 32216",
+      "mls": "2167559",
+      "primaryUrl": "https://www.homefront.com/homes/fl/jacksonville/property/6535-lou-drive-n-461822d8-11ed-34b7-99f5-3203229574a0",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 6535 Lou Drive N, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2305_6535-lou"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T03:12:14.737Z",
+      "address": "6535 Lou Drive N, Jacksonville, FL 32216",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T03:12:43.798Z",
+      "address": "6535 Lou Drive N, Jacksonville, FL 32216",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T03:12:54.287Z",
+      "address": "6535 Lou Drive N, Jacksonville, FL 32216",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T03:12:54.377Z",
+      "address": "6535 Lou Drive N, Jacksonville, FL 32216",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T03:12:54.377Z"
+}

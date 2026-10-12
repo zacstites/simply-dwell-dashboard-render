@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T073614623Z-70609",
+  "status": "completed",
+  "startedAt": "2026-10-10T07:36:14.623Z",
+  "updatedAt": "2026-10-10T07:40:54.215Z",
+  "note": "30-minute single-lead run 2026-10-10T07:36:14Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T07:36:14.623Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T07:39:34.862Z",
+      "address": "367 Trellis Bay Dr, Saint Augustine, FL 32092",
+      "mls": "2143561",
+      "primaryUrl": "https://www.zillow.com/homedetails/367-Trellis-Bay-Dr-Saint-Augustine-FL-32092/125960335_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 367 Trellis Bay Dr, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0335_367-trellis-bay"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T07:40:17.044Z",
+      "address": "367 Trellis Bay Dr, Saint Augustine, FL 32092",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T07:40:45.823Z",
+      "address": "367 Trellis Bay Dr, Saint Augustine, FL 32092",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T07:40:54.153Z",
+      "address": "367 Trellis Bay Dr, Saint Augustine, FL 32092",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T07:40:54.215Z",
+      "address": "367 Trellis Bay Dr, Saint Augustine, FL 32092",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T07:40:54.215Z"
+}

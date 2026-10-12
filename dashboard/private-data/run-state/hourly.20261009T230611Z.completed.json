@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T230611632Z-84204",
+  "status": "completed",
+  "startedAt": "2026-10-09T23:06:11.632Z",
+  "updatedAt": "2026-10-09T23:11:25.795Z",
+  "note": "30-minute single-lead run 2026-10-09T23:06:11Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T23:06:11.632Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T23:10:02.735Z",
+      "address": "4422 Forest Blvd, Jacksonville, FL 32246",
+      "mls": "2167795",
+      "primaryUrl": "https://www.zillow.com/homedetails/4422-Forest-Blvd-Jacksonville-FL-32246/44546146_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 4422 Forest Blvd, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1905_4422-forest"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T23:10:44.548Z",
+      "address": "4422 Forest Blvd, Jacksonville, FL 32246",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T23:11:16.593Z",
+      "address": "4422 Forest Blvd, Jacksonville, FL 32246",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T23:11:25.658Z",
+      "address": "4422 Forest Blvd, Jacksonville, FL 32246",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T23:11:25.795Z",
+      "address": "4422 Forest Blvd, Jacksonville, FL 32246",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T23:11:25.795Z"
+}

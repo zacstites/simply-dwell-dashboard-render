@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261009T220613048Z-67818",
+  "status": "completed",
+  "startedAt": "2026-10-09T22:06:13.048Z",
+  "updatedAt": "2026-10-09T22:14:03.089Z",
+  "note": "30-minute single-lead run 2026-10-09T22:06:12Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-09T22:06:13.048Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-09T22:12:05.548Z",
+      "address": "3348 Phyllis Street, Jacksonville, FL 32205",
+      "mls": "2134635",
+      "primaryUrl": "https://www.zillow.com/homedetails/3348-Phyllis-St-Jacksonville-FL-32205/44468531_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 3348 Phyllis Street, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_1808_3348-phyllis"
+    },
+    "gmail_sent": {
+      "at": "2026-10-09T22:13:05.815Z",
+      "address": "3348 Phyllis Street, Jacksonville, FL 32205",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-09T22:13:52.688Z",
+      "address": "3348 Phyllis Street, Jacksonville, FL 32205",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-09T22:14:03.028Z",
+      "address": "3348 Phyllis Street, Jacksonville, FL 32205",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-09T22:14:03.089Z",
+      "address": "3348 Phyllis Street, Jacksonville, FL 32205",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-09T22:14:03.089Z"
+}

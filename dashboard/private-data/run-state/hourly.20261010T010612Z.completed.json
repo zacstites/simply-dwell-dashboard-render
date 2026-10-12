@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T010612593Z-8849",
+  "status": "completed",
+  "startedAt": "2026-10-10T01:06:12.593Z",
+  "updatedAt": "2026-10-10T01:10:52.896Z",
+  "note": "30-minute single-lead run 2026-10-10T01:06:12Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T01:06:12.593Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T01:09:52.140Z",
+      "address": "5082 SAN CLERC Road, Jacksonville, FL 32217",
+      "mls": "2167498",
+      "primaryUrl": "https://www.zillow.com/homedetails/5082-San-Clerc-Rd-Jacksonville-FL-32217/44548379_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5082 San Clerc Road, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2105_5082-san-clerc"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T01:10:23.585Z",
+      "address": "5082 SAN CLERC Road, Jacksonville, FL 32217",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T01:10:44.152Z",
+      "address": "5082 SAN CLERC Road, Jacksonville, FL 32217",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T01:10:52.832Z",
+      "address": "5082 SAN CLERC Road, Jacksonville, FL 32217",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T01:10:52.896Z",
+      "address": "5082 SAN CLERC Road, Jacksonville, FL 32217",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T01:10:52.896Z"
+}

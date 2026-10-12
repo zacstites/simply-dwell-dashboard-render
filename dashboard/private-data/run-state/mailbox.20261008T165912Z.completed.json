@@ -1,0 +1,35 @@
+{
+  "kind": "mailbox",
+  "runId": "mailbox-20261008T165912739Z-8423",
+  "status": "completed",
+  "startedAt": "2026-10-08T16:59:12.739Z",
+  "updatedAt": "2026-10-08T17:01:50.147Z",
+  "note": "mailbox watcher 2026-10-08T16:59:12Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-08T16:59:12.739Z"
+    },
+    "completed": {
+      "at": "2026-10-08T17:01:50.147Z",
+      "outcome": "no_new_messages",
+      "processed": [
+        {
+          "mailbox": "MLS-Listing",
+          "uid": 4534,
+          "result": "skipped_furnished"
+        },
+        {
+          "mailbox": "MLS-Listings/processed",
+          "uid": 4533,
+          "result": "already_sent_previous_run"
+        },
+        {
+          "mailbox": "MLS-Listings/processed",
+          "uid": 4534,
+          "result": "already_skipped_previous_run"
+        }
+      ]
+    }
+  },
+  "completedAt": "2026-10-08T17:01:50.147Z"
+}

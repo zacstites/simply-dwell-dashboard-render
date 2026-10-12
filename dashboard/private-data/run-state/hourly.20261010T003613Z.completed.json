@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T003613793Z-99692",
+  "status": "completed",
+  "startedAt": "2026-10-10T00:36:13.793Z",
+  "updatedAt": "2026-10-10T00:43:52.753Z",
+  "note": "30-minute single-lead run 2026-10-10T00:36:13Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T00:36:13.793Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T00:40:16.762Z",
+      "address": "5 Santa Maria Lane, St. Augustine Beach, FL 32080",
+      "mls": "2168530/SA264403",
+      "primaryUrl": "https://www.coldwellbanker.com/fl/st-augustine/5-santa-maria-ln/lid-P00800000HIYQJGUmGAzND3shC4zfWmnp9vBO0jD",
+      "photoStatus": "Existing virtual/AI staging",
+      "subject": "Simply Dwell staging lead: 5 Santa Maria Lane, St. Augustine Beach",
+      "runFolder": "data/nightly-leads/runs/2026-10-09_2035_5-santa-maria"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T00:41:11.409Z",
+      "address": "5 Santa Maria Lane, St. Augustine Beach, FL 32080",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T00:43:42.745Z",
+      "address": "5 Santa Maria Lane, St. Augustine Beach, FL 32080",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T00:43:52.686Z",
+      "address": "5 Santa Maria Lane, St. Augustine Beach, FL 32080",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T00:43:52.753Z",
+      "address": "5 Santa Maria Lane, St. Augustine Beach, FL 32080",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T00:43:52.753Z"
+}

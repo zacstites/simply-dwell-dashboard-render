@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261011T173602164Z-44658",
+  "status": "completed",
+  "startedAt": "2026-10-11T17:36:02.164Z",
+  "updatedAt": "2026-10-11T17:42:27.485Z",
+  "note": "30-minute single-lead run 2026-10-11T17:36:02Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-11T17:36:02.164Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-11T17:41:22.504Z",
+      "address": "4631 Fredericksburg Ave, Jacksonville, FL 32208",
+      "mls": "2167192",
+      "primaryUrl": "https://www.zillow.com/homedetails/4631-Fredericksburg-Ave-Jacksonville-FL-32208/44448518_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 4631 Fredericksburg Ave, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-11_1335_4631-fredericksburg"
+    },
+    "gmail_sent": {
+      "at": "2026-10-11T17:41:55.869Z",
+      "address": "4631 Fredericksburg Ave, Jacksonville, FL 32208",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-11T17:42:18.494Z",
+      "address": "4631 Fredericksburg Ave, Jacksonville, FL 32208",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-11T17:42:27.423Z",
+      "address": "4631 Fredericksburg Ave, Jacksonville, FL 32208",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-11T17:42:27.485Z",
+      "address": "4631 Fredericksburg Ave, Jacksonville, FL 32208",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-11T17:42:27.485Z"
+}

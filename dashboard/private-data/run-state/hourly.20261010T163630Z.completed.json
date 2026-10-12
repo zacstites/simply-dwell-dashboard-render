@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T163630248Z-19132",
+  "status": "completed",
+  "startedAt": "2026-10-10T16:36:30.248Z",
+  "updatedAt": "2026-10-10T16:49:44.531Z",
+  "note": "30-minute single-lead run 2026-10-10T16:36:30Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T16:36:30.248Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T16:47:30.645Z",
+      "address": "5133 Palmer Avenue, Jacksonville, FL 32210",
+      "mls": "2167744",
+      "primaryUrl": "https://www.zillow.com/homedetails/5133-Palmer-Ave-Jacksonville-FL-32210/44491704_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 5133 Palmer Avenue, Jacksonville",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_1236_5133-palmer"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T16:48:43.633Z",
+      "address": "5133 Palmer Avenue, Jacksonville, FL 32210",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T16:49:33.407Z",
+      "address": "5133 Palmer Avenue, Jacksonville, FL 32210",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T16:49:44.470Z",
+      "address": "5133 Palmer Avenue, Jacksonville, FL 32210",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T16:49:44.531Z",
+      "address": "5133 Palmer Avenue, Jacksonville, FL 32210",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T16:49:44.531Z"
+}

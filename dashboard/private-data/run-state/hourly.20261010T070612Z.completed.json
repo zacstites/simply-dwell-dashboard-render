@@ -1,0 +1,49 @@
+{
+  "kind": "hourly",
+  "runId": "hourly-20261010T070612407Z-68542",
+  "status": "completed",
+  "startedAt": "2026-10-10T07:06:12.407Z",
+  "updatedAt": "2026-10-10T07:10:47.024Z",
+  "note": "30-minute single-lead run 2026-10-10T07:06:12Z",
+  "stages": {
+    "started": {
+      "at": "2026-10-10T07:06:12.407Z"
+    },
+    "selected_lead": {
+      "at": "2026-10-10T07:09:23.178Z",
+      "address": "247 Los Alamos St, Saint Augustine, FL 32095",
+      "mls": "2149382",
+      "primaryUrl": "https://www.zillow.com/homedetails/247-Los-Alamos-St-Saint-Augustine-FL-32095/121064040_zpid/",
+      "photoStatus": "Before/after panels attached",
+      "subject": "Simply Dwell staging lead: 247 Los Alamos St, St. Augustine",
+      "runFolder": "data/nightly-leads/runs/2026-10-10_0305_247-los-alamos"
+    },
+    "gmail_sent": {
+      "at": "2026-10-10T07:10:09.992Z",
+      "address": "247 Los Alamos St, Saint Augustine, FL 32095",
+      "messageProvider": "postmark",
+      "sentEvidence": "accepted"
+    },
+    "ledger_updated": {
+      "at": "2026-10-10T07:10:38.076Z",
+      "address": "247 Los Alamos St, Saint Augustine, FL 32095",
+      "files": [
+        "data/nightly-leads/README.md",
+        "data/agent-database/properties.csv",
+        "data/agent-database/agents.csv",
+        "data/agent-database/interactions.csv"
+      ]
+    },
+    "summary_posted": {
+      "at": "2026-10-10T07:10:46.963Z",
+      "address": "247 Los Alamos St, Saint Augustine, FL 32095",
+      "channel": "#lead-generation"
+    },
+    "completed": {
+      "at": "2026-10-10T07:10:47.024Z",
+      "address": "247 Los Alamos St, Saint Augustine, FL 32095",
+      "outcome": "sent"
+    }
+  },
+  "completedAt": "2026-10-10T07:10:47.024Z"
+}
