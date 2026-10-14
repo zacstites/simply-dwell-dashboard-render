@@ -153,13 +153,25 @@
             </div>
           </div>
           <form id="prestageForm" class="intake-form">
+            <div class="prestage-upload-first wide">
+              <label>
+                <span>Walkthrough video or audio</span>
+                <input name="walkthrough" type="file" accept="audio/*,video/*" required>
+              </label>
+              <button id="prestageSubmit" type="submit">Upload Walkthrough</button>
+              <span id="prestageJobStatus">Draft only until reviewed.</span>
+            </div>
+            <div class="prestage-details-label wide">
+              <strong>Optional intake details</strong>
+              <span>Add context below when it is available.</span>
+            </div>
             <label>
               <span>Property address</span>
-              <input name="propertyAddress" type="text" autocomplete="street-address" required>
+              <input name="propertyAddress" type="text" autocomplete="street-address">
             </label>
             <label>
               <span>Uploaded by</span>
-              <input name="uploaderName" type="text" autocomplete="name" required>
+              <input name="uploaderName" type="text" autocomplete="name">
             </label>
             <label>
               <span>Uploader email</span>
@@ -204,13 +216,6 @@
               <span>Bathrooms</span>
               <input name="bathrooms" type="text" inputmode="decimal">
             </label>
-            <fieldset>
-              <legend>Requested output</legend>
-              <label><input name="requestedOutputs" type="checkbox" value="Room-by-room staging notes" checked> Room notes</label>
-              <label><input name="requestedOutputs" type="checkbox" value="Trello-ready description"> Trello description</label>
-              <label><input name="requestedOutputs" type="checkbox" value="Crew instructions"> Crew instructions</label>
-              <label><input name="requestedOutputs" type="checkbox" value="Uncertainty flags"> Uncertainty flags</label>
-            </fieldset>
             <label class="wide">
               <span>Sensitive access notes</span>
               <textarea name="accessNotes" rows="3" placeholder="Gate, lockbox, alarm, owner, or employee details"></textarea>
@@ -223,14 +228,6 @@
               <span>Extra notes</span>
               <textarea name="notes" rows="3"></textarea>
             </label>
-            <label class="wide">
-              <span>Walkthrough audio or video</span>
-              <input name="walkthrough" type="file" accept="audio/*,video/*" required>
-            </label>
-            <div class="form-actions wide">
-              <button id="prestageSubmit" type="submit">Upload Walkthrough</button>
-              <span id="prestageJobStatus">Draft only until reviewed.</span>
-            </div>
           </form>
         </section>
 
@@ -250,8 +247,8 @@
           <article class="panel">
             <div class="panel-head">
               <div>
-                <h2>Draft Notes</h2>
-                <span>Review before copying anywhere operational</span>
+                <h2>Room &amp; Furniture Summary</h2>
+                <span>Rooms, room types, and furniture mentioned in the walkthrough</span>
               </div>
               <button id="prestageCopyOutput" type="button" disabled>Copy</button>
             </div>

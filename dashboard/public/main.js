@@ -404,6 +404,7 @@ const prestageProgress = {
   uploaded: 35,
   queued: 45,
   transcribing: 70,
+  summarizing: 88,
   ready: 100,
   failed: 100,
 };
@@ -439,8 +440,9 @@ function renderPrestageJob(job) {
       uploaded: "Uploaded. Transcription is not configured yet.",
       queued: "Queued for transcription.",
       transcribing: "Transcribing walkthrough.",
-      ready: "Transcript ready.",
-      failed: "Transcription failed.",
+      summarizing: "Building room and furniture summary.",
+      ready: "Room and furniture summary ready.",
+      failed: "Walkthrough processing failed.",
     }[job.status] || text(job.status);
 
   setPrestageStatus(label, progress);
@@ -486,8 +488,8 @@ async function initPrestage() {
   try {
     const health = await fetchJson("/api/prestage/health");
     $("prestageConfigStatus").textContent = health.transcriptionConfigured
-      ? `Transcription enabled. Upload limit ${health.maxUploadMb} MB.`
-      : `Uploads enabled. Add OPENAI_API_KEY to enable transcription. Limit ${health.maxUploadMb} MB.`;
+      ? `Room summaries enabled. Upload limit ${health.maxUploadMb} MB.`
+      : `Uploads enabled. AI processing needs OPENAI_API_KEY. Limit ${health.maxUploadMb} MB.`;
   } catch {
     $("prestageConfigStatus").textContent = "Upload settings unavailable.";
   }
