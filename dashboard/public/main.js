@@ -526,6 +526,7 @@ $("refresh").addEventListener("click", load);
 $("prestageForm").addEventListener("submit", async (event) => {
   event.preventDefault();
   window.clearTimeout(state.prestagePollTimer);
+  const formData = new FormData(event.currentTarget);
   setPrestageBusy(true);
   setPrestageStatus("Uploading walkthrough...", 15);
   $("prestageOutput").value = "";
@@ -534,7 +535,7 @@ $("prestageForm").addEventListener("submit", async (event) => {
   try {
     const job = await fetchJson("/api/prestage/intakes", {
       method: "POST",
-      body: new FormData(event.currentTarget),
+      body: formData,
     });
     state.activePrestageJobId = job.id;
     renderPrestageJob(job);
