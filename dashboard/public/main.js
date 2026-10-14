@@ -398,6 +398,7 @@ function setView(view) {
   state.view = view;
   document.querySelectorAll(".tab").forEach((tab) => tab.classList.toggle("active", tab.dataset.view === view));
   document.querySelectorAll(".view").forEach((section) => section.classList.toggle("active", section.dataset.view === view));
+  document.querySelector(".metrics").hidden = view === "prestage";
 }
 
 const prestageProgress = {

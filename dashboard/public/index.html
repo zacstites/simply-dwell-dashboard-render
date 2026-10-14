@@ -22,8 +22,8 @@
       <nav class="tabs" aria-label="Dashboard views">
         <button class="tab active" type="button" data-view="overview">Overview</button>
         <button class="tab" type="button" data-view="backlog">MLS Backlog</button>
-        <button class="tab" type="button" data-view="prestage">Pre-Stage Intake</button>
         <button class="tab" type="button" data-view="tables">Data</button>
+        <button class="tab" type="button" data-view="prestage">Pre-Stage Intake</button>
       </nav>
 
       <section class="metrics" aria-label="Lead metrics">
@@ -161,73 +161,6 @@
               <button id="prestageSubmit" type="submit">Upload Walkthrough</button>
               <span id="prestageJobStatus">Draft only until reviewed.</span>
             </div>
-            <div class="prestage-details-label wide">
-              <strong>Optional intake details</strong>
-              <span>Add context below when it is available.</span>
-            </div>
-            <label>
-              <span>Property address</span>
-              <input name="propertyAddress" type="text" autocomplete="street-address">
-            </label>
-            <label>
-              <span>Uploaded by</span>
-              <input name="uploaderName" type="text" autocomplete="name">
-            </label>
-            <label>
-              <span>Uploader email</span>
-              <input name="uploaderEmail" type="email" autocomplete="email">
-            </label>
-            <label>
-              <span>Review owner</span>
-              <select name="reviewOwner">
-                <option value="">Select reviewer</option>
-                <option>Susan</option>
-                <option>Alyssa</option>
-                <option>Zac</option>
-                <option>Billy</option>
-              </select>
-            </label>
-            <label>
-              <span>Target stage window</span>
-              <input name="targetStageWindow" type="text" placeholder="Date or timing window">
-            </label>
-            <label>
-              <span>Stage Pro / FileMaker job ID</span>
-              <input name="stageProJobId" type="text">
-            </label>
-            <label>
-              <span>Trello card</span>
-              <input name="trelloCard" type="text">
-            </label>
-            <label>
-              <span>Occupancy</span>
-              <select name="occupancyStatus">
-                <option value="">Unknown</option>
-                <option>Vacant</option>
-                <option>Occupied</option>
-                <option>Partially occupied</option>
-              </select>
-            </label>
-            <label>
-              <span>Bedrooms</span>
-              <input name="bedrooms" type="text" inputmode="numeric">
-            </label>
-            <label>
-              <span>Bathrooms</span>
-              <input name="bathrooms" type="text" inputmode="decimal">
-            </label>
-            <label class="wide">
-              <span>Sensitive access notes</span>
-              <textarea name="accessNotes" rows="3" placeholder="Gate, lockbox, alarm, owner, or employee details"></textarea>
-            </label>
-            <label class="wide">
-              <span>Parking / loading</span>
-              <textarea name="parkingLoading" rows="2"></textarea>
-            </label>
-            <label class="wide">
-              <span>Extra notes</span>
-              <textarea name="notes" rows="3"></textarea>
-            </label>
           </form>
         </section>
 
