@@ -91,6 +91,9 @@ The dashboard is a Node web service:
 - set `NODE_ENV=production` so missing `DASHBOARD_PASSWORD` blocks access
 - optional `DATA_DIR=/opt/render/project/src/dashboard/private-data`
 - optional `RUN_STATE_DIR=/opt/render/project/src/dashboard/private-data/run-state`
+- pre-stage intake disk: `prestage-intakes`, mounted at `/var/data`
+- pre-stage storage env var: `PRESTAGE_STORAGE_DIR=/var/data/prestage-intakes`
+- optional transcription env vars: `OPENAI_API_KEY=<set in Render secret env>` and `OPENAI_TRANSCRIBE_MODEL=gpt-4o-transcribe`
 
 Start private/basic-auth by default. Do not deploy publicly or change production settings without explicit approval.
 

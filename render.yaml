@@ -6,8 +6,18 @@ services:
     buildCommand: cd dashboard && npm ci
     startCommand: cd dashboard && npm start
     autoDeploy: false
+    disk:
+      name: prestage-intakes
+      mountPath: /var/data
+      sizeGB: 10
     envVars:
       - key: DASHBOARD_USERNAME
         value: simplydwell
       - key: DASHBOARD_PASSWORD
         sync: false
+      - key: PRESTAGE_STORAGE_DIR
+        value: /var/data/prestage-intakes
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_TRANSCRIBE_MODEL
+        value: gpt-4o-transcribe
