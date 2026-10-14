@@ -403,6 +403,7 @@ function setView(view) {
 const prestageProgress = {
   uploaded: 35,
   queued: 45,
+  extracting: 58,
   transcribing: 70,
   summarizing: 88,
   ready: 100,
@@ -439,6 +440,7 @@ function renderPrestageJob(job) {
     {
       uploaded: "Uploaded. Transcription is not configured yet.",
       queued: "Queued for transcription.",
+      extracting: "Extracting audio from video.",
       transcribing: "Transcribing walkthrough.",
       summarizing: "Building room and furniture summary.",
       ready: "Room and furniture summary ready.",

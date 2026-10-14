@@ -5,7 +5,9 @@ const fsp = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
 const crypto = require("node:crypto");
+const { spawn } = require("node:child_process");
 const Busboy = require("busboy");
+const ffmpegPath = require("ffmpeg-static");
 const OpenAI = require("openai");
 const { parse } = require("csv-parse/sync");
 
@@ -20,6 +22,7 @@ const PRESTAGE_STORAGE_DIR = path.resolve(
 );
 const PRESTAGE_UPLOAD_DIR = path.resolve(process.env.PRESTAGE_UPLOAD_DIR || path.join(PRESTAGE_STORAGE_DIR, "uploads"));
 const PRESTAGE_JOB_DIR = path.resolve(process.env.PRESTAGE_JOB_DIR || path.join(PRESTAGE_STORAGE_DIR, "jobs"));
+const PRESTAGE_AUDIO_DIR = path.resolve(process.env.PRESTAGE_AUDIO_DIR || path.join(PRESTAGE_STORAGE_DIR, "audio"));
 const PRESTAGE_MAX_UPLOAD_MB = Number(process.env.PRESTAGE_MAX_UPLOAD_MB || 750);
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const DASHBOARD_USERNAME = process.env.DASHBOARD_USERNAME || "simplydwell";
@@ -630,6 +633,7 @@ function prestageStatusPayload() {
 async function ensurePrestageStorage() {
   await fsp.mkdir(PRESTAGE_UPLOAD_DIR, { recursive: true });
   await fsp.mkdir(PRESTAGE_JOB_DIR, { recursive: true });
+  await fsp.mkdir(PRESTAGE_AUDIO_DIR, { recursive: true });
 }
 
 function isAllowedPrestageMime(mimeType) {
@@ -828,6 +832,71 @@ async function summarizePrestageTranscript(client, transcript) {
   return formatPrestageSummary(JSON.parse(response.output_text));
 }
 
+const OPENAI_TRANSCRIPTION_EXTENSIONS = new Set([".mp3", ".mp4", ".mpeg", ".mpga", ".m4a", ".wav", ".webm"]);
+
+function needsAudioExtraction(file) {
+  const extension = path.extname(file.originalName || file.storedName).toLowerCase();
+  const isVideo = String(file.mimeType || "").startsWith("video/");
+  const exceedsDirectUploadLimit = Number(file.size || 0) > 24 * 1024 * 1024;
+  return isVideo || !OPENAI_TRANSCRIPTION_EXTENSIONS.has(extension) || exceedsDirectUploadLimit;
+}
+
+function extractWalkthroughAudio(inputPath, outputPath) {
+  return new Promise((resolve, reject) => {
+    if (!ffmpegPath) {
+      reject(new Error("FFmpeg is unavailable for video audio extraction."));
+      return;
+    }
+
+    const args = [
+      "-hide_banner",
+      "-loglevel",
+      "error",
+      "-y",
+      "-i",
+      inputPath,
+      "-vn",
+      "-ac",
+      "1",
+      "-ar",
+      "16000",
+      "-b:a",
+      "48k",
+      outputPath,
+    ];
+    const ffmpeg = spawn(ffmpegPath, args, { stdio: ["ignore", "ignore", "pipe"] });
+    let stderr = "";
+
+    ffmpeg.stderr.on("data", (chunk) => {
+      stderr = `${stderr}${chunk}`.slice(-8000);
+    });
+    ffmpeg.on("error", reject);
+    ffmpeg.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(new Error(`Could not extract audio from the uploaded video. ${stderr.trim()}`.trim()));
+      }
+    });
+  });
+}
+
+async function prepareTranscriptionFile(job) {
+  const sourcePath = path.join(PRESTAGE_UPLOAD_DIR, job.file.storedName);
+  if (!needsAudioExtraction(job.file)) {
+    return { path: sourcePath, removeAfterUse: false };
+  }
+
+  const audioPath = path.join(PRESTAGE_AUDIO_DIR, `${job.id}.mp3`);
+  try {
+    await extractWalkthroughAudio(sourcePath, audioPath);
+  } catch (error) {
+    await fsp.rm(audioPath, { force: true });
+    throw error;
+  }
+  return { path: audioPath, removeAfterUse: true };
+}
+
 async function savePrestageJob(job) {
   await ensurePrestageStorage();
   await fsp.writeFile(path.join(PRESTAGE_JOB_DIR, `${job.id}.json`), JSON.stringify(job, null, 2));
@@ -867,18 +936,30 @@ function publicPrestageJob(job) {
 }
 
 async function processPrestageWalkthrough(initialJob) {
+  const extractingAudio = needsAudioExtraction(initialJob.file);
   let job = {
     ...initialJob,
-    status: "transcribing",
+    status: extractingAudio ? "extracting" : "transcribing",
     updatedAt: new Date().toISOString(),
   };
   await savePrestageJob(job);
 
   const client = new OpenAI();
-  const transcription = await client.audio.transcriptions.create({
-    file: fs.createReadStream(path.join(PRESTAGE_UPLOAD_DIR, job.file.storedName)),
-    model: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe",
-  });
+  const transcriptionFile = await prepareTranscriptionFile(job);
+  if (extractingAudio) {
+    job = { ...job, status: "transcribing", updatedAt: new Date().toISOString() };
+    await savePrestageJob(job);
+  }
+
+  let transcription;
+  try {
+    transcription = await client.audio.transcriptions.create({
+      file: fs.createReadStream(transcriptionFile.path),
+      model: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe",
+    });
+  } finally {
+    if (transcriptionFile.removeAfterUse) await fsp.rm(transcriptionFile.path, { force: true });
+  }
 
   const transcript = transcription.text || "";
   job = {
