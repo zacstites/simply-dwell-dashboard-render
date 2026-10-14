@@ -22,6 +22,7 @@
       <nav class="tabs" aria-label="Dashboard views">
         <button class="tab active" type="button" data-view="overview">Overview</button>
         <button class="tab" type="button" data-view="backlog">MLS Backlog</button>
+        <button class="tab" type="button" data-view="prestage">Pre-Stage Intake</button>
         <button class="tab" type="button" data-view="tables">Data</button>
       </nav>
 
@@ -140,6 +141,122 @@
               <tbody id="backlogRows"></tbody>
             </table>
           </div>
+        </section>
+      </section>
+
+      <section class="view" data-view="prestage">
+        <section class="panel intake-panel">
+          <div class="panel-head">
+            <div>
+              <h2>Walkthrough Upload</h2>
+              <span id="prestageConfigStatus">Checking upload settings</span>
+            </div>
+          </div>
+          <form id="prestageForm" class="intake-form">
+            <label>
+              <span>Property address</span>
+              <input name="propertyAddress" type="text" autocomplete="street-address" required>
+            </label>
+            <label>
+              <span>Uploaded by</span>
+              <input name="uploaderName" type="text" autocomplete="name" required>
+            </label>
+            <label>
+              <span>Uploader email</span>
+              <input name="uploaderEmail" type="email" autocomplete="email">
+            </label>
+            <label>
+              <span>Review owner</span>
+              <select name="reviewOwner">
+                <option value="">Select reviewer</option>
+                <option>Susan</option>
+                <option>Alyssa</option>
+                <option>Zac</option>
+                <option>Billy</option>
+              </select>
+            </label>
+            <label>
+              <span>Target stage window</span>
+              <input name="targetStageWindow" type="text" placeholder="Date or timing window">
+            </label>
+            <label>
+              <span>Stage Pro / FileMaker job ID</span>
+              <input name="stageProJobId" type="text">
+            </label>
+            <label>
+              <span>Trello card</span>
+              <input name="trelloCard" type="text">
+            </label>
+            <label>
+              <span>Occupancy</span>
+              <select name="occupancyStatus">
+                <option value="">Unknown</option>
+                <option>Vacant</option>
+                <option>Occupied</option>
+                <option>Partially occupied</option>
+              </select>
+            </label>
+            <label>
+              <span>Bedrooms</span>
+              <input name="bedrooms" type="text" inputmode="numeric">
+            </label>
+            <label>
+              <span>Bathrooms</span>
+              <input name="bathrooms" type="text" inputmode="decimal">
+            </label>
+            <fieldset>
+              <legend>Requested output</legend>
+              <label><input name="requestedOutputs" type="checkbox" value="Room-by-room staging notes" checked> Room notes</label>
+              <label><input name="requestedOutputs" type="checkbox" value="Trello-ready description"> Trello description</label>
+              <label><input name="requestedOutputs" type="checkbox" value="Crew instructions"> Crew instructions</label>
+              <label><input name="requestedOutputs" type="checkbox" value="Uncertainty flags"> Uncertainty flags</label>
+            </fieldset>
+            <label class="wide">
+              <span>Sensitive access notes</span>
+              <textarea name="accessNotes" rows="3" placeholder="Gate, lockbox, alarm, owner, or employee details"></textarea>
+            </label>
+            <label class="wide">
+              <span>Parking / loading</span>
+              <textarea name="parkingLoading" rows="2"></textarea>
+            </label>
+            <label class="wide">
+              <span>Extra notes</span>
+              <textarea name="notes" rows="3"></textarea>
+            </label>
+            <label class="wide">
+              <span>Walkthrough audio or video</span>
+              <input name="walkthrough" type="file" accept="audio/*,video/*" required>
+            </label>
+            <div class="form-actions wide">
+              <button id="prestageSubmit" type="submit">Upload Walkthrough</button>
+              <span id="prestageJobStatus">Draft only until reviewed.</span>
+            </div>
+          </form>
+        </section>
+
+        <section class="grid intake-results">
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Intake Status</h2>
+                <span id="prestageJobMeta">No intake uploaded yet</span>
+              </div>
+              <a id="prestageTranscriptLink" class="button disabled" href="#" aria-disabled="true">Transcript</a>
+            </div>
+            <div class="meter" aria-hidden="true"><span id="prestageMeterBar"></span></div>
+            <div id="prestageWarnings" class="warning-list"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-head">
+              <div>
+                <h2>Draft Notes</h2>
+                <span>Review before copying anywhere operational</span>
+              </div>
+              <button id="prestageCopyOutput" type="button" disabled>Copy</button>
+            </div>
+            <textarea id="prestageOutput" class="draft-output" readonly></textarea>
+          </article>
         </section>
       </section>
 

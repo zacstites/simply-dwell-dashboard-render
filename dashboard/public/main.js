@@ -4,6 +4,8 @@ const state = {
   view: "overview",
   selectedAgentId: "",
   selectedAgentSection: "properties",
+  activePrestageJobId: "",
+  prestagePollTimer: null,
 };
 
 const numberFormat = new Intl.NumberFormat();
@@ -51,6 +53,17 @@ function displayValue(header, value, record = {}, headers = []) {
 function formatDate(value) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "-" : dateFormat.format(date);
+}
+
+async function fetchJson(url, options) {
+  const response = await fetch(url, options);
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || `Request failed with ${response.status}`);
+  }
+
+  return data;
 }
 
 function setMetric(id, value) {
@@ -387,6 +400,101 @@ function setView(view) {
   document.querySelectorAll(".view").forEach((section) => section.classList.toggle("active", section.dataset.view === view));
 }
 
+const prestageProgress = {
+  uploaded: 35,
+  queued: 45,
+  transcribing: 70,
+  ready: 100,
+  failed: 100,
+};
+
+function setPrestageStatus(message, progress) {
+  $("prestageJobStatus").textContent = message;
+  $("prestageMeterBar").style.width = `${progress}%`;
+}
+
+function setPrestageBusy(isBusy) {
+  document.querySelectorAll("#prestageForm button, #prestageForm input, #prestageForm select, #prestageForm textarea").forEach(
+    (field) => {
+      field.disabled = isBusy;
+    },
+  );
+}
+
+function renderPrestageWarnings(warnings = []) {
+  const container = $("prestageWarnings");
+  container.replaceChildren(
+    ...(warnings.length ? warnings : ["Draft only until reviewed."]).map((warning) => {
+      const item = document.createElement("p");
+      item.textContent = warning;
+      return item;
+    }),
+  );
+}
+
+function renderPrestageJob(job) {
+  const progress = prestageProgress[job.status] || 20;
+  const label =
+    {
+      uploaded: "Uploaded. Transcription is not configured yet.",
+      queued: "Queued for transcription.",
+      transcribing: "Transcribing walkthrough.",
+      ready: "Transcript ready.",
+      failed: "Transcription failed.",
+    }[job.status] || text(job.status);
+
+  setPrestageStatus(label, progress);
+  $("prestageJobMeta").textContent = [
+    `Job ${job.id}`,
+    job.file?.originalName ? `File: ${job.file.originalName}` : "",
+    job.updatedAt ? `Updated ${new Date(job.updatedAt).toLocaleString()}` : "",
+  ]
+    .filter(Boolean)
+    .join(" | ");
+
+  $("prestageOutput").value = job.notesDraft || job.transcript || "";
+  $("prestageCopyOutput").disabled = !$("prestageOutput").value;
+  renderPrestageWarnings(job.warnings || []);
+
+  if (job.id) {
+    $("prestageTranscriptLink").href = `/api/prestage/intakes/${job.id}/transcript.txt`;
+    $("prestageTranscriptLink").classList.remove("disabled");
+    $("prestageTranscriptLink").setAttribute("aria-disabled", "false");
+  }
+
+  if (job.error) {
+    $("prestageOutput").value = `Error: ${job.error}`;
+    $("prestageCopyOutput").disabled = true;
+  }
+}
+
+async function pollPrestageJob(id) {
+  try {
+    const job = await fetchJson(`/api/prestage/intakes/${id}`);
+    if (id !== state.activePrestageJobId) return;
+    renderPrestageJob(job);
+
+    if (job.status !== "ready" && job.status !== "failed") {
+      state.prestagePollTimer = window.setTimeout(() => pollPrestageJob(id), 2500);
+    }
+  } catch (error) {
+    setPrestageStatus(error.message || "Could not refresh intake status.", 100);
+  }
+}
+
+async function initPrestage() {
+  try {
+    const health = await fetchJson("/api/prestage/health");
+    $("prestageConfigStatus").textContent = health.transcriptionConfigured
+      ? `Transcription enabled. Upload limit ${health.maxUploadMb} MB.`
+      : `Uploads enabled. Add OPENAI_API_KEY to enable transcription. Limit ${health.maxUploadMb} MB.`;
+  } catch {
+    $("prestageConfigStatus").textContent = "Upload settings unavailable.";
+  }
+
+  renderPrestageWarnings();
+}
+
 async function load() {
   $("refresh").disabled = true;
   try {
@@ -399,6 +507,7 @@ async function load() {
     renderOverview();
     renderDownloadCards();
     renderAgentDrilldown();
+    await initPrestage();
   } finally {
     $("refresh").disabled = false;
   }
@@ -409,5 +518,40 @@ document.querySelectorAll(".tab").forEach((tab) => {
 });
 
 $("refresh").addEventListener("click", load);
+
+$("prestageForm").addEventListener("submit", async (event) => {
+  event.preventDefault();
+  window.clearTimeout(state.prestagePollTimer);
+  setPrestageBusy(true);
+  setPrestageStatus("Uploading walkthrough...", 15);
+  $("prestageOutput").value = "";
+  $("prestageJobMeta").textContent = "Uploading";
+
+  try {
+    const job = await fetchJson("/api/prestage/intakes", {
+      method: "POST",
+      body: new FormData(event.currentTarget),
+    });
+    state.activePrestageJobId = job.id;
+    renderPrestageJob(job);
+
+    if (job.status !== "ready" && job.status !== "failed") {
+      pollPrestageJob(job.id);
+    }
+  } catch (error) {
+    setPrestageStatus(error.message || "Upload failed.", 100);
+  } finally {
+    setPrestageBusy(false);
+  }
+});
+
+$("prestageCopyOutput").addEventListener("click", async () => {
+  if (!$("prestageOutput").value) return;
+  await navigator.clipboard.writeText($("prestageOutput").value);
+  $("prestageCopyOutput").textContent = "Copied";
+  window.setTimeout(() => {
+    $("prestageCopyOutput").textContent = "Copy";
+  }, 1200);
+});
 
 load();

@@ -1,8 +1,12 @@
 #!/usr/bin/env node
 
 const fs = require("node:fs");
+const fsp = require("node:fs/promises");
 const http = require("node:http");
 const path = require("node:path");
+const crypto = require("node:crypto");
+const Busboy = require("busboy");
+const OpenAI = require("openai");
 const { parse } = require("csv-parse/sync");
 
 const PORT = Number(process.env.PORT || 3000);
@@ -11,9 +15,17 @@ const DATA_DIR = path.resolve(process.env.DATA_DIR || path.join(__dirname, "priv
 const RUN_STATE_DIR = path.resolve(
   process.env.RUN_STATE_DIR || path.join(__dirname, "private-data", "run-state"),
 );
+const PRESTAGE_STORAGE_DIR = path.resolve(
+  process.env.PRESTAGE_STORAGE_DIR || path.join(DATA_DIR, "prestage-intakes"),
+);
+const PRESTAGE_UPLOAD_DIR = path.resolve(process.env.PRESTAGE_UPLOAD_DIR || path.join(PRESTAGE_STORAGE_DIR, "uploads"));
+const PRESTAGE_JOB_DIR = path.resolve(process.env.PRESTAGE_JOB_DIR || path.join(PRESTAGE_STORAGE_DIR, "jobs"));
+const PRESTAGE_MAX_UPLOAD_MB = Number(process.env.PRESTAGE_MAX_UPLOAD_MB || 750);
 const IS_PRODUCTION = process.env.NODE_ENV === "production";
 const DASHBOARD_USERNAME = process.env.DASHBOARD_USERNAME || "simplydwell";
 const DASHBOARD_PASSWORD = process.env.DASHBOARD_PASSWORD || "";
+const ALLOWED_PRESTAGE_MIME_PREFIXES = ["audio/", "video/"];
+const ALLOWED_PRESTAGE_MIME_TYPES = new Set(["application/octet-stream"]);
 
 const DATASETS = {
   agents: {
@@ -577,6 +589,304 @@ function buildOverview() {
   };
 }
 
+function clean(value, limit = 2000) {
+  return String(value || "").trim().slice(0, limit);
+}
+
+function sanitizePrestageIntake(fields) {
+  const requestedOutputs = Array.isArray(fields.requestedOutputs)
+    ? fields.requestedOutputs
+    : [fields.requestedOutputs].filter(Boolean);
+
+  return {
+    propertyAddress: clean(fields.propertyAddress),
+    uploaderName: clean(fields.uploaderName),
+    uploaderEmail: clean(fields.uploaderEmail),
+    reviewOwner: clean(fields.reviewOwner),
+    requestedOutputs: requestedOutputs.map((value) => clean(value, 120)).filter(Boolean),
+    targetStageWindow: clean(fields.targetStageWindow),
+    stageProJobId: clean(fields.stageProJobId),
+    trelloCard: clean(fields.trelloCard),
+    occupancyStatus: clean(fields.occupancyStatus),
+    bedrooms: clean(fields.bedrooms, 80),
+    bathrooms: clean(fields.bathrooms, 80),
+    accessNotes: clean(fields.accessNotes),
+    parkingLoading: clean(fields.parkingLoading),
+    notes: clean(fields.notes),
+  };
+}
+
+function prestageStatusPayload() {
+  return {
+    ok: true,
+    transcriptionConfigured: Boolean(process.env.OPENAI_API_KEY),
+    maxUploadMb: PRESTAGE_MAX_UPLOAD_MB,
+    storageConfigured: Boolean(
+      process.env.PRESTAGE_STORAGE_DIR || process.env.PRESTAGE_UPLOAD_DIR || process.env.PRESTAGE_JOB_DIR,
+    ),
+  };
+}
+
+async function ensurePrestageStorage() {
+  await fsp.mkdir(PRESTAGE_UPLOAD_DIR, { recursive: true });
+  await fsp.mkdir(PRESTAGE_JOB_DIR, { recursive: true });
+}
+
+function isAllowedPrestageMime(mimeType) {
+  return (
+    ALLOWED_PRESTAGE_MIME_PREFIXES.some((prefix) => String(mimeType || "").startsWith(prefix)) ||
+    ALLOWED_PRESTAGE_MIME_TYPES.has(mimeType)
+  );
+}
+
+function safeOriginalName(name) {
+  return path.basename(String(name || "walkthrough").replaceAll("\0", "")).slice(0, 180) || "walkthrough";
+}
+
+function parsePrestageUpload(req) {
+  return new Promise((resolve, reject) => {
+    const contentType = req.headers["content-type"] || "";
+    if (!contentType.toLowerCase().includes("multipart/form-data")) {
+      reject(Object.assign(new Error("Submit the intake as multipart form data."), { statusCode: 415 }));
+      return;
+    }
+
+    const fields = {};
+    let upload;
+    let uploadError;
+    let fileWrite;
+    const maxBytes = PRESTAGE_MAX_UPLOAD_MB * 1024 * 1024;
+
+    let busboy;
+    try {
+      busboy = Busboy({ headers: req.headers, limits: { files: 1, fileSize: maxBytes, fields: 40 } });
+    } catch (error) {
+      reject(Object.assign(error, { statusCode: 400 }));
+      return;
+    }
+
+    busboy.on("field", (name, value) => {
+      const key = String(name || "");
+      if (fields[key] === undefined) {
+        fields[key] = value;
+      } else if (Array.isArray(fields[key])) {
+        fields[key].push(value);
+      } else {
+        fields[key] = [fields[key], value];
+      }
+    });
+
+    busboy.on("file", (name, file, info) => {
+      if (name !== "walkthrough") {
+        file.resume();
+        return;
+      }
+
+      const originalName = safeOriginalName(info.filename);
+      const mimeType = info.mimeType || "application/octet-stream";
+      if (!isAllowedPrestageMime(mimeType)) {
+        uploadError = Object.assign(new Error("Please upload an audio or video walkthrough file."), { statusCode: 400 });
+        file.resume();
+        return;
+      }
+
+      const ext = path.extname(originalName).slice(0, 16);
+      const storedName = `${new Date().toISOString().replace(/[:.]/g, "-")}-${crypto.randomUUID()}${ext}`;
+      const storedPath = path.join(PRESTAGE_UPLOAD_DIR, storedName);
+      let size = 0;
+      const stream = fs.createWriteStream(storedPath);
+      fileWrite = new Promise((writeResolve, writeReject) => {
+        stream.on("finish", writeResolve);
+        stream.on("error", writeReject);
+      });
+
+      file.on("data", (chunk) => {
+        size += chunk.length;
+      });
+      file.on("limit", () => {
+        uploadError = Object.assign(new Error(`Upload is too large. Limit is ${PRESTAGE_MAX_UPLOAD_MB} MB.`), {
+          statusCode: 413,
+        });
+        stream.destroy(uploadError);
+      });
+      file.pipe(stream);
+
+      upload = {
+        storedName,
+        storedPath,
+        originalName,
+        mimeType,
+        get size() {
+          return size;
+        },
+      };
+    });
+
+    busboy.on("error", reject);
+    busboy.on("finish", async () => {
+      try {
+        if (fileWrite) await fileWrite;
+        if (uploadError) {
+          if (upload?.storedPath) await fsp.rm(upload.storedPath, { force: true });
+          reject(uploadError);
+          return;
+        }
+        if (!upload) {
+          reject(Object.assign(new Error("A walkthrough audio or video file is required."), { statusCode: 400 }));
+          return;
+        }
+        resolve({ fields, file: upload });
+      } catch (error) {
+        reject(error);
+      }
+    });
+
+    req.pipe(busboy);
+  });
+}
+
+function buildPrestageDraftNotes(job, transcript) {
+  const address = job.intake.propertyAddress || "Unknown";
+  const outputs = job.intake.requestedOutputs?.join(", ") || "notes";
+
+  return [
+    "# Simply Dwell Walkthrough Intake",
+    "",
+    "## Property",
+    `- Address: ${address}`,
+    `- Uploaded by: ${job.intake.uploaderName || "Unknown"}`,
+    `- Review owner: ${job.intake.reviewOwner || "Unknown"}`,
+    `- Requested output: ${outputs}`,
+    `- Target stage date/window: ${job.intake.targetStageWindow || "Unknown"}`,
+    `- Stage Pro/FileMaker job ID: ${job.intake.stageProJobId || "Unknown"}`,
+    `- Trello card: ${job.intake.trelloCard || "Unknown"}`,
+    `- Occupancy: ${job.intake.occupancyStatus || "Unknown"}`,
+    `- Beds/baths: ${job.intake.bedrooms || "Unknown"} / ${job.intake.bathrooms || "Unknown"}`,
+    "",
+    "## Access / Crew",
+    `- Access details: ${job.intake.accessNotes ? "Provided in sensitive intake field; review privately." : "Unknown"}`,
+    `- Parking/loading: ${job.intake.parkingLoading || "Unknown"}`,
+    "",
+    "## Extra Notes",
+    job.intake.notes || "None provided.",
+    "",
+    "## Transcript",
+    transcript || "Transcript is not ready yet.",
+    "",
+    "## Reviewer Flags",
+    "- Confirm address, ZIP, stage date/window, room count, and any spoken access details before using operationally.",
+    "- Do not send to Trello, Stage Pro/FileMaker, crew, agents, or homeowners without human approval.",
+  ].join("\n");
+}
+
+async function savePrestageJob(job) {
+  await ensurePrestageStorage();
+  await fsp.writeFile(path.join(PRESTAGE_JOB_DIR, `${job.id}.json`), JSON.stringify(job, null, 2));
+}
+
+async function readPrestageJob(id) {
+  if (!/^[a-f0-9-]{36}$/i.test(id)) return null;
+
+  try {
+    const raw = await fsp.readFile(path.join(PRESTAGE_JOB_DIR, `${id}.json`), "utf8");
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function publicPrestageJob(job) {
+  return {
+    id: job.id,
+    status: job.status,
+    createdAt: job.createdAt,
+    updatedAt: job.updatedAt,
+    intake: {
+      ...job.intake,
+      accessNotes: job.intake.accessNotes ? "Provided in sensitive intake field; review privately." : "",
+    },
+    file: {
+      originalName: job.file.originalName,
+      mimeType: job.file.mimeType,
+      size: job.file.size,
+    },
+    transcript: job.transcript,
+    notesDraft: job.notesDraft,
+    warnings: job.warnings,
+    error: job.error,
+  };
+}
+
+async function processPrestageWalkthrough(initialJob) {
+  let job = {
+    ...initialJob,
+    status: "transcribing",
+    updatedAt: new Date().toISOString(),
+  };
+  await savePrestageJob(job);
+
+  const client = new OpenAI();
+  const transcription = await client.audio.transcriptions.create({
+    file: fs.createReadStream(path.join(PRESTAGE_UPLOAD_DIR, job.file.storedName)),
+    model: process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe",
+  });
+
+  const transcript = transcription.text || "";
+  job = {
+    ...job,
+    status: "ready",
+    updatedAt: new Date().toISOString(),
+    transcript,
+    notesDraft: buildPrestageDraftNotes(job, transcript),
+  };
+  await savePrestageJob(job);
+}
+
+async function createPrestageIntake(req) {
+  await ensurePrestageStorage();
+  const upload = await parsePrestageUpload(req);
+  const now = new Date().toISOString();
+  const job = {
+    id: crypto.randomUUID(),
+    status: process.env.OPENAI_API_KEY ? "queued" : "uploaded",
+    createdAt: now,
+    updatedAt: now,
+    intake: sanitizePrestageIntake(upload.fields),
+    file: {
+      storedName: upload.file.storedName,
+      originalName: upload.file.originalName,
+      mimeType: upload.file.mimeType,
+      size: upload.file.size,
+    },
+    transcript: "",
+    notesDraft: "",
+    warnings: [
+      "Draft only. Human review is required before Trello, Stage Pro/FileMaker, crew handoff, or customer send.",
+      "Access codes, lockbox codes, owner details, and employee notes are sensitive.",
+    ],
+    error: "",
+  };
+
+  if (!process.env.OPENAI_API_KEY) {
+    job.notesDraft = buildPrestageDraftNotes(job, "");
+  }
+
+  await savePrestageJob(job);
+
+  if (process.env.OPENAI_API_KEY) {
+    processPrestageWalkthrough(job).catch(async (error) => {
+      await savePrestageJob({
+        ...job,
+        status: "failed",
+        updatedAt: new Date().toISOString(),
+        error: error instanceof Error ? error.message : String(error),
+      });
+    });
+  }
+
+  return publicPrestageJob(job);
+}
+
 function escapeXml(value) {
   return String(value ?? "")
     .replace(/&/g, "&amp;")
@@ -645,7 +955,7 @@ function serveStatic(req, res) {
   fs.createReadStream(filePath).pipe(res);
 }
 
-function route(req, res) {
+async function route(req, res) {
   if (!requireAuth(req, res)) return;
 
   const url = new URL(req.url, "http://localhost");
@@ -668,6 +978,26 @@ function route(req, res) {
             }
           : overview,
       );
+    } else if (url.pathname === "/api/prestage/health") {
+      sendJson(res, 200, prestageStatusPayload());
+    } else if (url.pathname === "/api/prestage/intakes" && req.method === "POST") {
+      sendJson(res, 201, await createPrestageIntake(req));
+    } else if (url.pathname.match(/^\/api\/prestage\/intakes\/[a-f0-9-]+$/i)) {
+      const id = url.pathname.split("/").at(-1);
+      const job = await readPrestageJob(id);
+      if (!job) {
+        sendJson(res, 404, { error: "Intake not found." });
+      } else {
+        sendJson(res, 200, publicPrestageJob(job));
+      }
+    } else if (url.pathname.match(/^\/api\/prestage\/intakes\/[a-f0-9-]+\/transcript\.txt$/i)) {
+      const id = url.pathname.split("/").at(-2);
+      const job = await readPrestageJob(id);
+      if (!job) {
+        sendText(res, 404, "Intake not found.");
+      } else {
+        sendText(res, 200, job.transcript || "Transcript is not ready yet.");
+      }
     } else if (url.pathname === "/api/properties") {
       sendJson(res, 200, publicDataset("properties"));
     } else if (url.pathname === "/api/agents") {

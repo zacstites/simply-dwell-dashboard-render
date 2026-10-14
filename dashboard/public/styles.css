@@ -383,6 +383,129 @@ select {
   font: inherit;
 }
 
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 10px 11px;
+  color: var(--ink);
+  background: #fff;
+  font: inherit;
+}
+
+textarea {
+  resize: vertical;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+fieldset legend,
+.intake-form label span {
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+fieldset label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+fieldset input[type="checkbox"] {
+  width: auto;
+}
+
+button:disabled,
+.button.disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.intake-panel {
+  margin-bottom: 16px;
+}
+
+.intake-form {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+}
+
+.intake-form label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.intake-form .wide,
+.intake-form fieldset,
+.form-actions {
+  grid-column: 1 / -1;
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  flex-wrap: wrap;
+}
+
+.meter {
+  height: 8px;
+  overflow: hidden;
+  background: var(--brand-3);
+}
+
+.meter span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--brand-2);
+  transition: width 160ms ease;
+}
+
+.warning-list {
+  display: grid;
+  gap: 8px;
+  min-height: 104px;
+  padding: 16px 18px 18px;
+}
+
+.warning-list p {
+  padding: 10px 12px;
+  border: 1px solid rgba(167, 16, 0, 0.28);
+  border-radius: 8px;
+  color: var(--danger);
+  background: #fff5f2;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.draft-output {
+  display: block;
+  min-height: 360px;
+  border: 0;
+  border-radius: 0 0 8px 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
 .agent-drilldown {
   padding: 16px 18px 18px;
 }
@@ -469,7 +592,8 @@ select {
   .metrics,
   .grid,
   .status-grid,
-  .agent-layout {
+  .agent-layout,
+  .intake-form {
     grid-template-columns: 1fr;
   }
 }
@@ -515,5 +639,9 @@ select {
 
   .pie-chart {
     width: 170px;
+  }
+
+  fieldset {
+    grid-template-columns: 1fr;
   }
 }

@@ -10,8 +10,10 @@
     "sync:data": "node scripts/sync-data.js"
   },
   "dependencies": {
+    "busboy": "^1.6.0",
     "csv-parse": "^7.0.3",
-    "csv-stringify": "^6.9.0"
+    "csv-stringify": "^6.9.0",
+    "openai": "^4.104.0"
   },
   "engines": {
     "node": ">=18"
