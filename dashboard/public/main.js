@@ -38,6 +38,7 @@ function labelForHeader(header) {
 function displayValue(header, value, record = {}, headers = []) {
   const raw = String(value || "").trim();
   if (!raw) return "-";
+  if (header === "listing_price" && Number.isFinite(Number(raw))) return new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", maximumFractionDigits: 0}).format(Number(raw));
   if (header === "property_address" && headers.includes("city")) return raw.split(",")[0].trim() || raw;
   if (header === "email_sent_to_zac") return raw.toLowerCase() === "yes" ? "Yes" : "No";
   if (header === "photo_status") {
@@ -260,8 +261,8 @@ function renderAgentDrilldown() {
   const rows = state.selectedAgentSection === "emails" ? selected.emails : selected.properties;
   const headers =
     state.selectedAgentSection === "emails"
-      ? ["date", "property_address", "draft_type", "message_status", "next_action"]
-      : ["property_address", "city", "mls_id", "photo_status", "email_sent_to_zac"];
+      ? ["date", "property_address", "draft_type", "message_status", "no_send_reason", "next_action"]
+      : ["property_address", "city", "mls_id", "listing_price", "photo_status", "email_sent_to_zac", "no_send_reason"];
 
   const listTable = document.createElement("table");
   listTable.className = "agent-list-table";
