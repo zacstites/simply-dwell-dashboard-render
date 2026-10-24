@@ -110,3 +110,8 @@ Download endpoints:
 - `/api/downloads/interactions.csv`
 - `/api/downloads/mls-backlog.csv`
 - `/api/downloads/simply-dwell-data.xls`
+
+## ZIP campaigns
+The authenticated /campaigns.html page creates isolated research jobs with exact ZIP, inclusive price and days-on-market ranges, and a maximum reviewer lead count. The minimum price remains $200,000. No customer/agent blast delivery is enabled. Reviewer emails remain Zac-only through the shared guarded sender; rejected contacts are retained in campaign results.
+Campaign records are stored in CAMPAIGN_STORAGE_DIR or PRESTAGE_STORAGE_DIR/campaigns on the existing persistent disk, separate from snapshot publication. No new paid disk/service is required. Browser endpoints use dashboard Basic auth plus JSON and same-origin write checks. Worker endpoints require a distinct CAMPAIGN_WORKER_TOKEN provisioned as a Render secret and mode-0600 local worker secret; never commit it.
+The simply-dwell-campaigns worker polls read-only, claims a 25-minute lease and can resume a campaign via queued status. Cancel prevents further claims/updates; in-flight already-submitted email cannot be recalled. Unknown DOM cannot qualify. Existing backlog/nightly workers and their schedules are unchanged. Shared sent history prevents cross-bot duplicates. Run node --test tests/campaigns.test.cjs for validation and API lifecycle coverage.

@@ -1101,8 +1101,23 @@ function serveStatic(req, res) {
   fs.createReadStream(filePath).pipe(res);
 }
 
+const campaignHandler = require('./campaigns').createHandler({
+  dir: process.env.CAMPAIGN_STORAGE_DIR || path.join(PRESTAGE_STORAGE_DIR, 'campaigns'),
+  token: process.env.CAMPAIGN_WORKER_TOKEN || '', sendJson,
+});
 async function route(req, res) {
+  const campaignUrl = new URL(req.url, 'http://localhost');
+  if (campaignUrl.pathname.startsWith('/api/campaign-worker/')) {
+    try { await campaignHandler(req, res, campaignUrl, true); }
+    catch (e) { sendJson(res, e.statusCode || 500, {error:e.message}); }
+    return;
+  }
   if (!requireAuth(req, res)) return;
+  if (campaignUrl.pathname === '/api/campaigns' || campaignUrl.pathname.startsWith('/api/campaigns/')) {
+    try { await campaignHandler(req, res, campaignUrl); }
+    catch (e) { sendJson(res, e.statusCode || 500, {error:e.message}); }
+    return;
+  }
 
   const url = new URL(req.url, "http://localhost");
   const csvMatch = url.pathname.match(/^\/api\/downloads\/([a-z-]+)\.csv$/);

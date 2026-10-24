@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ZIP Campaigns · Simply Dwell</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/campaigns.css">
+</head>
+<body>
+<main class="shell">
+  <header class="topbar">
+    <div><p class="eyebrow">Simply Dwell</p><h1>ZIP Campaigns</h1></div>
+    <div class="actions"><span id="updatedAt"></span><button id="refresh" type="button">Refresh</button></div>
+  </header>
+  <nav class="tabs campaign-nav" aria-label="Dashboard pages">
+    <a class="button tab" href="/">Lead Dashboard</a>
+    <a class="button tab active" href="/campaigns.html" aria-current="page">ZIP Campaigns</a>
+  </nav>
+  <section class="panel intake-panel">
+    <div class="panel-head"><div><h2>Find leads in your market</h2><span>A dedicated search, separate from nightly leads and the MLS backlog.</span></div></div>
+    <p class="campaign-note">Choose your ZIP code, price range, and listing age. Matching properties and researched agent contacts appear here—even when a property is not eligible for a staging email.</p>
+    <p class="campaign-note review-notice"><strong>Reviewer mode:</strong> Qualified lead emails go to Zac for review. This does not send a marketing blast to listing agents.</p>
+    <form id="campaignForm" class="intake-form campaign-form">
+      <label><span>ZIP code</span><input name="zip" type="text" inputmode="numeric" autocomplete="postal-code" pattern="[0-9]{5}" maxlength="5" placeholder="32206" required></label>
+      <label><span>Minimum price ($)</span><input name="minPrice" type="number" min="200000" step="1" value="200000" required></label>
+      <label><span>Maximum price ($)</span><input name="maxPrice" type="number" min="200000" step="1" value="1000000" required></label>
+      <label><span>Minimum days on market</span><input name="minDays" type="number" min="0" step="1" value="0" required></label>
+      <label><span>Maximum days on market</span><input name="maxDays" type="number" min="0" step="1" value="180" required></label>
+      <label><span>Lead limit (1–25)</span><input name="maxLeads" type="number" min="1" max="25" step="1" value="5" required></label>
+      <div class="form-actions wide"><button id="startCampaign" type="submit">Find leads</button><span id="formStatus" role="status" aria-live="polite">Start a search when you're ready.</span></div>
+    </form>
+  </section>
+  <section class="panel intake-panel">
+    <div class="panel-head"><div><h2>Search history</h2><span id="historyStatus" role="status">Loading searches…</span></div></div>
+    <div id="campaignHistory" class="campaign-history"></div>
+  </section>
+  <section id="campaignDetail" class="panel" hidden aria-label="Selected search results">
+    <div class="panel-head"><div><h2 id="detailTitle">Search results</h2><span id="detailStatus"></span></div><button id="cancelCampaign" type="button" hidden>Cancel search</button></div>
+    <div id="campaignSummary" class="campaign-summary" aria-live="polite"></div>
+    <div class="table-wrap"><table><caption class="sr-only">Properties discovered and listing-agent contacts, including no-send reasons</caption><thead><tr><th>Property</th><th>Price / days on market</th><th>Listing agent</th><th>Contact</th><th>Outcome / reason</th></tr></thead><tbody id="campaignResults"></tbody></table></div>
+  </section>
+  <noscript><p class="campaign-note">Enable JavaScript to start a search and view campaign results.</p></noscript>
+</main>
+<script src="/campaigns.js" defer></script>
+</body>
+</html>
