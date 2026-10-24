@@ -55,6 +55,7 @@
     $('detailTitle').textContent = `Results · ${campaign.filters?.zip || 'Search'}`;
     $('detailStatus').textContent = `${campaign.status || 'Unknown'} · ${filtersText(campaign.filters)}`;
     $('cancelCampaign').hidden = !active(campaign.status);
+    $('retryCampaign').hidden = campaign.status !== 'blocked';
     const results = Array.isArray(campaign.results) ? campaign.results : [];
     const summary = campaign.summary;
     const counts = summary && typeof summary === 'object' ? summary : {};
@@ -150,6 +151,13 @@
       await refresh();
     } catch (error) { status(error.message, true); }
     finally { $('startCampaign').disabled = false; }
+  });
+  $('retryCampaign').addEventListener('click', async () => {
+    if (!state.selectedId) return;
+    $('retryCampaign').disabled = true;
+    try { await request(`/api/campaigns/${encodeURIComponent(state.selectedId)}/retry`, {method:'POST',body:'{}'}); status('Search queued to resume. Previous results are retained.'); await refresh(); }
+    catch (error) { status(error.message,true); }
+    finally { $('retryCampaign').disabled = false; }
   });
   $('cancelCampaign').addEventListener('click', async () => {
     if (!state.selectedId || !window.confirm('Cancel this search? Results already collected will be kept. Emails already sent cannot be recalled.')) return;
