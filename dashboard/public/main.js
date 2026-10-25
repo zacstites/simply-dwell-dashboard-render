@@ -28,6 +28,7 @@ function labelForHeader(header) {
   const labels = {
     email_sent_to_zac: "Sent to Dwell",
     mls_id: "MLS",
+    lead_source: "Lead Source",
     next_action: "Next Action",
     photo_status: "AI Pictures Sent",
     property_address: "Property Address",
@@ -262,7 +263,7 @@ function renderAgentDrilldown() {
   const headers =
     state.selectedAgentSection === "emails"
       ? ["date", "property_address", "draft_type", "message_status", "no_send_reason", "next_action"]
-      : ["property_address", "city", "mls_id", "listing_price", "photo_status", "email_sent_to_zac", "no_send_reason"];
+      : ["property_address", "city", "mls_id", "lead_source", "listing_price", "photo_status", "email_sent_to_zac", "no_send_reason"];
 
   const listTable = document.createElement("table");
   listTable.className = "agent-list-table";

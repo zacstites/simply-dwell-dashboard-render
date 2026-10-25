@@ -1,6 +1,7 @@
 'use strict';
 
 (() => {
+  const presentation = window.CampaignPresentation;
   const $ = (id) => document.getElementById(id);
   const form = $('campaignForm');
   const state = { selectedId: null, selected: null, loading: false, detailVersion: 0 };
@@ -39,7 +40,7 @@
       info.append(element('strong', filtersText(campaign.filters)), element('small', date(campaign.createdAt)));
       const actions = element('div', null, 'actions');
       const knownStatus = ['queued', 'running', 'completed', 'blocked', 'cancelled'].includes(campaign.status) ? campaign.status : 'unknown';
-      actions.append(element('span', knownStatus, `campaign-badge ${knownStatus}`));
+      actions.append(element('span', presentation.campaignLabel(knownStatus), `campaign-badge ${knownStatus}`));
       const button = element('button', 'View results');
       button.type = 'button';
       button.setAttribute('aria-label', `View results for ${filtersText(campaign.filters)}`);
@@ -53,17 +54,24 @@
     state.selected = campaign;
     $('campaignDetail').hidden = false;
     $('detailTitle').textContent = `Results · ${campaign.filters?.zip || 'Search'}`;
-    $('detailStatus').textContent = `${campaign.status || 'Unknown'} · ${filtersText(campaign.filters)}`;
+    $('detailStatus').textContent = `${presentation.campaignLabel(campaign.status)} · ${filtersText(campaign.filters)}`;
     $('cancelCampaign').hidden = !active(campaign.status);
     $('retryCampaign').hidden = campaign.status !== 'blocked';
     const results = Array.isArray(campaign.results) ? campaign.results : [];
     const summary = campaign.summary;
     const counts = summary && typeof summary === 'object' ? summary : {};
     const discovered = counts.discovered ?? campaign.discoveredCount ?? results.length;
-    const sends = counts.sent ?? campaign.sentCount ?? results.filter((result) => result.emailSent === true || result.sentItemsMessageId).length;
+    const sends = counts.sent ?? campaign.sentCount ?? results.filter((result) => result.emailSent === true && result.sentItemsMessageId).length;
     $('campaignSummary').replaceChildren(element('strong', `${discovered} properties discovered`), element('strong', `${sends} reviewer emails sent`));
     const message = typeof summary === 'string' ? summary : summary?.message;
-    if (message) $('campaignSummary').append(element('p', message));
+    $('campaignSummary').append(element('p', presentation.campaignExplanation(campaign.status)));
+    const needsVerification = results.filter((result) => result.status === 'held').length;
+    if (needsVerification) $('campaignSummary').append(element('p', `${needsVerification} properties need verification before email delivery. These are research results, not emails waiting in an outbox.`));
+    if (message) {
+      const notes = element('details');
+      notes.append(element('summary', 'Research activity details'), element('p', message));
+      $('campaignSummary').append(notes);
+    }
     const rows = $('campaignResults');
     rows.replaceChildren();
     if (!results.length) {
@@ -94,8 +102,14 @@
       const agentCell = element('td', result.agentName || agent.name || 'Not yet found');
       const contact = element('td');
       contact.append(element('div', result.agentEmail || agent.email || 'Email not yet found'), element('small', result.agentPhone || agent.phone || 'Phone not yet found'));
-      const outcome = element('td', result.status || 'Researching');
-      if (result.reason) outcome.append(element('small', result.reason));
+      const display = presentation.outcome(result);
+      const outcome = element('td', display.label);
+      outcome.append(element('small', display.explanation));
+      if (result.reason && result.reason !== display.explanation) {
+        const evidence = element('details');
+        evidence.append(element('summary', 'Research details'), element('small', result.reason));
+        outcome.append(evidence);
+      }
       row.append(property, detail, agentCell, contact, outcome);
       rows.append(row);
     }

@@ -10,6 +10,7 @@ const Busboy = require("busboy");
 const ffmpegPath = require("ffmpeg-static");
 const OpenAI = require("openai");
 const { parse } = require("csv-parse/sync");
+const { annotateProperties } = require("./lead-sources");
 
 const PORT = Number(process.env.PORT || 3000);
 const PUBLIC_DIR = path.join(__dirname, "public");
@@ -167,13 +168,14 @@ function readDataset(key) {
   const filePath = path.join(DATA_DIR, dataset.file);
   const stat = fs.statSync(filePath);
   const raw = fs.readFileSync(filePath, "utf8");
-  const records = parse(raw, {
+  let records = parse(raw, {
     bom: true,
     columns: true,
     relax_quotes: true,
     relax_column_count: true,
     skip_empty_lines: true,
   });
+  if (key === "properties") records = annotateProperties(records);
   const headers = records[0] ? Object.keys(records[0]) : parse(raw, { bom: true, to_line: 1 })[0] || [];
   const missingHeaders = dataset.requiredHeaders.filter((header) => !headers.includes(header));
   const parsed = { headers, records };
@@ -434,6 +436,8 @@ function buildAgentDrilldown(
           "brokerage",
           "photo_status",
           "listing_price",
+          "lead_source",
+          "lead_source_history",
           "listing_price_source",
           "listing_price_checked_at",
           "no_send_reason",

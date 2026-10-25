@@ -4,6 +4,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { parse } = require("csv-parse/sync");
 const { stringify } = require("csv-stringify/sync");
+const { annotateProperties } = require("../lead-sources");
 
 const root = path.resolve(__dirname, "..", "..");
 const sourceDir = "/Users/zac/.openclaw/workspace-simply-dwell-lead-generation/data/agent-database";
@@ -101,7 +102,20 @@ function fullAddress(row) {
     .trim();
 }
 
-const properties = readCombinedCsv("properties.csv", "property_id");
+const previousPropertiesFile = path.join(targetDir, "properties.csv");
+const previousProperties = fs.existsSync(previousPropertiesFile) ? readCsv(previousPropertiesFile) : [];
+const rawProperties = readCombinedCsv("properties.csv", "property_id");
+// A processed/reviewed backlog entry proves workflow participation. Mere export membership does not.
+const backlogProvenanceState = JSON.parse(fs.readFileSync(backlogStateFile, "utf8"));
+const backlogReviewed = new Set([
+  ...(backlogProvenanceState.processed_mls_ids || []).map(String),
+  ...(backlogProvenanceState.skipped || []).map(row => String(row.mls_id || "")).filter(Boolean),
+]);
+const backlogProvenance = rawProperties.filter(row => String(row.mls_id || "").split(/\s*[/|,]\s*/).some(mls => backlogReviewed.has(mls))).map(row => ({
+  property_id: row.property_id,
+  lead_source_history: JSON.stringify([{source: "MLS Backlog", evidence: `${backlogStateFile}: processed_mls_ids/skipped matches ${row.mls_id}`}]),
+}));
+const properties = annotateProperties(rawProperties, [...readCombinedCsv("interactions.csv", "interaction_id"), ...backlogProvenance], previousProperties);
 const dashboardProperties = properties.map((row) => ({
   ...row,
   processing_status:
