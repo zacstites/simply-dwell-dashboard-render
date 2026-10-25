@@ -8,4 +8,5 @@ function visible(r,f,now=Date.now()){
  url(r.statusSource)&&url(r.priceSource)&&url(r.domSource)&&url(r.listingUrl)&&Number.isFinite(checked)&&checked<=now&&now-checked<=86400000&&
  typeof r.price==='number'&&r.price>=f.minPrice&&r.price<=f.maxPrice&&Number.isInteger(r.daysOnMarket)&&r.daysOnMarket>=f.minDays&&r.daysOnMarket<=f.maxDays&&!!r.agentName;
 }
-module.exports={identity,visible};
+function sameProperty(a,b){return (!!a.mls&&a.mls===b.mls)||(!!a.address&&String(a.address).trim().toLowerCase()===String(b.address||'').trim().toLowerCase());}
+module.exports={identity,visible,sameProperty};
