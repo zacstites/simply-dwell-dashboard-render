@@ -65,7 +65,7 @@
     $('campaignSummary').replaceChildren(element('strong', `${results.length} verified active listings`), element('strong', `${sends} reviewer emails sent`));
     const message = typeof summary === 'string' ? summary : summary?.message;
     $('campaignSummary').append(element('p', presentation.campaignExplanation(campaign.status)));
-    if (campaign.retryAt) $('campaignSummary').append(element('p', `Temporarily cooling down. Automatic retry after ${date(campaign.retryAt)}.`));
+    if (campaign.status === 'queued' && campaign.retryAt) $('campaignSummary').append(element('p', Date.parse(campaign.retryAt) > Date.now() ? `Taking a short automatic pause between requests. Eligible to resume after ${date(campaign.retryAt)}; the worker checks every two minutes. No action needed.` : 'The automatic pause has ended. Your search will resume on an upcoming worker pass. No action needed.'));
     const rows = $('campaignResults');
     rows.replaceChildren();
     if (!results.length) {
@@ -155,7 +155,7 @@
       if (!campaign.id) throw new Error('Search submitted, but its ID was not returned. Refresh history before trying again.');
       state.selectedId = campaign.id;
       renderDetail(campaign);
-      status('Search queued. You can leave this page and return to see the results.');
+      status('Search scheduled. It will run automatically—no further action needed. You can leave this page and return for results.');
       await refresh();
     } catch (error) { status(error.message, true); }
     finally { $('startCampaign').disabled = false; }
@@ -163,7 +163,7 @@
   $('retryCampaign').addEventListener('click', async () => {
     if (!state.selectedId) return;
     $('retryCampaign').disabled = true;
-    try { await request(`/api/campaigns/${encodeURIComponent(state.selectedId)}/retry`, {method:'POST',body:'{}'}); status('Search queued to resume. Previous results are retained.'); await refresh(); }
+    try { await request(`/api/campaigns/${encodeURIComponent(state.selectedId)}/retry`, {method:'POST',body:'{}'}); status('Your search will resume automatically. No further action needed; previous results are saved.'); await refresh(); }
     catch (error) { status(error.message,true); }
     finally { $('retryCampaign').disabled = false; }
   });

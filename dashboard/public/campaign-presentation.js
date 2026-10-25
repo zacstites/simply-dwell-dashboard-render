@@ -1,9 +1,9 @@
 'use strict';
 (function (root) {
-  const campaignLabels = {queued: 'Waiting to continue', running: 'Research in progress', completed: 'Search complete', blocked: 'Search paused', cancelled: 'Cancelled'};
+  const campaignLabels = {queued: 'Scheduled to continue automatically', running: 'Research in progress', completed: 'Search complete', blocked: 'Search paused', cancelled: 'Cancelled'};
   function campaignLabel(status) { return campaignLabels[status] || 'Status unavailable'; }
   function campaignExplanation(status) {
-    return ({queued: 'Your search is waiting for its next research pass. Saved results are retained.', running: 'Listings and contacts are being checked. Only qualifying leads are emailed.', completed: 'This search has finished. Only verified active listings matching your filters appear below.', blocked: 'A search-level issue needs attention before research can continue. Saved results and previously sent emails are retained.', cancelled: 'This search was cancelled. Saved results are retained.'})[status] || 'Refresh to check the current search status.';
+    return ({queued: 'Your search will continue automatically. No action is needed from you. You can leave this page; your progress is saved.', running: 'Listings and contacts are being checked. Only qualifying leads are emailed.', completed: 'This search has finished. Only verified active listings matching your filters appear below.', blocked: 'A search-level issue needs attention before research can continue. Saved results and previously sent emails are retained.', cancelled: 'This search was cancelled. Saved results are retained.'})[status] || 'Refresh to check the current search status.';
   }
   function outcome(result) {
     if (result.emailSent === true && result.sentItemsMessageId) return {label: 'Sent for review', explanation: 'Reviewer email verified in Sent Items.'};
