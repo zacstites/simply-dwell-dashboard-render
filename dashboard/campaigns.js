@@ -34,7 +34,7 @@ function createStore(dir){
  return {list,create,read,next,claim,update,cancel,retry};
 }
 function publicCampaign(c){if(!c)return null;const {leaseToken,leaseUntil,...out}=c;return out;}
-function customerCampaign(c){if(!c)return null;const out=publicCampaign(c);out.results=c.results.filter(r=>policy.visible(r,c.filters));out.sentCount=c.results.filter(r=>r.emailSent&&r.sentItemsMessageId).length;out.summary="Only verified active residential listings matching your search appear here. Research records are retained internally.";return out;}
+function customerCampaign(c){if(!c)return null;const out=publicCampaign(c);out.results=c.results.filter(r=>policy.visible(r,c.filters)||policy.historical(r)).map(r=>({...r,reviewHistory:policy.historical(r)}));out.sentCount=c.results.filter(r=>r.emailSent&&r.sentItemsMessageId).length;out.summary="Completed review history is retained alongside verified active listings. Historical reviews do not confirm current availability.";return out;}
 async function body(req){if(!String(req.headers['content-type']||'').startsWith('application/json'))fail('JSON required.',415);let s='';for await(const chunk of req){s+=chunk;if(Buffer.byteLength(s)>1024*1024)fail('Request too large.',413);}try{return JSON.parse(s);}catch{fail('Invalid JSON.');}}
 function tokenValid(req,token){const v=req.headers.authorization||'';if(!token)return false;const a=Buffer.from(v),b=Buffer.from('Bearer '+token);return a.length===b.length&&crypto.timingSafeEqual(a,b);}
 function createHandler({dir,token,sendJson}){const store=createStore(dir);return async function(req,res,url,worker=false){

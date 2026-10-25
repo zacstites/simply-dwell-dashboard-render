@@ -62,7 +62,7 @@
     const counts = summary && typeof summary === 'object' ? summary : {};
     const discovered = counts.discovered ?? campaign.discoveredCount ?? results.length;
     const sends = counts.sent ?? campaign.sentCount ?? results.filter((result) => result.emailSent === true && result.sentItemsMessageId).length;
-    $('campaignSummary').replaceChildren(element('strong', `${results.length} verified active listings`), element('strong', `${sends} reviewer emails sent`));
+    $('campaignSummary').replaceChildren(element('strong', `${results.length} listings and completed reviews`), element('strong', `${sends} reviewer emails sent`));
     const message = typeof summary === 'string' ? summary : summary?.message;
     $('campaignSummary').append(element('p', presentation.campaignExplanation(campaign.status)));
     if (campaign.status === 'queued' && campaign.retryAt) $('campaignSummary').append(element('p', Date.parse(campaign.retryAt) > Date.now() ? `Taking a short automatic pause between requests. Eligible to resume after ${date(campaign.retryAt)}; the worker checks every two minutes. No action needed.` : 'The automatic pause has ended. Your search will resume on an upcoming worker pass. No action needed.'));
@@ -79,6 +79,7 @@
       const row = element('tr');
       const property = element('td');
       property.append(element('strong', result.address || 'Address not yet verified'));
+      if (result.reviewHistory) property.append(element('small', 'Completed review · availability may have changed'));
       if (result.mls) property.append(element('small', `MLS ${result.mls}`));
       if (result.listingUrl) {
         try {
