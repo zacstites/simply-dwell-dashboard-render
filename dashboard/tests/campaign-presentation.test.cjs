@@ -17,5 +17,5 @@ test('specific furnishing and ZIP blockers are not concealed', () => {
   assert.match(outcome({status:'held',agentEmail:'known',reason:'ZIP source conflict: A 31401 versus B 31402; gallery not visually reviewed'}).explanation,/Confirm property ZIP.*Complete property photo review/);
   assert.match(outcome({status:'held',agentEmail:'known',reason:'virtual versus physical furnishing remains unresolved'}).explanation,/real or virtual/);
   assert.equal(campaignLabel('blocked'),'Search paused');
-  assert.equal(campaignLabel('queued'),'Waiting to continue');
+  assert.equal(campaignLabel('queued'),'Bot Working');
 });
