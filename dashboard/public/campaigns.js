@@ -62,21 +62,15 @@
     const counts = summary && typeof summary === 'object' ? summary : {};
     const discovered = counts.discovered ?? campaign.discoveredCount ?? results.length;
     const sends = counts.sent ?? campaign.sentCount ?? results.filter((result) => result.emailSent === true && result.sentItemsMessageId).length;
-    $('campaignSummary').replaceChildren(element('strong', `${discovered} properties discovered`), element('strong', `${sends} reviewer emails sent`));
+    $('campaignSummary').replaceChildren(element('strong', `${results.length} verified active listings`), element('strong', `${sends} reviewer emails sent`));
     const message = typeof summary === 'string' ? summary : summary?.message;
     $('campaignSummary').append(element('p', presentation.campaignExplanation(campaign.status)));
-    const needsVerification = results.filter((result) => result.status === 'held').length;
-    if (needsVerification) $('campaignSummary').append(element('p', `${needsVerification} properties need verification before email delivery. These are research results, not emails waiting in an outbox.`));
-    if (message) {
-      const notes = element('details');
-      notes.append(element('summary', 'Research activity details'), element('p', message));
-      $('campaignSummary').append(notes);
-    }
+    if (campaign.retryAt) $('campaignSummary').append(element('p', `Temporarily cooling down. Automatic retry after ${date(campaign.retryAt)}.`));
     const rows = $('campaignResults');
     rows.replaceChildren();
     if (!results.length) {
       const row = element('tr');
-      const cell = element('td', active(campaign.status) ? 'Research is pending or underway. Results will appear here as they are saved.' : 'No properties recorded for this search.');
+      const cell = element('td', active(campaign.status) ? 'Research is pending or underway. Results will appear here as they are saved.' : 'No verified active listings matching your filters yet.');
       cell.colSpan = 5;
       row.append(cell);
       rows.append(row);

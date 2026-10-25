@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const {outcome, campaignLabel} = require('../public/campaign-presentation.js');
 test('held results remain explicitly unsent with multiple unresolved checks', () => {
   const display = outcome({status:'held',reason:'vacancy unverified; displayed DOM may be cumulative',agentEmail:''});
-  assert.equal(display.label,'Needs verification');
+  assert.equal(display.label,'Research in progress');
   assert.match(display.explanation,/Verify days on market/);
   assert.match(display.explanation,/Confirm vacancy/);
   assert.match(display.explanation,/verified listing-agent email/);

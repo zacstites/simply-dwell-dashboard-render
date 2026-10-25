@@ -3,7 +3,7 @@
   const campaignLabels = {queued: 'Waiting to continue', running: 'Research in progress', completed: 'Search complete', blocked: 'Search paused', cancelled: 'Cancelled'};
   function campaignLabel(status) { return campaignLabels[status] || 'Status unavailable'; }
   function campaignExplanation(status) {
-    return ({queued: 'Your search is waiting for its next research pass. Saved results are retained.', running: 'Listings and contacts are being checked. Only qualifying leads are emailed.', completed: 'This search has finished. Listings needing verification remain available below; they were not emailed.', blocked: 'A search-level issue needs attention before research can continue. Saved results and previously sent emails are retained.', cancelled: 'This search was cancelled. Saved results are retained.'})[status] || 'Refresh to check the current search status.';
+    return ({queued: 'Your search is waiting for its next research pass. Saved results are retained.', running: 'Listings and contacts are being checked. Only qualifying leads are emailed.', completed: 'This search has finished. Only verified active listings matching your filters appear below.', blocked: 'A search-level issue needs attention before research can continue. Saved results and previously sent emails are retained.', cancelled: 'This search was cancelled. Saved results are retained.'})[status] || 'Refresh to check the current search status.';
   }
   function outcome(result) {
     if (result.emailSent === true && result.sentItemsMessageId) return {label: 'Sent for review', explanation: 'Reviewer email verified in Sent Items.'};
@@ -19,7 +19,7 @@
     if (/vacancy unverified|occupancy.*unverified/i.test(reason)) checks.push('Confirm vacancy');
     if (/gallery not.*reviewed|gallery.*not yet.*reviewed/i.test(reason)) checks.push('Complete property photo review');
     if (!result.agentEmail && !(result.agent && result.agent.email)) checks.push('Find a verified listing-agent email');
-    return {label: 'Needs verification', explanation: checks.length ? checks.join(' · ') : 'Additional listing evidence is needed before an email can be sent.'};
+    return {label: 'Research in progress', explanation: checks.length ? checks.join(' · ') : 'Additional listing evidence is needed before an email can be sent.'};
   }
   const api = {campaignLabel, campaignExplanation, outcome};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
