@@ -23,7 +23,11 @@ function createStore(dir){
  function update(id,b){const c=read(id);if(c.status!=='running'||!b.leaseToken||b.leaseToken!==c.leaseToken||Date.parse(c.leaseUntil)<Date.now())fail('Inactive or expired campaign lease.',409);if(!['queued','running','completed','blocked'].includes(b.status))fail('Invalid status.');if(!Array.isArray(b.results)||b.results.length>500)fail('Invalid results.');
  const keys=['address','mls','price','daysOnMarket','status','reason','agentName','agentEmail','agentPhone','listingUrl','emailSent','sentItemsMessageId','listingStatus','statusSource','statusCheckedAt','zipCode','propertyType','priceSource','domSource'];
  const results=b.results.map(r=>{if(!r||typeof r!=='object'||Array.isArray(r))fail('Invalid result.');const o={};for(const k of keys)if(r[k]!==undefined){if(k==='emailSent'){if(typeof r[k]!=='boolean')fail('Invalid send status.');}else if(['price','daysOnMarket'].includes(k)){if(r[k]!==null&&(!Number.isFinite(r[k])||r[k]<0))fail('Invalid listing number.');}else if(typeof r[k]!=='string'||r[k].length>3000)fail('Invalid result text.');o[k]=r[k];}if(o.emailSent&&!o.sentItemsMessageId)fail('Sent Items evidence is required.');return o;});
- const changed=results.filter(r=>!c.results.some(old=>JSON.stringify(old)===JSON.stringify(r)));
+ const content=r=>Object.fromEntries(keys.filter(k=>r[k]!==undefined).map(k=>[k,r[k]]));
+ const changed=results.filter(r=>!c.results.some(old=>JSON.stringify(content(old))===JSON.stringify(r)));
+ const now=new Date().toISOString();
+ for(const r of results){const old=c.results.find(x=>policy.sameProperty(x,r));const modified=changed.includes(r);if(old?.foundAt)r.foundAt=old.foundAt;else if(!old)r.foundAt=now;if(modified)r.lastProgressAt=now;else if(old?.lastProgressAt)r.lastProgressAt=old.lastProgressAt;}
+ if(changed.length)c.lastProgressAt=now;
  if(changed.length>1)fail('Finish and save one property at a time. Discovery belongs in the internal ledger.',409);
  for(const old of c.results)if(!results.some(r=>policy.sameProperty(r,old)))fail('Cannot discard research history.',409);
  const sent=results.filter(r=>r.emailSent);if(sent.length>c.filters.maxLeads)fail('Campaign send limit exceeded.');for(const old of c.results.filter(r=>r.emailSent))if(!sent.some(r=>r.sentItemsMessageId===old.sentItemsMessageId))fail('Cannot discard send audit history.');

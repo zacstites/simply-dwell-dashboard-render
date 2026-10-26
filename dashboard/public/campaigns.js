@@ -8,7 +8,7 @@
   const active = (status) => ['queued', 'running'].includes(status);
   const money = (value) => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value))
     ? new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(Number(value)) : 'Not verified';
-  const date = (value) => value && !Number.isNaN(Date.parse(value)) ? new Date(value).toLocaleString() : 'Date unavailable';
+  const date = (value) => value && !Number.isNaN(Date.parse(value)) ? new Date(value).toLocaleString(undefined, {month:'short',day:'numeric',hour:'numeric',minute:'2-digit',second:'2-digit',timeZoneName:'short'}) : 'Date unavailable';
   function element(tag, value, className) {
     const node = document.createElement(tag);
     if (value !== undefined && value !== null) node.textContent = String(value);
@@ -37,7 +37,7 @@
     for (const campaign of campaigns) {
       const row = element('article', null, `campaign-row${state.selectedId === campaign.id ? ' selected' : ''}`);
       const info = element('div');
-      info.append(element('strong', filtersText(campaign.filters)), element('small', date(campaign.createdAt)));
+      info.append(element('strong', filtersText(campaign.filters)), element('small', `Started ${date(campaign.createdAt)}`), element('small', campaign.lastProgressAt ? `Last progress ${date(campaign.lastProgressAt)}` : 'No timestamped progress yet'));
       const actions = element('div', null, 'actions');
       const knownStatus = ['queued', 'running', 'completed', 'blocked', 'cancelled'].includes(campaign.status) ? campaign.status : 'unknown';
       actions.append(element('span', presentation.campaignLabel(knownStatus), `campaign-badge ${knownStatus}`));
@@ -66,6 +66,7 @@
     const message = typeof summary === 'string' ? summary : summary?.message;
     $('campaignSummary').append(element('p', presentation.campaignExplanation(campaign.status)));
     if (campaign.status === 'queued' && campaign.retryAt) $('campaignSummary').append(element('p', Date.parse(campaign.retryAt) > Date.now() ? `Taking a short automatic pause between requests. Eligible to resume after ${date(campaign.retryAt)}; the worker checks every two minutes. No action needed.` : 'The automatic pause has ended. Your search will resume on an upcoming worker pass. No action needed.'));
+    $('campaignSummary').append(element('p', campaign.lastProgressAt ? `Last research progress: ${date(campaign.lastProgressAt)}` : 'Last research progress: not recorded for this older search yet.'));
     const rows = $('campaignResults');
     rows.replaceChildren();
     if (!results.length) {
@@ -80,6 +81,7 @@
       const property = element('td');
       property.append(element('strong', result.address || 'Address not yet verified'));
       if (result.reviewHistory) property.append(element('small', 'Completed review · availability may have changed'));
+      property.append(element('small', result.foundAt ? `Found ${date(result.foundAt)}` : 'Found time not recorded'), element('small', result.lastProgressAt ? `Last progress ${date(result.lastProgressAt)}` : 'Progress time not recorded'));
       if (result.mls) property.append(element('small', `MLS ${result.mls}`));
       if (result.listingUrl) {
         try {
@@ -126,7 +128,7 @@
       if (!state.selectedId && campaigns.length) state.selectedId = campaigns[0].id;
       renderHistory(campaigns);
       if (state.selectedId) await select(state.selectedId);
-      $('updatedAt').textContent = `Updated ${new Date().toLocaleTimeString()}`;
+      $('updatedAt').textContent = `Page refreshed ${new Date().toLocaleTimeString()} · not a research update`;
       $('historyStatus').classList.remove('error');
     } catch (error) {
       $('historyStatus').textContent = `Could not refresh: ${error.message}`;
