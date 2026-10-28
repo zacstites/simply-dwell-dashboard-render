@@ -6,7 +6,7 @@ const BOT_LABELS = {cortona:"Backlog / Cortona", "lead-generation":"Daily MLS Em
 function botAttribution(journal) {
  const aliases={cortona:"cortona", "simply-dwell-cortona":"cortona", "lead-generation":"lead-generation", "simply-dwell-lead-generation":"lead-generation", campaigns:"campaigns", "simply-dwell-campaigns":"campaigns"};
  const recorded=String(journal.sourceBot || "").trim();
- const botId=aliases[recorded] || "unknown";
+ const botId=Object.hasOwn(aliases,recorded) ? aliases[recorded] : "unknown";
  return {botId,bot:BOT_LABELS[botId],botProvenance:botId === "unknown" ? null : {sourceBot:recorded,source:"transport-journal"}};
 }
 const internal = address => /@(stagewithdwell\.com|steadypace\.ai)$/.test(address);

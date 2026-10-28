@@ -36,7 +36,7 @@ test('journal source identity maps all three bots; unknown is explicit without g
  assert.equal(guessed.bot,'Unknown');assert.equal(guessed.botProvenance,null);
  guessed.bot='Backlog / Cortona';guessed.botId='cortona';
  assert.equal(buildProductionTelemetry({events:[guessed]},now).events[0].bot,'Unknown');
- assert.equal(journalEvent({...fixture(),sourceBot:'unrecognized'},'unknown.json',now).bot,'Unknown');
+ for(const sourceBot of ['unrecognized','__proto__','constructor']) assert.equal(journalEvent({...fixture(),sourceBot},'unknown.json',now).bot,'Unknown');
 });
 test('per-bot totals include all deduplicated deliveries, including beyond the recent-200 table',()=>{
  const events=Array.from({length:205},(_,i)=>{const j=fixture();j.sourceBot=i%2?'cortona':'campaigns';j.message.id='id-'+i;return journalEvent(j,'j-'+i,now)});
