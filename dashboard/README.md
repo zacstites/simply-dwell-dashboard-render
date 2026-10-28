@@ -135,3 +135,16 @@ Fetch and compare `render-live/main` before every push; reconcile divergent chan
 Require a GitHub deployment status for the exact SHA and authenticated byte matching of `/`, `/main.js`, `/styles.css`, plus read-only `/api/email-operations` and `/api/summary`. Check missing/wrong authentication returns 401. Never send mail, create campaigns, replace the service, or refresh snapshots as part of a deployment smoke check.
 
 For loopback integration tests under an agent with inherited proxy variables, use `env -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u http_proxy -u https_proxy -u all_proxy NO_PROXY=localhost,127.0.0.1 NODE_USE_ENV_PROXY=0 node --test tests/*.test.cjs` from `dashboard/`. Install locked dependencies with `npm ci` in a new checkout before testing.
+
+
+## Production email cutover (2026-10-28)
+
+Email Operations switches on server time at **2026-10-28 20:00 America/New_York** (2026-10-29T00:00Z). Before that, the API exposes `productionCutover` alongside legacy reporting. After it, CSV interaction/test/uncertain records and legacy collector events cannot contribute to the email view. Existing browser tabs refresh at the boundary and every 30 seconds. A missing production snapshot fails closed to no counted sends, with unavailable coverage.
+
+`production-policy.json` mirrors the shared private policy `/Users/zac/.openclaw/customer-mail/simply-dwell/production-policy.json`; sync refuses a mismatch. First eligible direct-send evidence is **2026-10-29 09:00 Eastern**. The separate `private-data/email-production.json` projection accepts only `simply-dwell-production-v1` journals in `sent-items-verified`, a mailbox message ID/time, exact single-recipient To agreement, the expected sender, no CC/BCC, and no internal reviewer recipient. Duplicate message IDs count once. Existing journals are read-only and never replayed. Replies/opens remain unavailable without independent collection.
+
+The local snapshot publisher includes the JSON in its protected Render secret archive, permits its intentionally empty events array, hashes it, and verifies exact bytes using the authenticated `/api/downloads/email-production.json` route. No source data enters Git publication.
+
+Private historical display evidence was copied to `/Users/zac/.openclaw/workspace-simply-dwell-dashboards/data/production-cutover-archive-20261028/` (ignored by Git, parent mode 0700), with CSV SHA-256 manifest, run-state and original journals. Canonical business CSVs, full duplicate/no-resend/uncertain history, source queues and eligible unsent work remain intact. Other dashboard sections, pre-stage intake and campaigns are unchanged. The archive is not a queue and grants no send authorization.
+
+Verify with `node --test tests/email-production.test.cjs` and `python3 tests/email-cutover-http.py`; the latter uses synthetic fixtures to prove authenticated APIs at one second before cutover, exactly at cutover, and next-morning opening without sending mail or starting workers.

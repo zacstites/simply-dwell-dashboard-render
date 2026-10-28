@@ -1,0 +1,26 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const {journalEvent,buildProductionTelemetry,policy}=require('../email-production');
+const now=Date.parse('2026-10-29T14:00:00Z');
+const fixture=()=>({deliveryPolicy:policy.id,state:'sent-items-verified',address:'10 Example St',to:['agent@example.com'],message:{id:'verified-1',sentDateTime:'2026-10-29T13:00:00Z',from:{emailAddress:{address:policy.sender}},toRecipients:[{emailAddress:{address:'agent@example.com',name:'Example Agent'}}],ccRecipients:[],bccRecipients:[]}});
+test('production starts at zero and never imports historical interaction rows',()=>{
+ assert.equal(buildProductionTelemetry(null,Date.parse(policy.routingEffectiveAt)).metrics.sent,0);
+ assert.deepEqual(buildProductionTelemetry({events:[{eventType:'sent',segment:'real'}]},now).events,[]);
+});
+test('only verified direct production recipients count, once per mailbox message',()=>{
+ const event=journalEvent(fixture(),'journal.json',now);assert.ok(event);
+ const out=buildProductionTelemetry({events:[event,event]},now);assert.equal(out.metrics.sent,1);assert.equal(out.events[0].segment,'real');assert.equal(out.coverage.opens,'unavailable');
+});
+test('rejects tests, unknown outcomes, old dates, invalid recipients and secondary recipients',()=>{
+ const changes=[j=>delete j.deliveryPolicy,j=>j.state='uncertain',j=>j.message.sentDateTime='2026-10-28T20:00:00Z',j=>j.message.sentDateTime='2026-10-29T12:59:59Z',j=>j.message.sentDateTime='2026-10-30T13:00:00Z',j=>delete j.message.id,j=>j.to.push('other@example.com'),j=>j.message.toRecipients[0].emailAddress.address='other@example.com',j=>j.message.ccRecipients.push({emailAddress:{address:'copy@example.com'}}),j=>j.message.bccRecipients.push({emailAddress:{address:'copy@example.com'}}),j=>j.message.from.emailAddress.address='other@example.com',j=>{j.to=['zac@steadypace.ai'];j.message.toRecipients[0].emailAddress.address=j.to[0];}];
+ for(const change of changes){const j=fixture();change(j);assert.equal(journalEvent(j,'x',now),null);}
+});
+test('cutover is 8PM Eastern and first delivery is next day 9AM Eastern',()=>{
+ assert.equal(new Date(policy.routingEffectiveAt).toISOString(),'2026-10-29T00:00:00.000Z');
+ assert.equal(new Date(policy.firstDirectSendAt).toISOString(),'2026-10-29T13:00:00.000Z');
+ assert.equal(journalEvent(fixture(),'x',Date.parse(policy.routingEffectiveAt)),null);
+});
+test('tampered and legacy explicit telemetry cannot masquerade as production',()=>{
+ const event=journalEvent(fixture(),'x',now);event.segment='test';assert.equal(buildProductionTelemetry({events:[event]},now).metrics.sent,0);
+ event.segment='real';event.eventAt='2026-10-29T12:00:00Z';assert.equal(buildProductionTelemetry({events:[event]},now).metrics.sent,0);
+});

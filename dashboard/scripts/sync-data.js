@@ -254,3 +254,20 @@ console.log(
   `Synced dashboard snapshot: ${dashboardProperties.length} properties, ${dashboardAgents.length} agents, ${dashboardInteractions.length} interactions`,
 );
 console.log(`Synced MLS backlog status rows: ${backlogRows.length}`);
+// Publish a separate, fail-closed production email projection. Never mutate source
+// CSVs, send journals, duplicate gates, active queues, or eligible unsent work.
+const { policy, journalEvent } = require("../email-production");
+const livePolicy = JSON.parse(fs.readFileSync("/Users/zac/.openclaw/customer-mail/simply-dwell/production-policy.json", "utf8"));
+if (JSON.stringify(livePolicy) !== JSON.stringify(policy)) throw new Error("Production policy differs from deployed dashboard policy; reconcile before publishing");
+const journalDir = "/Users/zac/.openclaw/customer-mail/simply-dwell/lead-send-journal";
+const productionEvents = [];
+for (const name of fs.readdirSync(journalDir).filter(name => name.endsWith(".json"))) {
+  const journal = JSON.parse(fs.readFileSync(path.join(journalDir, name), "utf8"));
+  const event = journalEvent(journal, name);
+  if (event) productionEvents.push(event);
+}
+productionEvents.sort((a,b) => a.evidence.localeCompare(b.evidence));
+const productionFile = path.join(targetDir, "email-production.json");
+fs.writeFileSync(productionFile + ".tmp", JSON.stringify({policy, events: productionEvents}, null, 2) + "\n", {mode:0o600});
+fs.renameSync(productionFile + ".tmp", productionFile);
+console.log(`Production email snapshot: ${productionEvents.length} verified deliveries`);

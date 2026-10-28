@@ -156,6 +156,9 @@ function renderTableRows(id, rows, cells) {
 
 function renderEmailOperations() {
   const telemetry = state.emailOperations; if (!telemetry) return;
+  $("emailScope").textContent = telemetry.mode === "production-only"
+    ? "Production only · verified direct-to-listing-agent emails since October 28, 2026 at 8:00 PM Eastern. Historical review/test activity is excluded."
+    : "Historical review activity · production-only reporting begins October 28, 2026 at 8:00 PM Eastern.";
   setMetric("emailSent", telemetry.metrics.sent); setMetric("emailQueued", telemetry.metrics.queued); setMetric("emailFailures", telemetry.metrics.failures); setMetric("emailReplies", telemetry.metrics.confirmedReplies);
   $("emailReplyRate").textContent = telemetry.metrics.replyRate === null ? "Rate unavailable" : (telemetry.metrics.replyRate * 100).toFixed(1) + "% reply rate";
   renderReplyChart(telemetry.engagement, telemetry.metrics.sent);
@@ -587,3 +590,15 @@ $("prestageCopyOutput").addEventListener("click", async () => {
 });
 
 load();
+// Refresh the email view on the cutover boundary even in an already-open tab.
+async function refreshEmailOperations() {
+  if (Date.now() >= Date.parse("2026-10-28T20:00:00-04:00") && state.emailOperations?.mode !== "production-only") {
+    state.emailOperations = {mode:"production-only",metrics:{sent:0,queued:0,failures:0,confirmedReplies:0,replyRate:null},engagement:{replied:0,noRecordedReply:0},events:[]};
+    renderEmailOperations();
+  }
+  try { state.emailOperations = await fetchJson("/api/email-operations"); renderEmailOperations(); }
+  catch { /* Retain the last confirmed response; no invented delivery metrics. */ }
+}
+setInterval(refreshEmailOperations, 30000);
+const emailCutoverDelay = Date.parse("2026-10-28T20:00:00-04:00") - Date.now();
+if (emailCutoverDelay > 0 && emailCutoverDelay < 2147483647) setTimeout(refreshEmailOperations, emailCutoverDelay + 50);

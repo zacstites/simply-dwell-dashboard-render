@@ -12,6 +12,7 @@ const OpenAI = require("openai");
 const { parse } = require("csv-parse/sync");
 const { annotateProperties } = require("./lead-sources");
 const { buildEmailTelemetry } = require("./email-telemetry");
+const { policy: emailProductionPolicy, buildProductionTelemetry } = require("./email-production");
 
 const PORT = Number(process.env.PORT || 3000);
 const PUBLIC_DIR = path.join(__dirname, "public");
@@ -609,8 +610,16 @@ function readExplicitEmailEvents() {
   return Array.isArray(parsed) ? parsed : Array.isArray(parsed.events) ? parsed.events : [];
 }
 
+function readEmailProductionSnapshot() {
+  const file = path.join(DATA_DIR, "email-production.json");
+  if (!fs.existsSync(file)) return null;
+  try { return JSON.parse(fs.readFileSync(file, "utf8")); } catch { return null; }
+}
 function buildEmailOperations() {
-  return buildEmailTelemetry(readDataset("interactions").records, readRunStateHealth(), readExplicitEmailEvents());
+  if (Date.now() >= Date.parse(emailProductionPolicy.routingEffectiveAt)) {
+    return buildProductionTelemetry(readEmailProductionSnapshot());
+  }
+  return { ...buildEmailTelemetry(readDataset("interactions").records, readRunStateHealth(), readExplicitEmailEvents()), productionCutover: emailProductionPolicy };
 }
 
 function clean(value, limit = 2000) {
@@ -1140,7 +1149,12 @@ async function route(req, res) {
   const datasetBySlug = Object.fromEntries(Object.entries(DATASETS).map(([key, dataset]) => [dataset.slug, key]));
 
   try {
-    if (url.pathname === "/api/overview" || url.pathname === "/api/summary") {
+    if (url.pathname === "/api/downloads/email-production.json") {
+      const file = path.join(DATA_DIR, "email-production.json");
+      if (!fs.existsSync(file)) { sendJson(res, 404, {error:"Production snapshot not available"}); return; }
+      res.writeHead(200, {"content-type":"application/json", "cache-control":"no-store"});
+      fs.createReadStream(file).pipe(res);
+    } else if (url.pathname === "/api/overview" || url.pathname === "/api/summary") {
       const overview = buildOverview();
       sendJson(
         res,
