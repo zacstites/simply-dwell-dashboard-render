@@ -164,6 +164,21 @@ button,
 }
 
 .metrics .attention strong {
+.reply-panel { margin-bottom: 16px; }
+.reply-chart { display: flex; align-items: center; gap: 32px; padding: 18px; }
+.reply-ring { display: grid; place-content: center; width: 154px; height: 154px; flex: 0 0 154px; border-radius: 50%; text-align: center; background: conic-gradient(var(--brand-2) var(--reply-percent), var(--brand-3) 0); position: relative; }
+.reply-ring::before { content: ""; position: absolute; inset: 18px; border-radius: 50%; background: #fff; }
+.reply-ring strong, .reply-ring span { position: relative; z-index: 1; }
+.reply-ring strong { color: var(--brand); font-size: 1.45rem; }
+.reply-ring span { color: var(--muted); font-size: .78rem; }
+.reply-legend { display: grid; gap: 10px; min-width: 230px; }
+.reply-legend p { display: grid; grid-template-columns: 14px minmax(0, 1fr) auto; align-items: center; gap: 8px; color: var(--muted); }
+.reply-legend strong { color: var(--brand); }
+.reply-legend small { color: var(--muted); line-height: 1.4; }
+.reply-dot { width: 10px; height: 10px; border-radius: 50%; }
+.reply-dot.replied { background: var(--brand-2); }
+.reply-dot.no-reply { background: var(--brand-3); }
+
   color: var(--danger);
 }
 

@@ -158,7 +158,20 @@ function renderEmailOperations() {
   const telemetry = state.emailOperations; if (!telemetry) return;
   setMetric("emailSent", telemetry.metrics.sent); setMetric("emailQueued", telemetry.metrics.queued); setMetric("emailFailures", telemetry.metrics.failures); setMetric("emailReplies", telemetry.metrics.confirmedReplies);
   $("emailReplyRate").textContent = telemetry.metrics.replyRate === null ? "Rate unavailable" : (telemetry.metrics.replyRate * 100).toFixed(1) + "% reply rate";
-  renderTableRows("emailOperationRows", telemetry.events, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName,(row)=>row.evidence]);
+  renderReplyChart(telemetry.engagement, telemetry.metrics.sent);
+  renderTableRows("emailOperationRows", telemetry.events, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName]);
+}
+
+function renderReplyChart(engagement, sent) {
+  const target = $("replyChart"); if (!target) return;
+  const replied = Number(engagement?.replied || 0); const noRecordedReply = Math.max(0, Number(engagement?.noRecordedReply || 0));
+  const total = replied + noRecordedReply; const replyPercent = total ? (replied / total) * 100 : 0;
+  const chart = document.createElement("div"); chart.className = "reply-chart";
+  const ring = document.createElement("div"); ring.className = "reply-ring"; ring.style.setProperty("--reply-percent", replyPercent + "%");
+  ring.innerHTML = "<strong>" + (total ? replyPercent.toFixed(1) + "%" : "—") + "</strong><span>replied</span>";
+  const legend = document.createElement("div"); legend.className = "reply-legend";
+  legend.innerHTML = "<p><i class=\"reply-dot replied\"></i><span>Recorded reply</span><strong>" + numberFormat.format(replied) + "</strong></p><p><i class=\"reply-dot no-reply\"></i><span>No recorded reply</span><strong>" + numberFormat.format(noRecordedReply) + "</strong></p><small>Based on " + numberFormat.format(sent) + " sent emails. Recipient opens are not tracked.</small>";
+  chart.replaceChildren(ring, legend); target.replaceChildren(chart);
 }
 
 function renderValidationStatus() {
