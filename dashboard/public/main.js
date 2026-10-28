@@ -155,13 +155,10 @@ function renderTableRows(id, rows, cells) {
 }
 
 function renderEmailOperations() {
-  const telemetry=state.emailOperations; if (!telemetry) return;
-  setMetric("emailSent",telemetry.metrics.sent); setMetric("emailQueued",telemetry.metrics.queued); setMetric("emailFailures",telemetry.metrics.failures); setMetric("emailReplies",telemetry.metrics.confirmedReplies);
-  $("emailReplyRate").textContent=telemetry.metrics.replyRate===null ? "Rate unavailable" : (telemetry.metrics.replyRate*100).toFixed(1)+"% reply rate";
-  $("emailOpens").textContent=telemetry.coverage.opens==="unavailable" ? "Unavailable (not zero)" : numberFormat.format(telemetry.metrics.opens);
-  $("emailCoverage").textContent="Sends: "+telemetry.coverage.sends+" · replies: "+telemetry.coverage.replies+" · opens: "+telemetry.coverage.opens;
-  $("emailCoverageNotes").replaceChildren(...telemetry.coverage.notes.map((note)=>{const item=document.createElement("p");item.textContent=note;return item;}));
-  renderTableRows("emailOperationRows",telemetry.events,[(row)=>formatDate(row.eventAt),(row)=>row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName,(row)=>row.evidence]);
+  const telemetry = state.emailOperations; if (!telemetry) return;
+  setMetric("emailSent", telemetry.metrics.sent); setMetric("emailQueued", telemetry.metrics.queued); setMetric("emailFailures", telemetry.metrics.failures); setMetric("emailReplies", telemetry.metrics.confirmedReplies);
+  $("emailReplyRate").textContent = telemetry.metrics.replyRate === null ? "Rate unavailable" : (telemetry.metrics.replyRate * 100).toFixed(1) + "% reply rate";
+  renderTableRows("emailOperationRows", telemetry.events, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName,(row)=>row.evidence]);
 }
 
 function renderValidationStatus() {

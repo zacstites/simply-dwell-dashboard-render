@@ -123,3 +123,15 @@ The snapshot sync derives provenance from specific email/campaign workflow evide
 ### Campaign research and customer projection
 `campaign-policy.js` is the customer visibility boundary. Worker endpoints retain full audit rows; browser endpoints return only recently verified Active Residential, in-filter rows with source evidence and an attributed agent. Legacy rows without this evidence remain internal, not deleted. Customer counts refer to visible listings; historical sent counts remain separate.
 Campaign updates accept at most one changed property and never delete existing research/send history. `retryAfterSeconds` on queued updates persists `retryAt`; both next and claim enforce it. The worker's local `research-control.py` retains a single current property and serial request/cooldown state across runs. These controls do not change other agents' provider quotas.
+
+## GitHub/Render publication recovery
+
+The live remote is `render-live` (`zacstites/simply-dwell-dashboard-render`, branch `main`), serving https://simply-dwell-dashboards.onrender.com (Render `srv-db5broh42hec738dllk0`). The campaign checkout is `/Users/zac/.openclaw/workspace/simply-dwell-campaign-fix`; the reconciliation checkout is `/Users/zac/.openclaw/workspace/simply-dwell-deploy-recovery`. These share the Git config in `/Users/zac/.openclaw/workspace-simply-dwell-dashboards/.git`.
+
+The repo-local URL-scoped credential helper for the live repository clears inherited helpers and obtains the native `zacstites` GitHub CLI credential with `env -u GH_TOKEN -u GITHUB_TOKEN gh auth token --hostname github.com`. Never print the token. Plain `git fetch render-live main` and `git push render-live HEAD:main` use that helper. Do not run `gh auth setup-git`: inherited environment credentials can select a different read-only account. Do not change global helpers. Config was backed up beside `.git/config` before repair.
+
+Fetch and compare `render-live/main` before every push; reconcile divergent changes in a clean worktree, preserve existing tests and unrelated work, and never force push. Run `npm run check` and `node --test tests/*.test.cjs` in `dashboard/`. Render auto-deploy may be disabled: inspect current service/deploys before triggering a single deploy, normalize Render responses with `record.deploy ?? record`, and follow the matching SHA to live. The local `campaign-deploy-admin.py verify` creates a campaign; do not use it for read-only verification.
+
+Require a GitHub deployment status for the exact SHA and authenticated byte matching of `/`, `/main.js`, `/styles.css`, plus read-only `/api/email-operations` and `/api/summary`. Check missing/wrong authentication returns 401. Never send mail, create campaigns, replace the service, or refresh snapshots as part of a deployment smoke check.
+
+For loopback integration tests under an agent with inherited proxy variables, use `env -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u http_proxy -u https_proxy -u all_proxy NO_PROXY=localhost,127.0.0.1 NODE_USE_ENV_PROXY=0 node --test tests/*.test.cjs` from `dashboard/`. Install locked dependencies with `npm ci` in a new checkout before testing.
