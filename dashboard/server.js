@@ -11,6 +11,7 @@ const ffmpegPath = require("ffmpeg-static");
 const OpenAI = require("openai");
 const { parse } = require("csv-parse/sync");
 const { annotateProperties } = require("./lead-sources");
+const { buildEmailTelemetry } = require("./email-telemetry");
 
 const PORT = Number(process.env.PORT || 3000);
 const PUBLIC_DIR = path.join(__dirname, "public");
@@ -601,6 +602,17 @@ function buildOverview() {
   };
 }
 
+function readExplicitEmailEvents() {
+  const file = path.join(DATA_DIR, "email-telemetry-events.json");
+  if (!fs.existsSync(file)) return [];
+  const parsed = JSON.parse(fs.readFileSync(file, "utf8"));
+  return Array.isArray(parsed) ? parsed : Array.isArray(parsed.events) ? parsed.events : [];
+}
+
+function buildEmailOperations() {
+  return buildEmailTelemetry(readDataset("interactions").records, readRunStateHealth(), readExplicitEmailEvents());
+}
+
 function clean(value, limit = 2000) {
   return String(value || "").trim().slice(0, limit);
 }
@@ -1169,6 +1181,8 @@ async function route(req, res) {
       sendJson(res, 200, publicDataset("agents"));
     } else if (url.pathname === "/api/interactions") {
       sendJson(res, 200, publicDataset("interactions"));
+    } else if (url.pathname === "/api/email-operations") {
+      sendJson(res, 200, buildEmailOperations());
     } else if (url.pathname === "/api/mls-backlog") {
       sendJson(res, 200, publicDataset("mlsBacklog"));
     } else if (url.pathname === "/api/run-state") {

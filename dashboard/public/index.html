@@ -22,6 +22,7 @@
       <nav class="tabs" aria-label="Dashboard views">
         <button class="tab active" type="button" data-view="overview">Overview</button>
         <button class="tab" type="button" data-view="backlog">MLS Backlog</button>
+        <button class="tab" type="button" data-view="email-operations">Email Operations</button>
         <button class="tab" type="button" data-view="tables">Data</button>
         <button class="tab" type="button" data-view="prestage">Pre-Stage Intake</button>
         <a class="button" href="/campaigns.html">ZIP Campaigns</a>
@@ -96,6 +97,12 @@
             <div id="emailActivityBars" class="bars"></div>
           </article>
         </section>
+      </section>
+
+      <section class="view" data-view="email-operations">
+        <section class="metrics"><article><span>Sent</span><strong id="emailSent">-</strong><small>Recorded delivery evidence</small></article><article><span>Queued</span><strong id="emailQueued">-</strong><small>Awaiting guarded release</small></article><article><span>Failures</span><strong id="emailFailures">-</strong><small>Recorded failure or blocked run</small></article><article><span>Confirmed replies</span><strong id="emailReplies">-</strong><small id="emailReplyRate">Coverage unavailable</small></article></section>
+        <section class="grid"><article class="panel"><div class="panel-head"><div><h2>Coverage</h2><span id="emailCoverage">Loading</span></div></div><div id="emailCoverageNotes" class="warning-list"></div></article><article class="panel"><div class="panel-head"><div><h2>Opens</h2><span id="emailOpens">Unavailable</span></div></div><p>Recipient opens are never inferred from Microsoft Graph isRead.</p></article></section>
+        <section class="panel"><div class="panel-head"><div><h2>Send, queue, failure and reply evidence</h2><span>Bot/campaign/segment retained when recorded</span></div></div><div class="table-wrap"><table><thead><tr><th>When</th><th>Event</th><th>Bot</th><th>Campaign</th><th>Segment</th><th>Property</th><th>Agent</th><th>Evidence</th></tr></thead><tbody id="emailOperationRows"></tbody></table></div></section>
       </section>
 
       <section class="view" data-view="backlog">

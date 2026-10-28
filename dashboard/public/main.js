@@ -1,6 +1,7 @@
 const state = {
   overview: null,
   agentDrilldown: null,
+  emailOperations: null,
   view: "overview",
   selectedAgentId: "",
   selectedAgentSection: "properties",
@@ -151,6 +152,16 @@ function renderTableRows(id, rows, cells) {
       return tr;
     }),
   );
+}
+
+function renderEmailOperations() {
+  const telemetry=state.emailOperations; if (!telemetry) return;
+  setMetric("emailSent",telemetry.metrics.sent); setMetric("emailQueued",telemetry.metrics.queued); setMetric("emailFailures",telemetry.metrics.failures); setMetric("emailReplies",telemetry.metrics.confirmedReplies);
+  $("emailReplyRate").textContent=telemetry.metrics.replyRate===null ? "Rate unavailable" : (telemetry.metrics.replyRate*100).toFixed(1)+"% reply rate";
+  $("emailOpens").textContent=telemetry.coverage.opens==="unavailable" ? "Unavailable (not zero)" : numberFormat.format(telemetry.metrics.opens);
+  $("emailCoverage").textContent="Sends: "+telemetry.coverage.sends+" · replies: "+telemetry.coverage.replies+" · opens: "+telemetry.coverage.opens;
+  $("emailCoverageNotes").replaceChildren(...telemetry.coverage.notes.map((note)=>{const item=document.createElement("p");item.textContent=note;return item;}));
+  renderTableRows("emailOperationRows",telemetry.events,[(row)=>formatDate(row.eventAt),(row)=>row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName,(row)=>row.evidence]);
 }
 
 function renderValidationStatus() {
@@ -505,15 +516,18 @@ async function initPrestage() {
 async function load() {
   $("refresh").disabled = true;
   try {
-    const [overviewResponse, agentDrilldownResponse] = await Promise.all([
+    const [overviewResponse, agentDrilldownResponse, emailOperations] = await Promise.all([
       fetch("/api/overview"),
       fetch("/api/agent-drilldown"),
+      fetch("/api/email-operations"),
     ]);
     state.overview = await overviewResponse.json();
     state.agentDrilldown = await agentDrilldownResponse.json();
+    state.emailOperations = await emailOperations.json();
     renderOverview();
     renderDownloadCards();
     renderAgentDrilldown();
+    renderEmailOperations();
     await initPrestage();
   } finally {
     $("refresh").disabled = false;
