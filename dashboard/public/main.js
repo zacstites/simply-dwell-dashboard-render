@@ -162,7 +162,27 @@ function renderEmailOperations() {
   setMetric("emailSent", telemetry.metrics.sent); setMetric("emailQueued", telemetry.metrics.queued); setMetric("emailFailures", telemetry.metrics.failures); setMetric("emailReplies", telemetry.metrics.confirmedReplies);
   $("emailReplyRate").textContent = telemetry.metrics.replyRate === null ? "Rate unavailable" : (telemetry.metrics.replyRate * 100).toFixed(1) + "% reply rate";
   renderReplyChart(telemetry.engagement, telemetry.metrics.sent);
-  renderTableRows("emailOperationRows", telemetry.events, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName]);
+  const production = telemetry.mode === "production-only";
+  $("emailBotPanel").hidden = !production;
+  $("emailBotControls").hidden = !production;
+  const counts = telemetry.byBot || [
+    {botId:"cortona",bot:"Backlog / Cortona",sent:0},
+    {botId:"lead-generation",bot:"Daily MLS Email",sent:0},
+    {botId:"campaigns",bot:"ZIP Campaign",sent:0},
+    {botId:"unknown",bot:"Unknown",sent:0},
+  ];
+  $("emailBotCounts").replaceChildren(...counts.map(row => {
+    const card = document.createElement("article");
+    const label = document.createElement("span"); label.textContent = row.bot;
+    const count = document.createElement("strong"); count.textContent = numberFormat.format(row.sent);
+    card.append(label, count); return card;
+  }));
+  const selected = $("emailBotFilter").value;
+  const rows = telemetry.events.filter(row => !production || selected === "all" || row.botId === selected);
+  $("emailBotResult").textContent = rows.length
+    ? `Showing ${rows.length} ${selected === "all" ? "emails" : "emails for this bot"} from the latest 200 verified deliveries. Counts above cover all verified deliveries.`
+    : "No verified production emails for this selection.";
+  renderTableRows("emailOperationRows", rows, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName]);
 }
 
 function renderReplyChart(engagement, sent) {
@@ -551,6 +571,7 @@ document.querySelectorAll(".tab").forEach((tab) => {
   tab.addEventListener("click", () => setView(tab.dataset.view));
 });
 
+$("emailBotFilter").addEventListener("change", renderEmailOperations);
 $("refresh").addEventListener("click", load);
 
 $("prestageForm").addEventListener("submit", async (event) => {

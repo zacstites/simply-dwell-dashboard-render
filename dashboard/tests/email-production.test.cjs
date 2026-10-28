@@ -24,3 +24,25 @@ test('tampered and legacy explicit telemetry cannot masquerade as production',()
  const event=journalEvent(fixture(),'x',now);event.segment='test';assert.equal(buildProductionTelemetry({events:[event]},now).metrics.sent,0);
  event.segment='real';event.eventAt='2026-10-29T12:00:00Z';assert.equal(buildProductionTelemetry({events:[event]},now).metrics.sent,0);
 });
+
+test('journal source identity maps all three bots; unknown is explicit without guesses',()=>{
+ const mapping={'cortona':'Backlog / Cortona','lead-generation':'Daily MLS Email','campaigns':'ZIP Campaign'};
+ for(const [sourceBot,label] of Object.entries(mapping)) {
+  const event=journalEvent({...fixture(),sourceBot},'source.json',now);
+  assert.equal(event.bot,label);assert.equal(event.botId,sourceBot);
+  assert.equal(buildProductionTelemetry({events:[event]},now).byBot.find(row=>row.botId===sourceBot).sent,1);
+ }
+ const guessed=journalEvent({...fixture(),bot:'cortona',campaign:'ZIP Campaign'},'unknown.json',now);
+ assert.equal(guessed.bot,'Unknown');assert.equal(guessed.botProvenance,null);
+ guessed.bot='Backlog / Cortona';guessed.botId='cortona';
+ assert.equal(buildProductionTelemetry({events:[guessed]},now).events[0].bot,'Unknown');
+ assert.equal(journalEvent({...fixture(),sourceBot:'unrecognized'},'unknown.json',now).bot,'Unknown');
+});
+test('per-bot totals include all deduplicated deliveries, including beyond the recent-200 table',()=>{
+ const events=Array.from({length:205},(_,i)=>{const j=fixture();j.sourceBot=i%2?'cortona':'campaigns';j.message.id='id-'+i;return journalEvent(j,'j-'+i,now)});
+ const out=buildProductionTelemetry({events:[...events,events[0]]},now);
+ assert.equal(out.metrics.sent,205);assert.equal(out.events.length,200);
+ assert.equal(out.byBot.reduce((sum,row)=>sum+row.sent,0),205);
+ assert.equal(out.byBot.find(row=>row.botId==='lead-generation').sent,0);
+ assert.equal(out.byBot.find(row=>row.botId==='unknown').sent,0);
+});
