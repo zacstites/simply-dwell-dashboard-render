@@ -1,6 +1,7 @@
 const state = {
   overview: null,
   agentDrilldown: null,
+  emailOperations: null,
   view: "overview",
   selectedAgentId: "",
   selectedAgentSection: "properties",
@@ -151,6 +152,13 @@ function renderTableRows(id, rows, cells) {
       return tr;
     }),
   );
+}
+
+function renderEmailOperations() {
+  const telemetry = state.emailOperations; if (!telemetry) return;
+  setMetric("emailSent", telemetry.metrics.sent); setMetric("emailQueued", telemetry.metrics.queued); setMetric("emailFailures", telemetry.metrics.failures); setMetric("emailReplies", telemetry.metrics.confirmedReplies);
+  $("emailReplyRate").textContent = telemetry.metrics.replyRate === null ? "Rate unavailable" : (telemetry.metrics.replyRate * 100).toFixed(1) + "% reply rate";
+  renderTableRows("emailOperationRows", telemetry.events, [(row)=>formatDate(row.eventAt),(row)=>row.eventType === "failure" ? "Delivery follow-up" : row.eventType,(row)=>row.bot,(row)=>row.campaign,(row)=>row.segment,(row)=>row.propertyAddress,(row)=>row.agentName,(row)=>row.evidence]);
 }
 
 function renderValidationStatus() {
@@ -505,15 +513,18 @@ async function initPrestage() {
 async function load() {
   $("refresh").disabled = true;
   try {
-    const [overviewResponse, agentDrilldownResponse] = await Promise.all([
+    const [overviewResponse, agentDrilldownResponse, emailOperations] = await Promise.all([
       fetch("/api/overview"),
       fetch("/api/agent-drilldown"),
+      fetch("/api/email-operations"),
     ]);
     state.overview = await overviewResponse.json();
     state.agentDrilldown = await agentDrilldownResponse.json();
+    state.emailOperations = await emailOperations.json();
     renderOverview();
     renderDownloadCards();
     renderAgentDrilldown();
+    renderEmailOperations();
     await initPrestage();
   } finally {
     $("refresh").disabled = false;
