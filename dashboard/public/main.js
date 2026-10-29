@@ -39,6 +39,7 @@ function labelForHeader(header) {
 
 function displayValue(header, value, record = {}, headers = []) {
   const raw = String(value || "").trim();
+  if (header === "photo_status" && !raw) return "Not recorded";
   if (!raw) return "-";
   if (header === "listing_price" && Number.isFinite(Number(raw))) return new Intl.NumberFormat("en-US", {style: "currency", currency: "USD", maximumFractionDigits: 0}).format(Number(raw));
   if (header === "property_address" && headers.includes("city")) return raw.split(",")[0].trim() || raw;

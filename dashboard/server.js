@@ -166,7 +166,7 @@ function productionDataset(key) {
   const dataset = DATASETS[key];
   if (!dataset) throw Object.assign(new Error('Unknown dataset'), {statusCode:404});
   const snapshot = readEmailProductionSnapshot();
-  const records = require('./customer-production').project(snapshot)[key];
+  const records = require('./customer-production').project(snapshot, Date.now(), readRawDataset('properties').records)[key];
   const headers = [...new Set([...dataset.requiredHeaders, ...records.flatMap(row=>Object.keys(row))])];
   const cell = value => '"' + String(value ?? '').replace(/"/g, '""') + '"';
   const raw = [headers.map(cell).join(','), ...records.map(row=>headers.map(h=>cell(row[h])).join(','))].join('\n')+'\n';
@@ -175,6 +175,9 @@ function productionDataset(key) {
 }
 function readDataset(key) {
   if (productionViewActive()) return productionDataset(key);
+  return readRawDataset(key);
+}
+function readRawDataset(key) {
   const dataset = DATASETS[key];
   if (!dataset) {
     throw Object.assign(new Error("Unknown dataset."), { statusCode: 404 });
@@ -427,6 +430,17 @@ function loadAllData() {
   return Object.fromEntries(Object.keys(DATASETS).map((key) => [key, readDataset(key)]));
 }
 
+function cityFromPropertyAddress(address) {
+  const parts = String(address || "")
+    .split(",")
+    .map((part) => part.trim())
+    .filter(Boolean);
+  // The canonical property address format is "street, city, state ZIP".
+  // Only infer a city when that complete shape is present; otherwise retain
+  // the source blank rather than guessing.
+  return parts.length >= 3 ? parts.at(-2) : "";
+}
+
 function buildAgentDrilldown(
   loaded = {
     agents: readDataset("agents"),
@@ -441,8 +455,12 @@ function buildAgentDrilldown(
     const agentName = normalizeText(agent.agent_name);
     const matchedProperties = properties.records
       .filter((property) => propertyMatchesAgent(property, agent))
-      .map((property) =>
-        compactRecord(property, [
+      .map((property) => {
+        const displayProperty = {
+          ...property,
+          city: normalizeText(property.city) || cityFromPropertyAddress(property.property_address),
+        };
+        return compactRecord(displayProperty, [
           "property_id",
           "property_address",
           "city",
@@ -461,8 +479,8 @@ function buildAgentDrilldown(
           "dashboard_status",
           "customer_batch_status",
           "approval_status",
-        ]),
-      );
+        ]);
+      });
     const matchedInteractions = interactions.records
       .filter((interaction) => {
         if (agentId && interaction.agent_id === agentId) return true;
