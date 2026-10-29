@@ -161,7 +161,20 @@ function sendText(res, statusCode, body, headers = {}) {
   res.end(body);
 }
 
+function productionViewActive() { return Date.now() >= Date.parse(emailProductionPolicy.routingEffectiveAt); }
+function productionDataset(key) {
+  const dataset = DATASETS[key];
+  if (!dataset) throw Object.assign(new Error('Unknown dataset'), {statusCode:404});
+  const snapshot = readEmailProductionSnapshot();
+  const records = require('./customer-production').project(snapshot)[key];
+  const headers = [...new Set([...dataset.requiredHeaders, ...records.flatMap(row=>Object.keys(row))])];
+  const cell = value => '"' + String(value ?? '').replace(/"/g, '""') + '"';
+  const raw = [headers.map(cell).join(','), ...records.map(row=>headers.map(h=>cell(row[h])).join(','))].join('\n')+'\n';
+  return {...dataset,key,headers,records,raw,bytes:Buffer.byteLength(raw),updatedAt:snapshot?.generatedAt || null,
+    validation:{ok:!!snapshot,requiredHeaders:dataset.requiredHeaders,missingHeaders:[],status:snapshot?'ok':'production_evidence_unavailable'}};
+}
 function readDataset(key) {
+  if (productionViewActive()) return productionDataset(key);
   const dataset = DATASETS[key];
   if (!dataset) {
     throw Object.assign(new Error("Unknown dataset."), { statusCode: 404 });
@@ -303,6 +316,7 @@ function propertyMatchesAgent(property, agent) {
 }
 
 function readRunStateHealth() {
+  if (productionViewActive()) return {exists:false,directory:null,total:0,byStatus:[],byRunType:[],records:[],recent:[]};
   if (!fs.existsSync(RUN_STATE_DIR)) {
     return {
       exists: false,
@@ -537,8 +551,9 @@ function buildOverview() {
   return {
     generatedAt: new Date().toISOString(),
     source: {
-      dataDir: DATA_DIR,
-      runStateDir: RUN_STATE_DIR,
+      dataDir: productionViewActive() ? "Verified direct production sends" : DATA_DIR,
+      mode: productionViewActive() ? "production-only" : "legacy",
+      runStateDir: productionViewActive() ? null : RUN_STATE_DIR,
     },
     validation: {
       ok: loadedDatasets.every((dataset) => dataset.validation.ok),
@@ -1149,7 +1164,15 @@ async function route(req, res) {
   const datasetBySlug = Object.fromEntries(Object.entries(DATASETS).map(([key, dataset]) => [dataset.slug, key]));
 
   try {
-    if (url.pathname === "/api/downloads/email-production.json") {
+    if (url.pathname === "/api/snapshot-hashes") {
+      const files = [...Object.values(DATASETS).map(d=>d.file), 'email-production.json'];
+      const hashes = Object.fromEntries(files.map(name=>{
+        const data=fs.readFileSync(path.join(DATA_DIR,name));
+        return [name,{sha256:crypto.createHash('sha256').update(data).digest('hex'),
+          rows:name.endsWith('.json') ? JSON.parse(data).events.length : parse(data,{columns:true,skip_empty_lines:true,relax_quotes:true,relax_column_count:true}).length}];
+      }));
+      sendJson(res,200,{files:hashes});
+    } else if (url.pathname === "/api/downloads/email-production.json") {
       const file = path.join(DATA_DIR, "email-production.json");
       if (!fs.existsSync(file)) { sendJson(res, 404, {error:"Production snapshot not available"}); return; }
       res.writeHead(200, {"content-type":"application/json", "cache-control":"no-store"});

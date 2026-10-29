@@ -206,7 +206,7 @@ function renderValidationStatus() {
     ...dataset,
   }));
   $("sourceStatus").textContent = validation.ok
-    ? `Snapshots loaded from ${state.overview.source.dataDir}`
+    ? (state.overview.source.mode === "production-only" ? "Verified direct-to-Realtor sends only. Historical tests and unsent research are excluded." : `Snapshots loaded from ${state.overview.source.dataDir}`)
     : "One or more source snapshots are missing required headers";
 
   $("validationRows").replaceChildren(
@@ -234,10 +234,10 @@ function renderOverview() {
   setMetric("propertyCount", metrics.propertyCount);
   setMetric("interactionCount", metrics.interactionCount);
   setMetric("backlogCount", metrics.backlogCount);
-  $("agentDetail").textContent = `${numberFormat.format(metrics.needsReviewAgents)} need review`;
-  $("reviewDetail").textContent = `${numberFormat.format(metrics.internalReviewCount)} sent/internal review records`;
+  $("agentDetail").textContent = (overview.source.mode === "production-only" ? "Recipients of verified production emails" : `${numberFormat.format(metrics.needsReviewAgents)} need review`);
+  $("reviewDetail").textContent = (overview.source.mode === "production-only" ? "Verified direct-to-Realtor sends" : `${numberFormat.format(metrics.internalReviewCount)} sent/internal review records`);
   $("backlogDetail").textContent =
-    `${numberFormat.format(metrics.backlogNotStartedCount)} not started, ${numberFormat.format(metrics.backlogReadyCount)} ready`;
+    (overview.source.mode === "production-only" ? "Properties contacted by the backlog worker" : `${numberFormat.format(metrics.backlogNotStartedCount)} not started, ${numberFormat.format(metrics.backlogReadyCount)} ready`);
   $("updatedAt").textContent = `Updated ${formatDate(overview.generatedAt)}`;
 
   renderPie("overviewBatchPie", overview.distributions.backlogCustomerBatchStatus);
